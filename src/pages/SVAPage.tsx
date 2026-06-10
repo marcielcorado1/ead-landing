@@ -79,7 +79,7 @@ const STEPS = [
   {
     num: '02',
     title: 'Aula: Conhecendo os Agentes e Skills',
-    desc: 'Você aprende como os 38 agentes e 193+ skills funcionam. Configura o sistema com os dados do seu provedor. A partir daqui, você manda — a IA executa.',
+    desc: 'Você aprende como os 35+ agentes e 190+ skills funcionam. Configura o sistema com os dados do seu provedor. A partir daqui, você manda — a IA executa.',
     time: '1 hora',
     emoji: '🤖',
   },
@@ -171,7 +171,7 @@ export default function SVAPage() {
           </div>
           <div className="flex items-center gap-3">
             <span className="hidden sm:block text-xs text-slate-500 border border-white/10 px-3 py-1 rounded-full">
-              38 agentes · 193+ skills
+              35+ agentes · 190+ skills
             </span>
             <a href="#lista-espera"
               className="text-xs font-bold bg-violet-600 hover:bg-violet-500 text-white px-4 py-2 rounded-xl transition-colors">
@@ -225,8 +225,8 @@ export default function SVAPage() {
           {/* Stats bar */}
           <div className="grid grid-cols-3 gap-4 max-w-xl mx-auto">
             {[
-              { val: '38', label: 'Agentes de IA' },
-              { val: '193+', label: 'Skills prontas' },
+              { val: '35+', label: 'Agentes de IA' },
+              { val: '190+', label: 'Skills prontas' },
               { val: '~$20', label: 'Único custo/mês' },
             ].map((s, i) => (
               <div key={i} className="bg-white/5 border border-white/10 rounded-2xl py-4 px-3">
@@ -407,15 +407,15 @@ export default function SVAPage() {
           </h2>
           <p className="text-slate-400 max-w-2xl mx-auto text-sm leading-relaxed">
             O curso ensina você a instalar e operar o NEXCORE no seu servidor.
-            Com 38 agentes especializados e IA, você descreve o app que quer criar
+            Com 35+ agentes especializados e IA, você descreve o app que quer criar
             para seus clientes — e o sistema constrói. <strong className="text-white">Em poucas horas, seu app está no ar.</strong>
           </p>
         </div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-10">
           {[
-            { icon: <Bot className="w-5 h-5 text-violet-400" />, title: '38 Agentes Especializados', desc: 'Cada agente tem uma função: criador de código, revisor, deploy, banco de dados, segurança...' },
-            { icon: <Zap className="w-5 h-5 text-teal-400" />, title: '193+ Skills Prontas', desc: 'Skills são tarefas pré-programadas. Seu agente já sabe criar app, conectar banco, publicar na web.' },
+            { icon: <Bot className="w-5 h-5 text-violet-400" />, title: '35+ Agentes Especializados', desc: 'Cada agente tem uma função: criador de código, revisor, deploy, banco de dados, segurança...' },
+            { icon: <Zap className="w-5 h-5 text-teal-400" />, title: '190+ Skills Prontas', desc: 'Skills são tarefas pré-programadas. Seu agente já sabe criar app, conectar banco, publicar na web.' },
             { icon: <Terminal className="w-5 h-5 text-blue-400" />, title: 'Dashboard Web Completo', desc: 'Painel visual para gerenciar tudo: agentes, relatórios, rotinas automáticas, integrações.' },
             { icon: <Cpu className="w-5 h-5 text-purple-400" />, title: 'Roda no Seu Servidor', desc: 'Instalado no seu VPS. Você tem controle total. Seus dados não saem da sua infraestrutura.' },
             { icon: <Shield className="w-5 h-5 text-emerald-400" />, title: 'Stack 100% Gratuita', desc: 'Supabase, GitHub e Vercel têm tiers gratuitos robustos. Você começa sem gastar nada além da assinatura de IA.' },

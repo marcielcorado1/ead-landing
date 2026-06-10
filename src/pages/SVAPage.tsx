@@ -4,7 +4,7 @@ import {
   Zap, Shield, DollarSign, Play, Mail, Star,
   TrendingUp, Users, Clock, ChevronDown, Lock, Cpu,
   LayoutGrid, Package, Terminal, Sparkles,
-  Coins, Gift, MessageCircle,
+  ShoppingBag, Briefcase, Wrench, Trophy, Gift,
 } from 'lucide-react'
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -14,11 +14,11 @@ import {
 
 // 5 exemplos realistas — o aluno vai aprender a criar apps assim (e muitos outros)
 const NETFLIX_MODULES = [
-  { icon: <Coins className="w-4 h-4" />, name: 'Clube de Pontos', route: '/pontos', desc: 'Fidelidade por pontualidade de pagamento', color: 'text-yellow-400 bg-yellow-400/10 border-yellow-400/20' },
-  { icon: <Users className="w-4 h-4" />, name: 'Indique e Ganhe', route: '/indique', desc: 'Afiliados e indicações remuneradas', color: 'text-emerald-400 bg-emerald-400/10 border-emerald-400/20' },
-  { icon: <MessageCircle className="w-4 h-4" />, name: 'IA do Cliente', route: '/ia', desc: 'Assistente exclusivo da operadora', color: 'text-violet-400 bg-violet-400/10 border-violet-400/20' },
-  { icon: <Shield className="w-4 h-4" />, name: 'Controle Parental', route: '/parental', desc: 'Filtro de conteúdo para a família', color: 'text-blue-400 bg-blue-400/10 border-blue-400/20' },
-  { icon: <Gift className="w-4 h-4" />, name: 'Clube de Descontos', route: '/descontos', desc: 'Parcerias com comércio local', color: 'text-pink-400 bg-pink-400/10 border-pink-400/20' },
+  { icon: <ShoppingBag className="w-4 h-4" />, name: 'Marketplace dos Clientes', route: '/marketplace', desc: 'Clientes anunciam serviços entre si', color: 'text-rose-400 bg-rose-400/10 border-rose-400/20' },
+  { icon: <Briefcase className="w-4 h-4" />, name: 'Vagas de Emprego', route: '/vagas', desc: 'Oportunidades de emprego da região', color: 'text-sky-400 bg-sky-400/10 border-sky-400/20' },
+  { icon: <Wrench className="w-4 h-4" />, name: 'Banco de Ferramentas', route: '/ferramentas', desc: 'Clientes emprestam ferramentas entre si', color: 'text-amber-400 bg-amber-400/10 border-amber-400/20' },
+  { icon: <Trophy className="w-4 h-4" />, name: 'Atleta Premiado ⚽', route: '/atleta', desc: 'Treinos, notas e jogos valem pontos', color: 'text-emerald-400 bg-emerald-400/10 border-emerald-400/20' },
+  { icon: <Gift className="w-4 h-4" />, name: 'Clube de Benefícios 🎁', route: '/beneficios', desc: 'Pontos por fidelidade e indicações', color: 'text-violet-400 bg-violet-400/10 border-violet-400/20' },
 ]
 
 const STACK = [
@@ -341,9 +341,9 @@ export default function SVAPage() {
               sem afetar os outros. Começa com 1 e vai adicionando no seu ritmo.
             </p>
             <div className="bg-slate-900 rounded-xl p-3 font-mono text-[10px] text-slate-500 space-y-0.5">
-              <div><span className="text-teal-400">app</span>.suainternet.com.br<span className="text-yellow-400">/pontos</span></div>
-              <div><span className="text-teal-400">app</span>.suainternet.com.br<span className="text-emerald-400">/indique</span></div>
-              <div><span className="text-teal-400">app</span>.suainternet.com.br<span className="text-orange-400">/futebol</span></div>
+              <div><span className="text-teal-400">app</span>.suainternet.com.br<span className="text-rose-400">/marketplace</span></div>
+              <div><span className="text-teal-400">app</span>.suainternet.com.br<span className="text-sky-400">/vagas</span></div>
+              <div><span className="text-teal-400">app</span>.suainternet.com.br<span className="text-amber-400">/ferramentas</span></div>
               <div className="text-slate-700">... e mais {NETFLIX_MODULES.length - 3} módulos</div>
             </div>
           </div>
@@ -375,11 +375,11 @@ export default function SVAPage() {
               </div>
               <p className="text-[10px] text-slate-700 mb-3">* apps que você aprende a criar no curso</p>
               {[
-                { name: 'Clube de Pontos', price: 'R$ 9,90/mês', revenue: 'R$ 1.980', color: 'text-yellow-400' },
-                { name: 'Indique e Ganhe', price: 'R$ 9,90/mês', revenue: 'R$ 1.980', color: 'text-emerald-400' },
-                { name: 'IA do Cliente', price: 'R$ 14,90/mês', revenue: 'R$ 2.980', color: 'text-violet-400' },
-                { name: 'Controle Parental', price: 'R$ 19,90/mês', revenue: 'R$ 3.980', color: 'text-blue-400' },
-                { name: 'Clube de Descontos', price: 'R$ 9,90/mês', revenue: 'R$ 1.980', color: 'text-pink-400' },
+                { name: 'Marketplace dos Clientes', price: 'R$ 9,90/mês', revenue: 'R$ 1.980', color: 'text-rose-400' },
+                { name: 'Vagas de Emprego', price: 'R$ 9,90/mês', revenue: 'R$ 1.980', color: 'text-sky-400' },
+                { name: 'Banco de Ferramentas', price: 'R$ 9,90/mês', revenue: 'R$ 1.980', color: 'text-amber-400' },
+                { name: 'Atleta Premiado', price: 'R$ 19,90/mês', revenue: 'R$ 3.980', color: 'text-emerald-400' },
+                { name: 'Clube de Benefícios', price: 'R$ 9,90/mês', revenue: 'R$ 1.980', color: 'text-violet-400' },
               ].map((item, i) => (
                 <div key={i} className="flex items-center justify-between p-3 rounded-xl bg-white/5 hover:bg-white/10 transition-colors">
                   <div className={`text-sm font-semibold ${item.color}`}>{item.name}</div>
@@ -526,9 +526,9 @@ export default function SVAPage() {
           </div>
           <div className="grid sm:grid-cols-4 gap-4 mb-8">
             {[
-              { label: 'App 1 criado no curso', val: 'R$ 1.980', sub: 'ex: Clube de Pontos', color: 'text-yellow-400' },
-              { label: 'App 2 (você cria depois)', val: '+ R$ 2.980', sub: 'ex: IA do Cliente', color: 'text-violet-400' },
-              { label: 'App 3 (você cria depois)', val: '+ R$ 1.980', sub: 'ex: Indique e Ganhe', color: 'text-emerald-400' },
+              { label: 'App 1 criado no curso', val: 'R$ 1.980', sub: 'ex: Marketplace dos Clientes', color: 'text-rose-400' },
+              { label: 'App 2 (você cria depois)', val: '+ R$ 3.980', sub: 'ex: Atleta Premiado', color: 'text-emerald-400' },
+              { label: 'App 3 (você cria depois)', val: '+ R$ 1.980', sub: 'ex: Clube de Benefícios', color: 'text-violet-400' },
               { label: 'Total com 3 apps', val: 'R$ 6.940', sub: 'receita extra/mês', color: 'text-teal-400' },
             ].map((item, i) => (
               <div key={i} className="bg-white/5 rounded-2xl p-5 text-center border border-white/10">

@@ -9,16 +9,16 @@ import {
 
 // ─────────────────────────────────────────────────────────────────────────────
 // NEXCORE — Nome proprietário do sistema (EvoNexus rebrandeado)
-// 38+ agentes | 193+ skills | stack: Supabase + GitHub + Vercel + Claude Code Pro
+// 35+ agentes | 190+ skills | stack: Supabase + GitHub + Vercel + Claude Code Pro
 // ─────────────────────────────────────────────────────────────────────────────
 
 // 5 exemplos realistas — o aluno vai aprender a criar apps assim (e muitos outros)
 const NETFLIX_MODULES = [
-  { icon: <ShoppingBag className="w-4 h-4" />, name: 'Marketplace dos Clientes', route: '/marketplace', desc: 'Clientes anunciam serviços entre si', color: 'text-rose-400 bg-rose-400/10 border-rose-400/20' },
-  { icon: <Briefcase className="w-4 h-4" />, name: 'Vagas de Emprego', route: '/vagas', desc: 'Oportunidades de emprego da região', color: 'text-sky-400 bg-sky-400/10 border-sky-400/20' },
-  { icon: <Wrench className="w-4 h-4" />, name: 'Banco de Ferramentas', route: '/ferramentas', desc: 'Clientes emprestam ferramentas entre si', color: 'text-amber-400 bg-amber-400/10 border-amber-400/20' },
-  { icon: <Trophy className="w-4 h-4" />, name: 'Atleta Premiado ⚽', route: '/atleta', desc: 'Treinos, notas e jogos valem pontos', color: 'text-emerald-400 bg-emerald-400/10 border-emerald-400/20' },
-  { icon: <Gift className="w-4 h-4" />, name: 'Clube de Benefícios 🎁', route: '/beneficios', desc: 'Pontos por fidelidade e indicações', color: 'text-violet-400 bg-violet-400/10 border-violet-400/20' },
+  { icon: <ShoppingBag className="w-4 h-4" />, name: 'Marketplace dos Clientes', route: '/marketplace', desc: 'Clientes anunciam serviços entre si', color: 'text-rose-400 bg-rose-400/10' },
+  { icon: <Briefcase className="w-4 h-4" />, name: 'Vagas de Emprego', route: '/vagas', desc: 'Oportunidades de emprego da região', color: 'text-sky-400 bg-sky-400/10' },
+  { icon: <Wrench className="w-4 h-4" />, name: 'Banco de Ferramentas', route: '/ferramentas', desc: 'Clientes emprestam ferramentas entre si', color: 'text-amber-400 bg-amber-400/10' },
+  { icon: <Trophy className="w-4 h-4" />, name: 'Atleta Premiado ⚽', route: '/atleta', desc: 'Treinos, notas e jogos valem pontos', color: 'text-emerald-400 bg-emerald-400/10' },
+  { icon: <Gift className="w-4 h-4" />, name: 'Clube de Benefícios 🎁', route: '/beneficios', desc: 'Pontos por fidelidade e indicações', color: 'text-violet-400 bg-violet-400/10' },
 ]
 
 const STACK = [
@@ -29,7 +29,7 @@ const STACK = [
     badge: 'O SISTEMA',
     badgeColor: 'bg-violet-500',
     icon: <Cpu className="w-5 h-5 text-violet-400" />,
-    color: 'border-violet-500/40 bg-violet-500/5',
+    color: 'bg-violet-500/5',
     highlight: true,
   },
   {
@@ -39,7 +39,7 @@ const STACK = [
     badge: 'ÚNICO CUSTO',
     badgeColor: 'bg-orange-500',
     icon: <Sparkles className="w-5 h-5 text-orange-400" />,
-    color: 'border-orange-500/30 bg-orange-500/5',
+    color: 'bg-orange-500/5',
     highlight: true,
   },
   {
@@ -129,7 +129,7 @@ const FAQS = [
 function FAQItem({ q, a }: { q: string; a: string }) {
   const [open, setOpen] = useState(false)
   return (
-    <div className="border border-white/10 rounded-2xl overflow-hidden">
+    <div className="rounded-2xl overflow-hidden bg-white/3">
       <button
         onClick={() => setOpen(!open)}
         className="w-full flex items-center justify-between p-5 text-left hover:bg-white/5 transition-colors gap-4"
@@ -138,7 +138,7 @@ function FAQItem({ q, a }: { q: string; a: string }) {
         <ChevronDown className={`w-4 h-4 text-violet-400 flex-shrink-0 transition-transform ${open ? 'rotate-180' : ''}`} />
       </button>
       {open && (
-        <div className="px-5 pb-5 text-slate-400 text-sm leading-relaxed border-t border-white/10 pt-4">{a}</div>
+        <div className="px-5 pb-5 text-slate-400 text-sm leading-relaxed pt-4">{a}</div>
       )}
     </div>
   )
@@ -161,7 +161,7 @@ export default function SVAPage() {
         style={{ backgroundImage: 'linear-gradient(#fff 1px,transparent 1px),linear-gradient(90deg,#fff 1px,transparent 1px)', backgroundSize: '60px 60px' }} />
 
       {/* ── Navbar ── */}
-      <nav className="relative z-50 border-b border-white/5 bg-[#07080f]/80 backdrop-blur-md">
+      <nav className="relative z-50 bg-[#07080f]/80 backdrop-blur-md">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <div className="w-7 h-7 bg-gradient-to-br from-violet-500 to-purple-600 rounded-lg flex items-center justify-center">
@@ -170,7 +170,7 @@ export default function SVAPage() {
             <span className="font-black text-white tracking-tight">NEX<span className="text-violet-400">CORE</span></span>
           </div>
           <div className="flex items-center gap-3">
-            <span className="hidden sm:block text-xs text-slate-500 border border-white/10 px-3 py-1 rounded-full">
+            <span className="hidden sm:block text-xs text-slate-500 bg-white/5 px-3 py-1 rounded-full">
               35+ agentes · 190+ skills
             </span>
             <a href="#lista-espera"
@@ -189,7 +189,7 @@ export default function SVAPage() {
 
         <div className="relative max-w-5xl mx-auto px-4 sm:px-6 pt-20 pb-12 text-center">
 
-          <div className="inline-flex items-center gap-2 text-xs font-bold text-violet-300 bg-violet-500/10 border border-violet-500/20 px-4 py-2 rounded-full mb-8">
+          <div className="inline-flex items-center gap-2 text-xs font-bold text-violet-300 bg-violet-500/10 px-4 py-2 rounded-full mb-8">
             <Lock className="w-3 h-3" /> Exclusivo para Provedores de Internet
           </div>
 
@@ -206,7 +206,7 @@ export default function SVAPage() {
           <p className="text-sm text-slate-500 max-w-xl mx-auto mb-3">
             Stack 100% gratuita (Supabase · GitHub · Vercel) + Claude Code Pro (~$20/mês). Só isso.
           </p>
-          <p className="text-xs text-violet-400/80 font-semibold max-w-xl mx-auto mb-10 bg-violet-500/10 border border-violet-500/20 px-4 py-2 rounded-full">
+          <p className="text-xs text-violet-400/80 font-semibold max-w-xl mx-auto mb-10 bg-violet-500/10 px-4 py-2 rounded-full">
             📚 Você compra o curso — não um sistema pronto. Você vai criar seus próprios apps.
           </p>
 
@@ -217,7 +217,7 @@ export default function SVAPage() {
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </a>
             <a href="#como-funciona"
-              className="w-full sm:w-auto flex items-center justify-center gap-2 border border-white/15 text-slate-400 hover:text-white hover:border-white/30 px-8 py-4 rounded-2xl text-base transition-all">
+              className="w-full sm:w-auto flex items-center justify-center gap-2 bg-white/5 text-slate-400 hover:text-white hover:bg-white/10 px-8 py-4 rounded-2xl text-base transition-all">
               <Play className="w-3.5 h-3.5" /> Como funciona
             </a>
           </div>
@@ -229,7 +229,7 @@ export default function SVAPage() {
               { val: '190+', label: 'Skills prontas' },
               { val: '~$20', label: 'Único custo/mês' },
             ].map((s, i) => (
-              <div key={i} className="bg-white/5 border border-white/10 rounded-2xl py-4 px-3">
+              <div key={i} className="bg-white/5 rounded-2xl py-4 px-3">
                 <div className="text-2xl font-black text-white">{s.val}</div>
                 <div className="text-xs text-slate-500 mt-0.5">{s.label}</div>
               </div>
@@ -251,7 +251,7 @@ export default function SVAPage() {
             <strong className="text-white"> Você decide quais fazer.</strong>
           </p>
           {/* Aviso explícito */}
-          <div className="mt-5 inline-flex items-start gap-3 bg-amber-500/10 border border-amber-500/25 rounded-2xl px-5 py-3 text-left max-w-xl mx-auto">
+          <div className="mt-5 inline-flex items-start gap-3 bg-amber-500/10 rounded-2xl px-5 py-3 text-left max-w-xl mx-auto">
             <span className="text-amber-400 text-lg flex-shrink-0">⚠️</span>
             <p className="text-xs text-amber-200/80 leading-relaxed">
               <strong className="text-amber-300">Atenção:</strong> esses apps são sugestões de ideias — não são entregues prontos.
@@ -263,15 +263,14 @@ export default function SVAPage() {
 
         {/* Hub visual */}
         <div className="relative">
-          {/* Hub central */}
           <div className="relative mx-auto max-w-3xl">
             {/* Login → Hub flow */}
             <div className="flex flex-col items-center gap-2 mb-6">
-              <div className="bg-violet-500/20 border border-violet-500/40 text-violet-300 text-xs font-bold px-4 py-2 rounded-xl">
+              <div className="bg-violet-500/20 text-violet-300 text-xs font-bold px-4 py-2 rounded-xl">
                 🔑 Login Único — app.suainternet.com.br
               </div>
               <div className="w-px h-4 bg-violet-500/40" />
-              <div className="bg-gradient-to-br from-violet-900/60 to-purple-900/40 border border-violet-500/30 rounded-2xl px-8 py-4 text-center">
+              <div className="bg-gradient-to-br from-violet-900/60 to-purple-900/40 rounded-2xl px-8 py-4 text-center">
                 <div className="flex items-center justify-center gap-2 mb-1">
                   <div className="w-5 h-5 bg-gradient-to-br from-violet-500 to-purple-600 rounded flex items-center justify-center">
                     <Cpu className="w-2.5 h-2.5 text-white" />
@@ -287,9 +286,8 @@ export default function SVAPage() {
             {/* Modules grid — 5 exemplos */}
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2.5">
               {NETFLIX_MODULES.map((mod, i) => (
-                <div key={i}
-                  className={`flex flex-col items-start gap-2 p-3 rounded-xl border bg-white/3 hover:bg-white/8 transition-all cursor-default`}>
-                  <div className={`w-8 h-8 rounded-lg border flex items-center justify-center flex-shrink-0 ${mod.color}`}>
+                <div key={i} className="flex flex-col items-start gap-2 p-3 rounded-xl bg-white/3 hover:bg-white/8 transition-all cursor-default">
+                  <div className={`w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 ${mod.color}`}>
                     {mod.icon}
                   </div>
                   <div className="min-w-0">
@@ -313,7 +311,7 @@ export default function SVAPage() {
 
         {/* Architecture explanation */}
         <div className="mt-10 grid md:grid-cols-2 gap-5">
-          <div className="bg-white/3 border border-white/10 rounded-2xl p-5">
+          <div className="bg-white/3 rounded-2xl p-5">
             <div className="flex items-center gap-2 mb-3">
               <div className="w-7 h-7 bg-violet-500/20 rounded-lg flex items-center justify-center">
                 <LayoutGrid className="w-3.5 h-3.5 text-violet-400" />
@@ -329,7 +327,7 @@ export default function SVAPage() {
               <span className="text-slate-600">↳ login · perfil · menu</span>
             </div>
           </div>
-          <div className="bg-white/3 border border-white/10 rounded-2xl p-5">
+          <div className="bg-white/3 rounded-2xl p-5">
             <div className="flex items-center gap-2 mb-3">
               <div className="w-7 h-7 bg-teal-500/20 rounded-lg flex items-center justify-center">
                 <Package className="w-3.5 h-3.5 text-teal-400" />
@@ -352,7 +350,7 @@ export default function SVAPage() {
 
       {/* ── O que é SVA ── */}
       <div className="max-w-5xl mx-auto px-4 sm:px-6 py-8">
-        <div className="bg-gradient-to-br from-violet-950/50 to-slate-900/50 border border-violet-500/20 rounded-3xl p-8 lg:p-12">
+        <div className="bg-gradient-to-br from-violet-950/50 to-slate-900/50 rounded-3xl p-8 lg:p-12">
           <div className="grid lg:grid-cols-2 gap-10 items-center">
             <div>
               <span className="text-xs font-bold text-violet-400 tracking-widest uppercase">O Que é SVA?</span>
@@ -389,7 +387,7 @@ export default function SVAPage() {
                   </div>
                 </div>
               ))}
-              <div className="flex items-center justify-between p-3 rounded-xl bg-teal-500/10 border border-teal-500/20 mt-2">
+              <div className="flex items-center justify-between p-3 rounded-xl bg-teal-500/10 mt-2">
                 <span className="text-sm font-bold text-white">5 apps criados por você</span>
                 <span className="font-black text-teal-400 text-sm">R$ 12.900/mês</span>
               </div>
@@ -421,7 +419,7 @@ export default function SVAPage() {
             { icon: <Shield className="w-5 h-5 text-emerald-400" />, title: 'Stack 100% Gratuita', desc: 'Supabase, GitHub e Vercel têm tiers gratuitos robustos. Você começa sem gastar nada além da assinatura de IA.' },
             { icon: <TrendingUp className="w-5 h-5 text-orange-400" />, title: 'Escala com Você', desc: 'Começou com 1 módulo? O NEXCORE cria o segundo, o terceiro. Cada app novo fica mais rápido de fazer.' },
           ].map((item, i) => (
-            <div key={i} className="bg-white/5 border border-white/10 rounded-2xl p-5 hover:bg-white/8 transition-colors">
+            <div key={i} className="bg-white/5 rounded-2xl p-5 hover:bg-white/8 transition-colors">
               <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center mb-4">
                 {item.icon}
               </div>
@@ -446,7 +444,7 @@ export default function SVAPage() {
 
         <div className="grid grid-cols-2 lg:grid-cols-5 gap-3">
           {STACK.map((tool, i) => (
-            <div key={i} className={`relative border rounded-2xl p-4 flex flex-col gap-3 ${tool.highlight ? tool.color : 'border-white/10 bg-white/3'}`}>
+            <div key={i} className={`relative rounded-2xl p-4 flex flex-col gap-3 ${tool.highlight ? tool.color : 'bg-white/3'}`}>
               {tool.badge && (
                 <span className={`absolute -top-2 right-3 text-[9px] font-black ${tool.badgeColor} text-white px-2 py-0.5 rounded-full`}>
                   {tool.badge}
@@ -466,7 +464,7 @@ export default function SVAPage() {
           ))}
         </div>
 
-        <div className="mt-6 p-5 bg-emerald-500/5 border border-emerald-500/20 rounded-2xl text-center">
+        <div className="mt-6 p-5 bg-emerald-500/5 rounded-2xl text-center">
           <p className="text-sm text-slate-300">
             💡 <strong className="text-white">Custo total mensal:</strong>{' '}
             VPS (~R$40) + assinatura de IA (~R$110) ={' '}
@@ -493,14 +491,14 @@ export default function SVAPage() {
           <div className="space-y-4">
             {STEPS.map((step, i) => (
               <div key={i} className="relative flex gap-5 lg:gap-8">
-                <div className="flex-shrink-0 w-16 h-16 rounded-2xl bg-gradient-to-br from-violet-600/20 to-purple-600/10 border border-violet-500/30 flex flex-col items-center justify-center z-10">
+                <div className="flex-shrink-0 w-16 h-16 rounded-2xl bg-gradient-to-br from-violet-600/20 to-purple-600/10 flex flex-col items-center justify-center z-10">
                   <span className="text-2xl leading-none">{step.emoji}</span>
                   <span className="text-[9px] font-mono text-violet-400 mt-0.5">{step.num}</span>
                 </div>
-                <div className="flex-1 bg-white/5 border border-white/10 rounded-2xl p-5 hover:bg-white/8 transition-colors">
+                <div className="flex-1 bg-white/5 rounded-2xl p-5 hover:bg-white/8 transition-colors">
                   <div className="flex items-start justify-between gap-3 mb-2">
                     <h3 className="font-bold text-white text-sm">{step.title}</h3>
-                    <span className="flex-shrink-0 text-[10px] font-bold text-teal-400 bg-teal-400/10 border border-teal-400/20 px-2 py-0.5 rounded-full">
+                    <span className="flex-shrink-0 text-[10px] font-bold text-teal-400 bg-teal-400/10 px-2 py-0.5 rounded-full">
                       {step.time}
                     </span>
                   </div>
@@ -514,7 +512,7 @@ export default function SVAPage() {
 
       {/* ── Cálculo de ROI ── */}
       <div className="max-w-5xl mx-auto px-4 sm:px-6 py-10">
-        <div className="bg-gradient-to-br from-teal-950/60 to-emerald-950/30 border border-teal-500/20 rounded-3xl p-8 lg:p-12">
+        <div className="bg-gradient-to-br from-teal-950/60 to-emerald-950/30 rounded-3xl p-8 lg:p-12">
           <div className="text-center mb-8">
             <span className="text-xs font-bold text-teal-400 tracking-widest uppercase">Potencial de Receita</span>
             <h2 className="text-2xl sm:text-3xl font-black text-white mt-3">
@@ -531,7 +529,7 @@ export default function SVAPage() {
               { label: 'App 3 (você cria depois)', val: '+ R$ 1.980', sub: 'ex: Clube de Benefícios', color: 'text-violet-400' },
               { label: 'Total com 3 apps', val: 'R$ 6.940', sub: 'receita extra/mês', color: 'text-teal-400' },
             ].map((item, i) => (
-              <div key={i} className="bg-white/5 rounded-2xl p-5 text-center border border-white/10">
+              <div key={i} className="bg-white/5 rounded-2xl p-5 text-center">
                 <div className="text-xs text-slate-500 mb-2">{item.label}</div>
                 <div className={`text-2xl font-black ${item.color}`}>{item.val}</div>
                 <div className="text-xs text-slate-600 mt-1">{item.sub}</div>
@@ -552,7 +550,7 @@ export default function SVAPage() {
       {/* ── Para quem é ── */}
       <div className="max-w-5xl mx-auto px-4 sm:px-6 py-10">
         <div className="grid md:grid-cols-2 gap-6">
-          <div className="bg-emerald-500/5 border border-emerald-500/20 rounded-2xl p-6">
+          <div className="bg-emerald-500/5 rounded-2xl p-6">
             <div className="text-sm font-bold text-emerald-400 mb-4 flex items-center gap-2">
               <CheckCircle2 className="w-4 h-4" /> Para quem É
             </div>
@@ -571,7 +569,7 @@ export default function SVAPage() {
               ))}
             </div>
           </div>
-          <div className="bg-red-500/5 border border-red-500/20 rounded-2xl p-6">
+          <div className="bg-red-500/5 rounded-2xl p-6">
             <div className="text-sm font-bold text-red-400 mb-4 flex items-center gap-2">
               <Shield className="w-4 h-4" /> Para quem NÃO É
             </div>
@@ -606,12 +604,12 @@ export default function SVAPage() {
 
       {/* ── Lista de Espera ── */}
       <div id="lista-espera" className="max-w-5xl mx-auto px-4 sm:px-6 py-10">
-        <div className="relative bg-gradient-to-br from-violet-900/40 via-purple-900/20 to-slate-900/40 border border-violet-500/30 rounded-3xl p-8 lg:p-16 text-center overflow-hidden">
+        <div className="relative bg-gradient-to-br from-violet-900/40 via-purple-900/20 to-slate-900/40 rounded-3xl p-8 lg:p-16 text-center overflow-hidden">
           <div className="absolute inset-0 pointer-events-none">
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-[300px] bg-violet-500/10 rounded-full blur-3xl" />
           </div>
           <div className="relative">
-            <div className="inline-flex items-center gap-2 text-xs font-bold text-violet-300 bg-violet-500/10 border border-violet-500/20 px-4 py-2 rounded-full mb-6">
+            <div className="inline-flex items-center gap-2 text-xs font-bold text-violet-300 bg-violet-500/10 px-4 py-2 rounded-full mb-6">
               <Star className="w-3 h-3" /> Vagas limitadas para o acesso inicial
             </div>
             <h2 className="text-3xl sm:text-4xl font-black text-white mb-4 leading-tight">
@@ -623,7 +621,7 @@ export default function SVAPage() {
             </p>
 
             {submitted ? (
-              <div className="inline-flex items-center gap-3 bg-violet-500/20 border border-violet-500/40 text-violet-300 px-8 py-4 rounded-2xl font-semibold">
+              <div className="inline-flex items-center gap-3 bg-violet-500/20 text-violet-300 px-8 py-4 rounded-2xl font-semibold">
                 <CheckCircle2 className="w-5 h-5" />
                 Você está na lista! Avisaremos assim que abrir as vagas.
               </div>
@@ -635,7 +633,7 @@ export default function SVAPage() {
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="email@seuprovedor.com.br"
                   required
-                  className="flex-1 bg-white/10 border border-white/20 text-white placeholder-slate-600 px-5 py-4 rounded-2xl focus:outline-none focus:border-violet-500 transition-colors text-sm"
+                  className="flex-1 bg-white/10 text-white placeholder-slate-600 px-5 py-4 rounded-2xl focus:outline-none focus:ring-2 focus:ring-violet-500/50 transition-all text-sm"
                 />
                 <button type="submit"
                   className="flex items-center justify-center gap-2 bg-gradient-to-r from-violet-600 to-purple-600 hover:from-violet-500 hover:to-purple-500 text-white font-bold px-6 py-4 rounded-2xl transition-all text-sm whitespace-nowrap">
@@ -655,7 +653,7 @@ export default function SVAPage() {
       </div>
 
       {/* ── Footer ── */}
-      <footer className="border-t border-white/5 py-8">
+      <footer className="py-8">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-3">
           <div className="flex items-center gap-2">
             <div className="w-6 h-6 bg-gradient-to-br from-violet-500 to-purple-600 rounded-md flex items-center justify-center">

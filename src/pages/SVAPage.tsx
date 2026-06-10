@@ -1,9 +1,11 @@
 import { useState } from 'react'
 import {
   Bot, Database, Globe, Code2, CheckCircle2, ArrowRight,
-  Zap, Shield, DollarSign, Smartphone, Play, Mail, Star,
+  Zap, Shield, DollarSign, Play, Mail, Star,
   TrendingUp, Users, Clock, ChevronDown, Lock, Cpu,
-  LayoutGrid, Package, Layers, Terminal, Sparkles
+  LayoutGrid, Package, Terminal, Sparkles,
+  Heart, Briefcase, ShoppingBag, Trophy, BookOpen,
+  Coins, Gift, Ticket, MessageCircle, Wallet,
 } from 'lucide-react'
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -11,13 +13,19 @@ import {
 // 38+ agentes | 193+ skills | stack: Supabase + GitHub + Vercel + Claude Code Pro
 // ─────────────────────────────────────────────────────────────────────────────
 
-const SVAS = [
-  { icon: <Smartphone className="w-5 h-5 text-violet-400" />, name: 'Portal do Cliente', desc: 'Login, boleto, consumo, suporte — sem atender telefone' },
-  { icon: <Bot className="w-5 h-5 text-teal-400" />, name: 'Atendimento por IA', desc: 'WhatsApp 24h respondendo boleto, senha e status de conexão' },
-  { icon: <Layers className="w-5 h-5 text-blue-400" />, name: 'Controle Parental', desc: 'App para os pais controlarem o acesso das crianças' },
-  { icon: <LayoutGrid className="w-5 h-5 text-emerald-400" />, name: 'Dashboard de Uso', desc: 'Cliente vê consumo em tempo real pelo app' },
-  { icon: <Package className="w-5 h-5 text-orange-400" />, name: 'Programa de Fidelidade', desc: 'Pontos por pontualidade no pagamento — reduz churn' },
-  { icon: <Zap className="w-5 h-5 text-yellow-400" />, name: 'Notificações Inteligentes', desc: 'Avisa antes do vencimento, manutenção, promoções' },
+const NETFLIX_MODULES = [
+  { icon: <Coins className="w-4 h-4" />, name: 'Clube de Pontos', route: '/pontos', desc: 'Fidelidade por pontualidade', color: 'text-yellow-400 bg-yellow-400/10 border-yellow-400/20' },
+  { icon: <Users className="w-4 h-4" />, name: 'Indique e Ganhe', route: '/indique', desc: 'Sistema de afiliados', color: 'text-emerald-400 bg-emerald-400/10 border-emerald-400/20' },
+  { icon: <Trophy className="w-4 h-4" />, name: 'Futebol Premiado', route: '/futebol', desc: 'Treinos dos filhos valem pontos', color: 'text-orange-400 bg-orange-400/10 border-orange-400/20' },
+  { icon: <BookOpen className="w-4 h-4" />, name: 'Educação EAD', route: '/ead', desc: 'Cursos profissionalizantes', color: 'text-blue-400 bg-blue-400/10 border-blue-400/20' },
+  { icon: <Wallet className="w-4 h-4" />, name: 'Cashback', route: '/cashback', desc: 'Retorno da mensalidade', color: 'text-teal-400 bg-teal-400/10 border-teal-400/20' },
+  { icon: <Gift className="w-4 h-4" />, name: 'Clube de Descontos', route: '/descontos', desc: 'Parcerias com comércio local', color: 'text-pink-400 bg-pink-400/10 border-pink-400/20' },
+  { icon: <Ticket className="w-4 h-4" />, name: 'Sorteios', route: '/sorteios', desc: 'Engajamento e retenção', color: 'text-purple-400 bg-purple-400/10 border-purple-400/20' },
+  { icon: <MessageCircle className="w-4 h-4" />, name: 'IA do Cliente', route: '/ia', desc: 'Assistente exclusivo da operadora', color: 'text-violet-400 bg-violet-400/10 border-violet-400/20' },
+  { icon: <DollarSign className="w-4 h-4" />, name: 'Controle Financeiro', route: '/financas', desc: 'Gestão de gastos pessoais', color: 'text-green-400 bg-green-400/10 border-green-400/20' },
+  { icon: <Briefcase className="w-4 h-4" />, name: 'Vagas de Emprego', route: '/empregos', desc: 'Vagas da região em um app', color: 'text-sky-400 bg-sky-400/10 border-sky-400/20' },
+  { icon: <ShoppingBag className="w-4 h-4" />, name: 'Marketplace Local', route: '/mercado', desc: 'Vitrine para comércio local', color: 'text-rose-400 bg-rose-400/10 border-rose-400/20' },
+  { icon: <Heart className="w-4 h-4" />, name: 'Saúde e Exercícios', route: '/saude', desc: 'Bem-estar para os clientes', color: 'text-red-400 bg-red-400/10 border-red-400/20' },
 ]
 
 const STACK = [
@@ -84,15 +92,15 @@ const STEPS = [
   },
   {
     num: '03',
-    title: 'Criando o Primeiro SVA',
-    desc: 'Com o sistema rodando, você usa o Claude Code Pro para criar seu primeiro app em dias. Portal do cliente, bot de WhatsApp ou app de controle parental.',
+    title: 'Criando o Hub + Primeiro Módulo',
+    desc: 'Você monta o Portal central (login único, perfil, menu de apps) e cria o primeiro módulo — Clube de Pontos ou Controle Parental. O Claude Code Pro escreve tudo.',
     time: '3–7 dias',
     emoji: '🚀',
   },
   {
     num: '04',
     title: 'Publicando para os Clientes',
-    desc: 'Deploy em Vercel (gratuito) com seu domínio. Seus clientes acessam o SVA pelo celular ou computador. Você começa a cobrar pelo serviço agregado.',
+    desc: 'Deploy em Vercel com seu domínio. Clientes acessam pelo celular como um app. Você começa a cobrar pelo SVA e adiciona novos módulos quando quiser.',
     time: '1 hora',
     emoji: '💰',
   },
@@ -105,7 +113,7 @@ const FAQS = [
   },
   {
     q: 'Preciso saber programar?',
-    a: 'Não. O Claude Code Pro escreve todo o código por você. Você descreve o que quer — ele constrói. Você só precisa aprender a operar o sistema.',
+    a: 'Não. O Claude Code Pro escreve todo o código por você. Você descreve o que quer — ele constrói. Você aprende a operar o sistema, não a escrever código.',
   },
   {
     q: 'O NEXCORE funciona para provedor de qualquer tamanho?',
@@ -113,11 +121,15 @@ const FAQS = [
   },
   {
     q: 'Qual o custo total para ter o NEXCORE funcionando?',
-    a: 'VPS (~R$40/mês) + Claude Code Pro (~$20/mês ≈ R$110). Todo o resto — Supabase, GitHub, Vercel — é gratuito. Menos de R$160/mês no total.',
+    a: 'VPS (~R$40/mês) + Claude Code Pro (~$20/mês ≈ R$110). Todo o resto — Supabase, GitHub, Vercel — é gratuito. Menos de R$160/mês para criar apps ilimitados.',
+  },
+  {
+    q: 'Preciso criar todos os módulos ao mesmo tempo?',
+    a: 'Não. Você começa com 1 módulo. Depois de validar com seus clientes, adiciona o próximo. Cada módulo é independente — não mexe no que já está funcionando.',
   },
   {
     q: 'Quanto posso cobrar de SVA para os meus clientes?',
-    a: 'Depende do serviço. Controle parental: R$15–30/mês por cliente. Portal avançado: R$5–10/mês. Com 100 clientes usando um SVA de R$15, já são R$1.500/mês extras.',
+    a: 'Depende do módulo. Controle parental: R$15–30/mês. Clube de pontos: R$5–10/mês. EAD: R$19,90/mês. Com 200 clientes em 1 módulo de R$19,90 = R$3.980/mês extras.',
   },
 ]
 
@@ -189,14 +201,14 @@ export default function SVAPage() {
           </div>
 
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white leading-[1.05] tracking-tight mb-6">
-            Instale o <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-purple-400">NEXCORE</span><br />
-            e crie SVAs que geram<br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-emerald-400">receita extra</span> para o seu provedor
+            Crie o <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-purple-400">Netflix de Benefícios</span><br />
+            do seu provedor e gere<br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-emerald-400">receita extra todo mês</span>
           </h1>
 
           <p className="text-lg text-slate-400 max-w-2xl mx-auto mb-4 leading-relaxed">
-            Um sistema com <strong className="text-white">38 agentes de IA e 193+ skills</strong> que transforma qualquer provedor
-            em uma empresa de tecnologia — sem contratar desenvolvedor.
+            Com o <strong className="text-white">NEXCORE</strong> (38 agentes de IA e 193+ skills), você instala um sistema
+            que cria apps de valor agregado para os seus clientes — sem contratar desenvolvedor.
           </p>
           <p className="text-sm text-slate-500 max-w-xl mx-auto mb-10">
             Stack 100% gratuita (Supabase · GitHub · Vercel) + Claude Code Pro (~$20/mês). Só isso.
@@ -230,8 +242,110 @@ export default function SVAPage() {
         </div>
       </div>
 
-      {/* ── O que é SVA ── */}
+      {/* ── Netflix de Benefícios ── */}
       <div className="max-w-5xl mx-auto px-4 sm:px-6 py-16">
+        <div className="text-center mb-10">
+          <span className="text-xs font-bold text-violet-400 tracking-widest uppercase">A Grande Ideia</span>
+          <h2 className="text-3xl sm:text-4xl font-black text-white mt-3 mb-4">
+            O Netflix de Benefícios<br />do seu provedor
+          </h2>
+          <p className="text-slate-400 max-w-2xl mx-auto text-sm leading-relaxed">
+            Em vez de um app monolítico que custa R$30k, você cria um <strong className="text-white">Super App Hub</strong> com login único
+            e módulos independentes — cada um é um serviço que você pode cobrar separado.
+            É como uma Netflix, mas de benefícios para os clientes do seu provedor.
+          </p>
+        </div>
+
+        {/* Hub visual */}
+        <div className="relative">
+          {/* Hub central */}
+          <div className="relative mx-auto max-w-3xl">
+            {/* Login → Hub flow */}
+            <div className="flex flex-col items-center gap-2 mb-6">
+              <div className="bg-violet-500/20 border border-violet-500/40 text-violet-300 text-xs font-bold px-4 py-2 rounded-xl">
+                🔑 Login Único — app.suainternet.com.br
+              </div>
+              <div className="w-px h-4 bg-violet-500/40" />
+              <div className="bg-gradient-to-br from-violet-900/60 to-purple-900/40 border border-violet-500/30 rounded-2xl px-8 py-4 text-center">
+                <div className="flex items-center justify-center gap-2 mb-1">
+                  <div className="w-5 h-5 bg-gradient-to-br from-violet-500 to-purple-600 rounded flex items-center justify-center">
+                    <Cpu className="w-2.5 h-2.5 text-white" />
+                  </div>
+                  <span className="font-black text-white text-sm">Portal do Cliente</span>
+                </div>
+                <span className="text-[10px] text-slate-500">Perfil · Pontuação · Menu de Apps</span>
+              </div>
+              <div className="w-px h-4 bg-violet-500/40" />
+              <div className="text-xs text-violet-400 font-bold tracking-widest">↓ Módulos independentes (PWAs)</div>
+            </div>
+
+            {/* Modules grid */}
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2.5">
+              {NETFLIX_MODULES.map((mod, i) => (
+                <div key={i}
+                  className={`flex items-start gap-2.5 p-3 rounded-xl border bg-white/3 hover:bg-white/8 transition-all cursor-default group`}>
+                  <div className={`w-8 h-8 rounded-lg border flex items-center justify-center flex-shrink-0 ${mod.color}`}>
+                    {mod.icon}
+                  </div>
+                  <div className="min-w-0">
+                    <div className="font-semibold text-white text-xs leading-tight">{mod.name}</div>
+                    <div className="text-[10px] text-slate-600 mt-0.5 leading-tight">{mod.desc}</div>
+                    <div className="text-[9px] text-slate-700 mt-1 font-mono opacity-0 group-hover:opacity-100 transition-opacity">{mod.route}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Add more hint */}
+            <div className="mt-3 flex items-center justify-center gap-2">
+              <div className="flex-1 h-px bg-white/5" />
+              <span className="text-[11px] text-slate-700 px-3">+ você pode criar quantos módulos quiser</span>
+              <div className="flex-1 h-px bg-white/5" />
+            </div>
+          </div>
+        </div>
+
+        {/* Architecture explanation */}
+        <div className="mt-10 grid md:grid-cols-2 gap-5">
+          <div className="bg-white/3 border border-white/10 rounded-2xl p-5">
+            <div className="flex items-center gap-2 mb-3">
+              <div className="w-7 h-7 bg-violet-500/20 rounded-lg flex items-center justify-center">
+                <LayoutGrid className="w-3.5 h-3.5 text-violet-400" />
+              </div>
+              <span className="font-bold text-white text-sm">Super App Hub</span>
+            </div>
+            <p className="text-xs text-slate-500 leading-relaxed mb-3">
+              O hub é o app central: login, perfil do cliente, pontuação acumulada e o menu de todos os serviços.
+              Funciona como a Netflix — o cliente faz login uma vez e acessa tudo.
+            </p>
+            <div className="bg-slate-900 rounded-xl p-3 font-mono text-[10px] text-slate-500">
+              <span className="text-violet-400">app</span>.suainternet.com.br<br />
+              <span className="text-slate-600">↳ login · perfil · menu</span>
+            </div>
+          </div>
+          <div className="bg-white/3 border border-white/10 rounded-2xl p-5">
+            <div className="flex items-center gap-2 mb-3">
+              <div className="w-7 h-7 bg-teal-500/20 rounded-lg flex items-center justify-center">
+                <Package className="w-3.5 h-3.5 text-teal-400" />
+              </div>
+              <span className="font-bold text-white text-sm">PWAs Independentes</span>
+            </div>
+            <p className="text-xs text-slate-500 leading-relaxed mb-3">
+              Cada módulo é um PWA separado — você pode lançar, atualizar ou tirar do ar um módulo
+              sem afetar os outros. Começa com 1 e vai adicionando no seu ritmo.
+            </p>
+            <div className="bg-slate-900 rounded-xl p-3 font-mono text-[10px] text-slate-500 space-y-0.5">
+              <div><span className="text-teal-400">app</span>.suainternet.com.br<span className="text-yellow-400">/pontos</span></div>
+              <div><span className="text-teal-400">app</span>.suainternet.com.br<span className="text-emerald-400">/indique</span></div>
+              <div><span className="text-teal-400">app</span>.suainternet.com.br<span className="text-orange-400">/futebol</span></div>
+              <div className="text-slate-700">... e mais {NETFLIX_MODULES.length - 3} módulos</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* ── O que é SVA ── */}
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 py-8">
         <div className="bg-gradient-to-br from-violet-950/50 to-slate-900/50 border border-violet-500/20 rounded-3xl p-8 lg:p-12">
           <div className="grid lg:grid-cols-2 gap-10 items-center">
             <div>
@@ -240,9 +354,8 @@ export default function SVAPage() {
                 Serviço de Valor Agregado —<br />a maior oportunidade do setor
               </h2>
               <p className="text-slate-400 leading-relaxed mb-4 text-sm">
-                <strong className="text-white">SVA (Serviço de Valor Agregado)</strong> é qualquer serviço digital que você oferece
-                junto com a internet — e cobra separado. Portal do cliente, controle parental, app de fidelidade,
-                atendimento por IA no WhatsApp.
+                <strong className="text-white">SVA</strong> é qualquer serviço digital que você oferece junto com a internet — e cobra separado.
+                Clube de pontos, controle parental, app de vagas, marketplace local.
               </p>
               <p className="text-slate-400 leading-relaxed text-sm">
                 Provedores que vendem SVA têm <strong className="text-white">ticket médio 35% maior</strong> e
@@ -250,21 +363,29 @@ export default function SVAPage() {
                 esses apps custava caro demais. Até agora.
               </p>
             </div>
-            <div className="space-y-3">
+            <div className="space-y-2">
               <div className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-4">
-                SVAs que você vai criar com o NEXCORE
+                Receita por módulo (estimativa com 200 clientes)
               </div>
-              {SVAS.map((sva, i) => (
-                <div key={i} className="flex items-center gap-3 p-3 rounded-xl bg-white/5 hover:bg-white/10 transition-colors">
-                  <div className="w-9 h-9 rounded-lg bg-white/5 flex items-center justify-center flex-shrink-0">
-                    {sva.icon}
-                  </div>
-                  <div>
-                    <div className="text-sm font-semibold text-white">{sva.name}</div>
-                    <div className="text-xs text-slate-500">{sva.desc}</div>
+              {[
+                { name: 'IA do Cliente', price: 'R$ 14,90/mês', revenue: 'R$ 2.980', color: 'text-violet-400' },
+                { name: 'Clube de Pontos', price: 'R$ 9,90/mês', revenue: 'R$ 1.980', color: 'text-yellow-400' },
+                { name: 'Saúde e Exercícios', price: 'R$ 19,90/mês', revenue: 'R$ 3.980', color: 'text-red-400' },
+                { name: 'Educação EAD', price: 'R$ 19,90/mês', revenue: 'R$ 3.980', color: 'text-blue-400' },
+                { name: 'Controle Financeiro', price: 'R$ 9,90/mês', revenue: 'R$ 1.980', color: 'text-green-400' },
+              ].map((item, i) => (
+                <div key={i} className="flex items-center justify-between p-3 rounded-xl bg-white/5 hover:bg-white/10 transition-colors">
+                  <div className={`text-sm font-semibold ${item.color}`}>{item.name}</div>
+                  <div className="flex items-center gap-3 text-xs">
+                    <span className="text-slate-600">{item.price}</span>
+                    <span className="font-bold text-white">{item.revenue}<span className="text-slate-600 font-normal">/mês</span></span>
                   </div>
                 </div>
               ))}
+              <div className="flex items-center justify-between p-3 rounded-xl bg-teal-500/10 border border-teal-500/20 mt-2">
+                <span className="text-sm font-bold text-white">5 módulos combinados</span>
+                <span className="font-black text-teal-400 text-sm">R$ 14.900/mês</span>
+              </div>
             </div>
           </div>
         </div>
@@ -275,12 +396,11 @@ export default function SVAPage() {
         <div className="text-center mb-12">
           <span className="text-xs font-bold text-violet-400 tracking-widest uppercase">O Sistema</span>
           <h2 className="text-3xl sm:text-4xl font-black text-white mt-3 mb-4">
-            NEXCORE: o sistema operacional<br />do seu provedor
+            NEXCORE: a fábrica de apps<br />do seu provedor
           </h2>
           <p className="text-slate-400 max-w-2xl mx-auto text-sm leading-relaxed">
-            O NEXCORE é um sistema de agentes de IA instalado no seu servidor.
-            Cada agente é um especialista — um cuida de código, outro de banco de dados,
-            outro de deploy, outro de revisão. Eles trabalham juntos para criar os seus apps.
+            O NEXCORE é instalado no seu servidor. Você descreve o app que quer — os 38 agentes especializados
+            trabalham juntos para construir, testar e publicar. Você só aprova.
           </p>
         </div>
 
@@ -291,7 +411,7 @@ export default function SVAPage() {
             { icon: <Terminal className="w-5 h-5 text-blue-400" />, title: 'Dashboard Web Completo', desc: 'Painel visual para gerenciar tudo: agentes, relatórios, rotinas automáticas, integrações.' },
             { icon: <Cpu className="w-5 h-5 text-purple-400" />, title: 'Roda no Seu Servidor', desc: 'Instalado no seu VPS. Você tem controle total. Seus dados não saem da sua infraestrutura.' },
             { icon: <Shield className="w-5 h-5 text-emerald-400" />, title: 'Stack 100% Gratuita', desc: 'Supabase, GitHub e Vercel têm tiers gratuitos robustos. Você começa sem gastar nada além do Claude Code Pro.' },
-            { icon: <TrendingUp className="w-5 h-5 text-orange-400" />, title: 'Escala com Você', desc: 'Começou com 1 SVA? O NEXCORE cria o segundo, o terceiro. Cada app novo fica mais rápido de fazer.' },
+            { icon: <TrendingUp className="w-5 h-5 text-orange-400" />, title: 'Escala com Você', desc: 'Começou com 1 módulo? O NEXCORE cria o segundo, o terceiro. Cada app novo fica mais rápido de fazer.' },
           ].map((item, i) => (
             <div key={i} className="bg-white/5 border border-white/10 rounded-2xl p-5 hover:bg-white/8 transition-colors">
               <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center mb-4">
@@ -342,7 +462,7 @@ export default function SVAPage() {
           <p className="text-sm text-slate-300">
             💡 <strong className="text-white">Custo total mensal:</strong>{' '}
             VPS (~R$40) + Claude Code Pro (~R$110) ={' '}
-            <span className="text-emerald-400 font-bold">menos de R$160/mês</span> para criar apps ilimitados para o seu provedor.
+            <span className="text-emerald-400 font-bold">menos de R$160/mês</span> para criar e manter apps ilimitados.
           </p>
         </div>
       </div>
@@ -352,7 +472,7 @@ export default function SVAPage() {
         <div className="text-center mb-12">
           <span className="text-xs font-bold text-violet-400 tracking-widest uppercase">Passo a Passo</span>
           <h2 className="text-2xl sm:text-3xl font-black text-white mt-3 mb-3">
-            Do zero ao SVA em menos de 2 semanas
+            Do zero ao Netflix de Benefícios<br />em menos de 2 semanas
           </h2>
           <p className="text-slate-500 text-sm max-w-lg mx-auto">
             Sem precisar saber programar. Sem contratar ninguém. Você instala, configura e cria.
@@ -360,9 +480,7 @@ export default function SVAPage() {
         </div>
 
         <div className="relative">
-          {/* connecting line */}
           <div className="absolute left-8 top-10 bottom-10 w-px bg-gradient-to-b from-violet-500/50 via-teal-500/30 to-transparent hidden lg:block" />
-
           <div className="space-y-4">
             {STEPS.map((step, i) => (
               <div key={i} className="relative flex gap-5 lg:gap-8">
@@ -389,26 +507,31 @@ export default function SVAPage() {
       <div className="max-w-5xl mx-auto px-4 sm:px-6 py-10">
         <div className="bg-gradient-to-br from-teal-950/60 to-emerald-950/30 border border-teal-500/20 rounded-3xl p-8 lg:p-12">
           <div className="text-center mb-8">
-            <span className="text-xs font-bold text-teal-400 tracking-widest uppercase">Quanto Você Ganha</span>
+            <span className="text-xs font-bold text-teal-400 tracking-widest uppercase">Projeção de Receita</span>
             <h2 className="text-2xl sm:text-3xl font-black text-white mt-3">
-              Exemplo real de SVA rentável
+              O que acontece quando você adiciona módulos
             </h2>
+            <p className="text-slate-500 text-sm mt-2 max-w-lg mx-auto">
+              Exemplo com provedor de 1.000 clientes, 20% de adesão por módulo (200 clientes)
+            </p>
           </div>
-          <div className="grid sm:grid-cols-3 gap-4 mb-8">
+          <div className="grid sm:grid-cols-4 gap-4 mb-8">
             {[
-              { label: 'Clientes com controle parental (de 1.000)', val: '200', sub: 'só 20% de adesão' },
-              { label: 'Valor cobrado por mês', val: 'R$ 19,90', sub: 'por cliente' },
-              { label: 'Receita extra mensal', val: 'R$ 3.980', sub: 'com 1 SVA' },
+              { label: 'Módulo 1 (mês 1)', val: 'R$ 1.980', sub: 'Clube de Pontos', color: 'text-yellow-400' },
+              { label: 'Módulo 2 (mês 2)', val: '+ R$ 2.980', sub: 'IA do Cliente', color: 'text-violet-400' },
+              { label: 'Módulo 3 (mês 3)', val: '+ R$ 3.980', sub: 'Saúde e Exercícios', color: 'text-red-400' },
+              { label: 'Total (mês 3)', val: 'R$ 8.940', sub: 'receita extra/mês', color: 'text-teal-400' },
             ].map((item, i) => (
               <div key={i} className="bg-white/5 rounded-2xl p-5 text-center border border-white/10">
                 <div className="text-xs text-slate-500 mb-2">{item.label}</div>
-                <div className="text-3xl font-black text-white">{item.val}</div>
-                <div className="text-xs text-teal-400 mt-1">{item.sub}</div>
+                <div className={`text-2xl font-black ${item.color}`}>{item.val}</div>
+                <div className="text-xs text-slate-600 mt-1">{item.sub}</div>
               </div>
             ))}
           </div>
           <div className="text-center text-sm text-slate-400">
-            Custo para criar esse SVA: <strong className="text-white">R$160/mês</strong> (VPS + Claude Code Pro) → Lucro líquido: <strong className="text-teal-400 text-lg">R$3.820/mês</strong>
+            Custo operacional: <strong className="text-white">R$160/mês</strong> (VPS + Claude Code Pro) →
+            Lucro líquido no mês 3: <strong className="text-teal-400 text-lg">R$8.780/mês</strong>
           </div>
         </div>
       </div>
@@ -423,8 +546,8 @@ export default function SVAPage() {
             <div className="space-y-3">
               {[
                 'Dono de provedor de internet (qualquer tamanho)',
-                'Quer criar SVAs para aumentar receita',
-                'Não tem desenvolvedor na equipe',
+                'Quer criar SVAs para aumentar receita sem contratar dev',
+                'Quer oferecer mais do que internet para seus clientes',
                 'Quer controlar a tecnologia sem depender de terceiros',
                 'Disposto a investir ~R$160/mês para operar o sistema',
               ].map((item, i) => (
@@ -479,7 +602,7 @@ export default function SVAPage() {
               <Star className="w-3 h-3" /> Vagas limitadas para o acesso inicial
             </div>
             <h2 className="text-3xl sm:text-4xl font-black text-white mb-4 leading-tight">
-              Instale o NEXCORE no<br />seu provedor
+              Instale o NEXCORE e crie<br />o Netflix do seu provedor
             </h2>
             <p className="text-slate-400 max-w-lg mx-auto mb-8 text-sm leading-relaxed">
               Entre na lista de espera. Os primeiros <strong className="text-white">30 provedores</strong> recebem

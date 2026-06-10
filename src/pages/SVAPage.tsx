@@ -33,8 +33,8 @@ const STACK = [
     highlight: true,
   },
   {
-    name: 'Claude Code Pro',
-    sub: 'A IA que cria os apps por você',
+    name: 'Assinatura de IA',
+    sub: 'A IA que escreve os apps por você',
     cost: '~$20/mês',
     badge: 'ÚNICO CUSTO',
     badgeColor: 'bg-orange-500',
@@ -86,7 +86,7 @@ const STEPS = [
   {
     num: '03',
     title: 'Aula Prática: Criando seu Primeiro App',
-    desc: 'Você cria do zero o Hub central (login, perfil, menu) e o primeiro módulo — Clube de Pontos ou o que preferir. O Claude Code Pro escreve o código. Você aprova e publica.',
+    desc: 'Você cria do zero o Hub central (login, perfil, menu) e o primeiro módulo — Clube de Pontos ou o que preferir. A IA escreve o código. Você aprova e publica.',
     time: '3–7 horas',
     emoji: '🚀',
   },
@@ -102,11 +102,11 @@ const STEPS = [
 const FAQS = [
   {
     q: 'O que exatamente eu recebo ao comprar o curso?',
-    a: 'Aulas em vídeo ensinando a instalar o NEXCORE, configurar os agentes de IA e criar seus próprios apps SVA do zero. Não são apps prontos — você aprende a criá-los com IA, do jeito que quiser.',
+    a: 'Aulas em vídeo ensinando a instalar o NEXCORE, usar os agentes de IA e criar seus próprios apps SVA do zero. Não são apps prontos — você aprende a criá-los com IA, do jeito que quiser.',
   },
   {
     q: 'Preciso saber programar?',
-    a: 'Não. O Claude Code Pro escreve todo o código por você. Você descreve o que quer — a IA constrói. Você aprende a operar o sistema. Em poucas horas, seu primeiro app está no ar.',
+    a: 'Não. A IA vai escrever todo o código por você. Você descreve o que quer — ela constrói. Você aprende a operar o sistema. Em poucas horas, seu primeiro app está no ar.',
   },
   {
     q: 'Quanto tempo leva para criar meu primeiro app?',
@@ -118,7 +118,7 @@ const FAQS = [
   },
   {
     q: 'Qual o custo mensal para manter o sistema rodando?',
-    a: 'VPS (~R$40/mês) + Claude Code Pro (~$20/mês ≈ R$110). Supabase, GitHub e Vercel são gratuitos. Total: menos de R$160/mês para criar e manter apps ilimitados.',
+    a: 'VPS (~R$40/mês) + assinatura de IA (~$20/mês ≈ R$110). Supabase, GitHub e Vercel são gratuitos. Total: menos de R$160/mês para criar e manter apps ilimitados.',
   },
   {
     q: 'Quanto posso cobrar de SVA para os meus clientes?',
@@ -418,7 +418,7 @@ export default function SVAPage() {
             { icon: <Zap className="w-5 h-5 text-teal-400" />, title: '193+ Skills Prontas', desc: 'Skills são tarefas pré-programadas. Seu agente já sabe criar app, conectar banco, publicar na web.' },
             { icon: <Terminal className="w-5 h-5 text-blue-400" />, title: 'Dashboard Web Completo', desc: 'Painel visual para gerenciar tudo: agentes, relatórios, rotinas automáticas, integrações.' },
             { icon: <Cpu className="w-5 h-5 text-purple-400" />, title: 'Roda no Seu Servidor', desc: 'Instalado no seu VPS. Você tem controle total. Seus dados não saem da sua infraestrutura.' },
-            { icon: <Shield className="w-5 h-5 text-emerald-400" />, title: 'Stack 100% Gratuita', desc: 'Supabase, GitHub e Vercel têm tiers gratuitos robustos. Você começa sem gastar nada além do Claude Code Pro.' },
+            { icon: <Shield className="w-5 h-5 text-emerald-400" />, title: 'Stack 100% Gratuita', desc: 'Supabase, GitHub e Vercel têm tiers gratuitos robustos. Você começa sem gastar nada além da assinatura de IA.' },
             { icon: <TrendingUp className="w-5 h-5 text-orange-400" />, title: 'Escala com Você', desc: 'Começou com 1 módulo? O NEXCORE cria o segundo, o terceiro. Cada app novo fica mais rápido de fazer.' },
           ].map((item, i) => (
             <div key={i} className="bg-white/5 border border-white/10 rounded-2xl p-5 hover:bg-white/8 transition-colors">
@@ -440,7 +440,7 @@ export default function SVAPage() {
             Tudo gratuito. Um único custo.
           </h2>
           <p className="text-slate-500 text-sm max-w-lg mx-auto">
-            Você investe apenas no Claude Code Pro — a IA que constrói os apps. O resto é zero.
+            Você investe apenas na assinatura de IA — ela constrói os apps. O resto é zero.
           </p>
         </div>
 
@@ -469,7 +469,7 @@ export default function SVAPage() {
         <div className="mt-6 p-5 bg-emerald-500/5 border border-emerald-500/20 rounded-2xl text-center">
           <p className="text-sm text-slate-300">
             💡 <strong className="text-white">Custo total mensal:</strong>{' '}
-            VPS (~R$40) + Claude Code Pro (~R$110) ={' '}
+            VPS (~R$40) + assinatura de IA (~R$110) ={' '}
             <span className="text-emerald-400 font-bold">menos de R$160/mês</span> para criar e manter apps ilimitados.
           </p>
         </div>
@@ -539,7 +539,7 @@ export default function SVAPage() {
             ))}
           </div>
           <div className="text-center text-sm text-slate-400">
-            Custo operacional: <strong className="text-white">R$160/mês</strong> (VPS + Claude Code Pro) →
+            Custo operacional: <strong className="text-white">R$160/mês</strong> (VPS + IA) →
             Lucro líquido com 3 apps: <strong className="text-teal-400 text-lg">R$6.780/mês</strong>
           </div>
           <p className="text-center text-xs text-slate-600 mt-3 max-w-lg mx-auto">
@@ -579,7 +579,7 @@ export default function SVAPage() {
               {[
                 'Quem espera receber apps prontos para usar',
                 'Quem não quer aprender a instalar e operar o NEXCORE',
-                'Quem não quer pagar Claude Code Pro (~$20/mês)',
+                'Quem não quer pagar a assinatura de IA (~$20/mês)',
                 'Empresas fora do setor de provedores de internet',
                 'Quem busca "plug and play" sem nenhum esforço',
               ].map((item, i) => (

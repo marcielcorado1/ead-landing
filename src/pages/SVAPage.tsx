@@ -8,7 +8,7 @@ import {
 } from 'lucide-react'
 
 // ─────────────────────────────────────────────────────────────────────────────
-// ISP.CORE — Nome proprietário do sistema (EvoNexus rebrandeado)
+// NEXCORE — Nome proprietário do sistema (EvoNexus rebrandeado)
 // 35+ agentes | 190+ skills | stack: Supabase + GitHub + Vercel + Claude Code Pro
 // ─────────────────────────────────────────────────────────────────────────────
 
@@ -23,7 +23,7 @@ const NETFLIX_MODULES = [
 
 const STACK = [
   {
-    name: 'ISP.CORE',
+    name: 'NEXCORE',
     sub: 'Seu sistema operacional de IA',
     cost: 'Incluído no curso',
     badge: 'O SISTEMA',
@@ -71,8 +71,8 @@ const STACK = [
 const STEPS = [
   {
     num: '01',
-    title: 'Aula: Instalando o ISP.CORE',
-    desc: 'Passo a passo em vídeo: como instalar e configurar o ISP.CORE no seu VPS (R$30–50/mês). Em menos de 2 horas o sistema está rodando e pronto para criar apps.',
+    title: 'Aula: Instalando o NEXCORE',
+    desc: 'Passo a passo em vídeo: como instalar e configurar o NEXCORE no seu VPS (R$30–50/mês). Em menos de 2 horas o sistema está rodando e pronto para criar apps.',
     time: '2 horas',
     emoji: '⚡',
   },
@@ -102,7 +102,7 @@ const STEPS = [
 const FAQS = [
   {
     q: 'O que exatamente eu recebo ao comprar o curso?',
-    a: 'Aulas em vídeo ensinando a instalar o ISP.CORE, usar os agentes de IA e criar seus próprios apps SVA do zero. Não são apps prontos — você aprende a criá-los com IA, do jeito que quiser.',
+    a: 'Aulas em vídeo ensinando a instalar o NEXCORE, usar os agentes de IA e criar seus próprios apps SVA do zero. Não são apps prontos — você aprende a criá-los com IA, do jeito que quiser.',
   },
   {
     q: 'Preciso saber programar?',
@@ -110,11 +110,11 @@ const FAQS = [
   },
   {
     q: 'Quanto tempo leva para criar meu primeiro app?',
-    a: 'Após instalar o ISP.CORE (2 horas), você cria o primeiro app em 3 a 7 horas de trabalho prático seguindo as aulas. Cada app seguinte fica mais rápido, porque você já conhece o fluxo.',
+    a: 'Após instalar o NEXCORE (2 horas), você cria o primeiro app em 3 a 7 horas de trabalho prático seguindo as aulas. Cada app seguinte fica mais rápido, porque você já conhece o fluxo.',
   },
   {
     q: 'Preciso ter servidor próprio?',
-    a: 'Um VPS simples de R$30–50/mês já roda o ISP.CORE perfeitamente. O curso indica opções nacionais e internacionais e ensina a configurar tudo passo a passo.',
+    a: 'Um VPS simples de R$30–50/mês já roda o NEXCORE perfeitamente. O curso indica opções nacionais e internacionais e ensina a configurar tudo passo a passo.',
   },
   {
     q: 'Qual o custo mensal para manter o sistema rodando?',
@@ -167,7 +167,7 @@ export default function SVAPage() {
             <div className="w-7 h-7 bg-gradient-to-br from-violet-500 to-purple-600 rounded-lg flex items-center justify-center">
               <Cpu className="w-3.5 h-3.5 text-white" />
             </div>
-            <span className="font-black text-white tracking-tight">ISP<span className="text-violet-400">.CORE</span></span>
+            <span className="font-black text-white tracking-tight">NEX<span className="text-violet-400">CORE</span></span>
           </div>
           <div className="flex items-center gap-3">
             <span className="hidden sm:block text-xs text-slate-500 bg-white/5 px-3 py-1 rounded-full">
@@ -200,7 +200,7 @@ export default function SVAPage() {
           </h1>
 
           <p className="text-lg text-slate-400 max-w-2xl mx-auto mb-4 leading-relaxed">
-            Curso prático: você instala o <strong className="text-white">ISP.CORE</strong>, aprende a usar IA para criar apps de valor agregado
+            Curso prático: você instala o <strong className="text-white">NEXCORE</strong>, aprende a usar IA para criar apps de valor agregado
             e começa a cobrar SVA dos seus clientes — sem saber programar, sem contratar desenvolvedor.
           </p>
           <p className="text-sm text-slate-500 max-w-xl mx-auto mb-3">
@@ -213,7 +213,7 @@ export default function SVAPage() {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-14">
             <a href="#lista-espera"
               className="group w-full sm:w-auto flex items-center justify-center gap-2 bg-gradient-to-r from-violet-600 to-purple-600 hover:from-violet-500 hover:to-purple-500 text-white font-bold px-8 py-4 rounded-2xl text-base transition-all shadow-lg shadow-violet-500/20">
-              Quero Instalar o ISP.CORE
+              Quero Instalar o NEXCORE
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </a>
             <a href="#como-funciona"
@@ -247,7 +247,7 @@ export default function SVAPage() {
           </h2>
           <p className="text-slate-400 max-w-2xl mx-auto text-sm leading-relaxed">
             No curso você aprende a montar um <strong className="text-white">Super App Hub</strong> com login único e módulos independentes.
-            Os exemplos abaixo são ideias do que é possível criar — cada app leva poucas horas com o ISP.CORE e IA.
+            Os exemplos abaixo são ideias do que é possível criar — cada app leva poucas horas com o NEXCORE e IA.
             <strong className="text-white"> Você decide quais fazer.</strong>
           </p>
           {/* Aviso explícito */}
@@ -255,7 +255,7 @@ export default function SVAPage() {
             <span className="text-amber-400 text-lg flex-shrink-0">⚠️</span>
             <p className="text-xs text-amber-200/80 leading-relaxed">
               <strong className="text-amber-300">Atenção:</strong> esses apps são sugestões de ideias — não são entregues prontos.
-              O curso ensina você a instalar o ISP.CORE e criar os apps que quiser,
+              O curso ensina você a instalar o NEXCORE e criar os apps que quiser,
               com IA, em poucas horas. Cada app é seu, do jeito que você preferir.
             </p>
           </div>
@@ -396,15 +396,15 @@ export default function SVAPage() {
         </div>
       </div>
 
-      {/* ── O que é o ISP.CORE ── */}
+      {/* ── O que é o NEXCORE ── */}
       <div className="max-w-5xl mx-auto px-4 sm:px-6 py-10">
         <div className="text-center mb-12">
           <span className="text-xs font-bold text-violet-400 tracking-widest uppercase">O Sistema</span>
           <h2 className="text-3xl sm:text-4xl font-black text-white mt-3 mb-4">
-            ISP.CORE: a ferramenta que você<br />vai aprender a usar no curso
+            NEXCORE: a ferramenta que você<br />vai aprender a usar no curso
           </h2>
           <p className="text-slate-400 max-w-2xl mx-auto text-sm leading-relaxed">
-            O curso ensina você a instalar e operar o ISP.CORE no seu servidor.
+            O curso ensina você a instalar e operar o NEXCORE no seu servidor.
             Com 35+ agentes especializados e IA, você descreve o app que quer criar
             para seus clientes — e o sistema constrói. <strong className="text-white">Em poucas horas, seu app está no ar.</strong>
           </p>
@@ -417,7 +417,7 @@ export default function SVAPage() {
             { icon: <Terminal className="w-5 h-5 text-blue-400" />, title: 'Dashboard Web Completo', desc: 'Painel visual para gerenciar tudo: agentes, relatórios, rotinas automáticas, integrações.' },
             { icon: <Cpu className="w-5 h-5 text-purple-400" />, title: 'Roda no Seu Servidor', desc: 'Instalado no seu VPS. Você tem controle total. Seus dados não saem da sua infraestrutura.' },
             { icon: <Shield className="w-5 h-5 text-emerald-400" />, title: 'Stack 100% Gratuita', desc: 'Supabase, GitHub e Vercel têm tiers gratuitos robustos. Você começa sem gastar nada além da assinatura de IA.' },
-            { icon: <TrendingUp className="w-5 h-5 text-orange-400" />, title: 'Escala com Você', desc: 'Começou com 1 módulo? O ISP.CORE cria o segundo, o terceiro. Cada app novo fica mais rápido de fazer.' },
+            { icon: <TrendingUp className="w-5 h-5 text-orange-400" />, title: 'Escala com Você', desc: 'Começou com 1 módulo? O NEXCORE cria o segundo, o terceiro. Cada app novo fica mais rápido de fazer.' },
           ].map((item, i) => (
             <div key={i} className="bg-white/5 rounded-2xl p-5 hover:bg-white/8 transition-colors">
               <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center mb-4">
@@ -576,7 +576,7 @@ export default function SVAPage() {
             <div className="space-y-3">
               {[
                 'Quem espera receber apps prontos para usar',
-                'Quem não quer aprender a instalar e operar o ISP.CORE',
+                'Quem não quer aprender a instalar e operar o NEXCORE',
                 'Quem não quer pagar a assinatura de IA (~$20/mês)',
                 'Empresas fora do setor de provedores de internet',
                 'Quem busca "plug and play" sem nenhum esforço',
@@ -617,7 +617,7 @@ export default function SVAPage() {
             </h2>
             <p className="text-slate-400 max-w-lg mx-auto mb-8 text-sm leading-relaxed">
               Entre na lista de espera do curso. Os primeiros <strong className="text-white">30 alunos</strong> recebem
-              acesso com <strong className="text-violet-300">50% de desconto</strong> e suporte direto na instalação do ISP.CORE.
+              acesso com <strong className="text-violet-300">50% de desconto</strong> e suporte direto na instalação do NEXCORE.
             </p>
 
             {submitted ? (
@@ -662,7 +662,7 @@ export default function SVAPage() {
             <span className="font-black text-slate-500 text-sm">NEX<span className="text-violet-400">CORE</span></span>
           </div>
           <p className="text-xs text-slate-700">© 2026 Kem Soluções · Para provedores de internet</p>
-          <p className="text-xs text-slate-800">Criado com o próprio ISP.CORE.</p>
+          <p className="text-xs text-slate-800">Criado com o próprio NEXCORE.</p>
         </div>
       </footer>
 

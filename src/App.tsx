@@ -255,7 +255,7 @@ const MODULES = [
     tag: 'PILOTO AUTOMÁTICO',
     tagColor: 'text-orange-400 bg-orange-400/10 border-orange-400/30',
     desc: 'Relatório de inadimplência, alertas de link caído, briefing diário. Tudo automático.',
-    items: ['Relatório de inadimplência', 'Monitoramento de links', 'Morning briefing por IA', 'ISP no piloto automático'],
+    items: ['Relatório SGP integrado', 'Monitoramento de links', 'Morning briefing por IA', 'ISP no piloto automático'],
   },
 ]
 

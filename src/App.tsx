@@ -128,11 +128,125 @@ const MODULES = [
   {
     num: '05',
     emoji: '💰',
-    title: 'Serviços Agregados',
+    title: 'Serviços Agregados (SVAs)',
     tag: 'RECEITA EXTRA',
     tagColor: 'text-purple-400 bg-purple-400/10 border-purple-400/30',
-    desc: 'Crie serviços pagos para seus clientes: controle parental, benefícios, apps de valor.',
+    desc: 'Crie serviços pagos ou gratuitos para seus clientes: controle parental, benefícios, apps de valor que fidelizam.',
     items: ['App de controle parental', 'Benefícios para clientes', 'Pagamento recorrente', 'Como precificar'],
+    wide: true,
+    extra: (
+      <div className="mt-6 pt-6 border-t border-white/10">
+        <div className="flex flex-wrap items-center gap-3 mb-5">
+          <span className="text-xl">🎮</span>
+          <h4 className="font-bold text-white text-base">Pare de vender Mbps. Comece a vender relacionamento.</h4>
+          <span className="text-[10px] font-bold bg-purple-500/15 text-purple-400 border border-purple-500/30 px-2.5 py-1 rounded-full tracking-wider">CASE REAL DO CURSO</span>
+        </div>
+
+        <div className="bg-slate-900/60 border border-white/8 rounded-xl p-5 mb-5">
+          <p className="text-slate-300 text-sm leading-relaxed mb-2">
+            Todo provedor vende a mesma coisa: internet. A briga é sempre por preço — e quem tem mais infraestrutura vence.
+            Mas existe uma saída: <strong className="text-white">criar serviços digitais que o cliente não acha em lugar nenhum,
+            que viram parte do dia a dia da família, e que fazem o cancelamento ser impensável.</strong>
+          </p>
+          <p className="text-slate-400 text-sm leading-relaxed">
+            Esses serviços se chamam SVAs — Serviços de Valor Agregado. E no módulo 05 você aprende a criá-los do zero,
+            sem contratar um desenvolvedor, usando Claude Code + ISP.CORE.
+          </p>
+        </div>
+
+        {/* Recompensa Example */}
+        <div className="mb-5">
+          <div className="flex items-center gap-2 mb-3">
+            <div className="w-6 h-6 rounded-lg bg-yellow-500/20 flex items-center justify-center text-sm">⭐</div>
+            <span className="text-sm font-bold text-white">Exemplo concreto: App Recompensa Pro</span>
+            <span className="text-xs text-slate-500">— construído em menos de 30 dias no curso</span>
+          </div>
+
+          <div className="grid sm:grid-cols-3 gap-3 mb-4">
+            <div className="bg-gradient-to-br from-yellow-500/10 to-orange-500/5 rounded-xl p-4 border border-yellow-500/15">
+              <div className="text-2xl mb-2">🧒</div>
+              <h5 className="font-bold text-white text-sm mb-2">A criança acumula XP</h5>
+              <p className="text-xs text-slate-400 leading-relaxed mb-3">
+                O filho abre o app, vê o cofre de XP cheio de moedas brilhando. Cada tarefa concluída — dever de casa, lavar o prato, ler 15 minutos — vale pontos.
+              </p>
+              <div className="space-y-1">
+                {['📚 Dever de casa → +50 XP', '🍽️ Ajudou em casa → +30 XP', '📖 Leu 15 min → +40 XP', '⚽ Treinou → +60 XP'].map((t, i) => (
+                  <div key={i} className="text-xs text-yellow-400/80 font-mono">{t}</div>
+                ))}
+              </div>
+            </div>
+
+            <div className="bg-gradient-to-br from-teal-500/10 to-emerald-500/5 rounded-xl p-4 border border-teal-500/15">
+              <div className="text-2xl mb-2">👨‍👩‍👦</div>
+              <h5 className="font-bold text-white text-sm mb-2">O pai controla tudo</h5>
+              <p className="text-xs text-slate-400 leading-relaxed mb-3">
+                No painel do pai, ele cadastra as atividades, define quanto vale cada uma e configura as recompensas que o filho pode trocar com o XP acumulado.
+              </p>
+              <div className="space-y-1">
+                {['🍦 Sorvete → 200 XP', '🎬 Escolher o filme → 350 XP', '🎮 1h de videogame → 500 XP', '🧸 Brinquedo surpresa → 1.000 XP'].map((t, i) => (
+                  <div key={i} className="text-xs text-teal-400/80 font-mono">{t}</div>
+                ))}
+              </div>
+            </div>
+
+            <div className="bg-gradient-to-br from-purple-500/10 to-pink-500/5 rounded-xl p-4 border border-purple-500/15">
+              <div className="text-2xl mb-2">📡</div>
+              <h5 className="font-bold text-white text-sm mb-2">O ISP fideliza a família</h5>
+              <p className="text-xs text-slate-400 leading-relaxed mb-3">
+                O app tem a marca do seu provedor. Todo dia a criança abre, acumula XP, comemora. Os pais associam esse momento positivo <strong className="text-white">com você.</strong>
+              </p>
+              <div className="space-y-1.5">
+                {[
+                  'Churn cai: família não cancela o "app do filho"',
+                  'Diferencial: nenhum concorrente tem isso',
+                  'Boca a boca: pais indicam para outros pais',
+                ].map((t, i) => (
+                  <div key={i} className="flex items-start gap-1.5">
+                    <span className="text-purple-400 text-xs mt-0.5 flex-shrink-0">✓</span>
+                    <span className="text-xs text-slate-400">{t}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Impact callout */}
+          <div className="bg-gradient-to-r from-purple-500/10 to-pink-500/5 border border-purple-500/20 rounded-xl p-5 mb-4">
+            <p className="text-white text-sm leading-relaxed font-medium mb-1">
+              "Seu concorrente vende 500 Mbps por R$89. Você vende 500 Mbps por R$99 — e o filho do cliente acumula XP todo dia em um app com a sua marca."
+            </p>
+            <p className="text-slate-400 text-sm leading-relaxed">
+              Quem você acha que o cliente cancela quando apertar o orçamento? O ISP que é só uma conta de internet — ou o que faz parte da rotina do filho?
+            </p>
+          </div>
+        </div>
+
+        {/* More SVA ideas */}
+        <div className="mb-5">
+          <p className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-3">Outros SVAs que você pode criar no curso</p>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+            {[
+              { emoji: '🔒', name: 'Controle Parental', sub: 'Bloqueio de sites por horário' },
+              { emoji: '🏆', name: 'Clube de Benefícios', sub: 'Descontos em parceiros locais' },
+              { emoji: '📡', name: 'Monitor de Sinal', sub: 'Cliente vê a qualidade em tempo real' },
+              { emoji: '🎓', name: 'Plataforma EAD', sub: 'Cursos para a comunidade' },
+            ].map((s, i) => (
+              <div key={i} className="bg-white/5 rounded-xl p-3 border border-white/5 text-center">
+                <div className="text-xl mb-1">{s.emoji}</div>
+                <div className="text-xs font-bold text-white mb-0.5">{s.name}</div>
+                <div className="text-xs text-slate-500">{s.sub}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="bg-teal-500/8 border border-teal-500/20 rounded-xl p-5">
+          <p className="text-teal-300 text-sm leading-relaxed">
+            <span className="font-bold text-white">No módulo 05 você sai com:</span> um SVA publicado com a marca do seu provedor, integração de pagamento recorrente (para cobrar quem quiser), e o modelo mental para criar qualquer app novo que o mercado pedir — sem depender de desenvolvedor, sem esperar meses, sem pagar R$20k de projeto.
+          </p>
+        </div>
+      </div>
+    ),
   },
   {
     num: '06',

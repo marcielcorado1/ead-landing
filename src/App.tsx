@@ -29,7 +29,7 @@ const PAINS = [
 
 const TOOLS = [
   { name: 'Claude Code', role: 'IA que escreve e executa código', cost: '~$20/mês', required: true, icon: <Bot className="w-5 h-5" /> },
-  { name: 'ISP.CORE', role: 'Sistema operacional de agentes de IA', cost: 'Gratuito', required: false, icon: <Zap className="w-5 h-5" /> },
+  { name: 'NEXCORE', role: 'Sistema operacional de agentes de IA', cost: 'Gratuito', required: false, icon: <Zap className="w-5 h-5" /> },
   { name: 'GitHub', role: 'Versionamento do código', cost: 'Gratuito', required: false, icon: <Code2 className="w-5 h-5" /> },
   { name: 'Supabase', role: 'Banco de dados + Auth + API', cost: 'Gratuito', required: false, icon: <Database className="w-5 h-5" /> },
   { name: 'Vercel', role: 'Deploy em 1 clique', cost: 'Gratuito', required: false, icon: <Globe className="w-5 h-5" /> },
@@ -43,7 +43,7 @@ const MODULES = [
     tag: 'GRATUITO',
     tagColor: 'text-emerald-400 bg-emerald-400/10 border-emerald-400/30',
     desc: 'Configure o ambiente completo em 2 horas e rode seu primeiro agente de IA. Sem enrolação.',
-    items: ['Instalar Claude Code', 'Criar conta GitHub + Supabase + Vercel', 'Configurar ISP.CORE no servidor', 'Primeiro agente rodando'],
+    items: ['Instalar Claude Code', 'Criar conta GitHub + Supabase + Vercel', 'Configurar NEXCORE no servidor', 'Primeiro agente rodando'],
   },
   {
     num: '01',
@@ -110,7 +110,7 @@ const MODULES = [
             <span className="font-bold text-white">Na prática:</span> enquanto você está no almoço, o agente já identificou os 12 clientes com mais de 30 dias em atraso, enviou mensagem para cada um, registrou quem respondeu, cancelou os 3 que ignoraram por mais de 5 dias e criou as ordens de retirada dos equipamentos. Tudo isso sem ninguém da sua equipe fazer absolutamente nada.
           </p>
           <p className="text-slate-500 text-xs mt-3 italic">
-            Esse é um script real construído com Claude Code + ISP.CORE que roda em produção em provedores que fizeram o curso.
+            Esse é um script real construído com Claude Code + NEXCORE que roda em produção em provedores que fizeram o curso.
           </p>
         </div>
       </div>
@@ -150,7 +150,7 @@ const MODULES = [
           </p>
           <p className="text-slate-400 text-sm leading-relaxed">
             Esses serviços se chamam SVAs — Serviços de Valor Agregado. E no módulo 05 você aprende a criá-los do zero,
-            sem contratar um desenvolvedor, usando Claude Code + ISP.CORE.
+            sem contratar um desenvolvedor, usando Claude Code + NEXCORE.
           </p>
         </div>
 
@@ -324,8 +324,8 @@ const FAQS = [
     a: 'No Módulo 0 (gratuito) você já tem um app publicado em 7 dias. No Módulo 2 você já tem um portal do cliente funcional. Resultados concretos em semanas, não meses.',
   },
   {
-    q: 'O conteúdo fica desatualizado quando o ISP.CORE mudar?',
-    a: 'Não. Sou dono de ISP e uso ISP.CORE no dia a dia. Quando a ferramenta evolui, eu evoluo junto e atualizo o conteúdo. Os alunos da Trilha Provedor têm acesso a todas as atualizações.',
+    q: 'O conteúdo fica desatualizado quando o NEXCORE mudar?',
+    a: 'Não. Sou dono de ISP e uso NEXCORE no dia a dia. Quando a ferramenta evolui, eu evoluo junto e atualizo o conteúdo. Os alunos da Trilha Provedor têm acesso a todas as atualizações.',
   },
 ]
 
@@ -438,7 +438,7 @@ export default function App() {
           </h1>
 
           <p className="animate-fade-up text-lg sm:text-xl text-slate-400 max-w-2xl mx-auto mb-10 leading-relaxed">
-            Aprenda a usar <strong className="text-white">Claude Code + ISP.CORE</strong> para construir portal do cliente,
+            Aprenda a usar <strong className="text-white">Claude Code + NEXCORE</strong> para construir portal do cliente,
             bot de WhatsApp, gestão de OS e muito mais — com ferramentas <strong className="text-white">gratuitas</strong>.
             Único investimento: ~$20/mês.
           </p>
@@ -530,7 +530,7 @@ export default function App() {
                 Aprenda a criar suas próprias soluções com <span className="text-gradient">Inteligência Artificial</span>
               </h2>
               <p className="text-slate-400 leading-relaxed mb-6">
-                Em vez de contratar dev ou pagar por sistemas caros, você aprende a usar o <strong className="text-white">Claude Code + ISP.CORE</strong> para construir exatamente o que o seu provedor precisa.
+                Em vez de contratar dev ou pagar por sistemas caros, você aprende a usar o <strong className="text-white">Claude Code + NEXCORE</strong> para construir exatamente o que o seu provedor precisa.
               </p>
               <p className="text-slate-400 leading-relaxed mb-8">
                 Módulo a módulo, você cria projetos reais: portal do cliente, bot de WhatsApp, gestão de OSes, relatórios automáticos. Tudo publicado, tudo funcionando.
@@ -679,7 +679,7 @@ export default function App() {
                   Sou <strong className="text-white">Marciel Corado</strong>, dono da <strong className="text-white">Kem Soluções</strong> — um provedor de acesso à internet que fornece fibra óptica para residências, empresas e governo.
                 </p>
                 <p className="text-slate-400 leading-relaxed mb-4">
-                  Usei ISP.CORE + Claude Code para resolver os mesmos problemas que você enfrenta. Criei o portal do cliente, automatizei o atendimento no WhatsApp, e construí um sistema de gestão interno — gastando menos de $20/mês.
+                  Usei NEXCORE + Claude Code para resolver os mesmos problemas que você enfrenta. Criei o portal do cliente, automatizei o atendimento no WhatsApp, e construí um sistema de gestão interno — gastando menos de $20/mês.
                 </p>
                 <p className="text-slate-400 leading-relaxed">
                   Agora transformei tudo isso em curso para que qualquer dono de ISP consiga fazer o mesmo, independente de saber programar.
@@ -688,7 +688,7 @@ export default function App() {
               <div className="space-y-4">
                 {[
                   { icon: <Wifi className="w-5 h-5 text-teal-400" />, label: 'Dono de ISP há mais de 17 anos', sub: 'Kem Soluções — fibra óptica' },
-                  { icon: <Terminal className="w-5 h-5 text-teal-400" />, label: 'Usuário ativo do ISP.CORE', sub: 'Usa no provedor e em apps em produção' },
+                  { icon: <Terminal className="w-5 h-5 text-teal-400" />, label: 'Usuário ativo do NEXCORE', sub: 'Usa no provedor e em apps em produção' },
                   { icon: <Code2 className="w-5 h-5 text-teal-400" />, label: '3 apps em produção', sub: 'Recompensa Pro, Fut Sorteio, Assessor Digital' },
                   { icon: <BookOpen className="w-5 h-5 text-teal-400" />, label: 'Conteúdo sempre atualizado', sub: 'Aprende e atualiza o curso junto' },
                 ].map((item, i) => (
@@ -829,7 +829,7 @@ export default function App() {
             <span className="font-bold text-slate-400">ISP<span className="text-teal-400">.CORE</span></span>
           </div>
           <p className="text-sm text-slate-600">
-            © 2026 Kem Soluções. Criado com Claude Code + ISP.CORE.
+            © 2026 Kem Soluções. Criado com Claude Code + NEXCORE.
           </p>
           <div className="text-xs text-slate-700">
             Construído exatamente como ensinamos no curso.

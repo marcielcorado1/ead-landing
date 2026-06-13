@@ -71,6 +71,50 @@ const MODULES = [
     tagColor: 'text-blue-400 bg-blue-400/10 border-blue-400/30',
     desc: 'Bot que responde boleto, status de conexão e abre chamados — sem contratar atendente.',
     items: ['Integração Evolution API', 'Bot de boleto e suporte', 'Escalada para humano', 'Notificações proativas'],
+    wide: true,
+    extra: (
+      <div className="mt-6 pt-6 border-t border-white/10">
+        <div className="flex flex-wrap items-center gap-3 mb-5">
+          <span className="text-xl">🚨</span>
+          <h4 className="font-bold text-white text-base">Vai além do bot: Agente Autônomo de Inadimplência</h4>
+          <span className="text-[10px] font-bold bg-orange-500/15 text-orange-400 border border-orange-500/30 px-2.5 py-1 rounded-full tracking-wider">EXEMPLO REAL DO CURSO</span>
+        </div>
+        <p className="text-slate-400 text-sm leading-relaxed mb-5">
+          Todo provedor tem o mesmo problema: clientes em atraso que ninguém tem tempo de cobrar. No módulo 03 você cria um agente que roda sozinho — identifica os inadimplentes, manda mensagem, negocia e, se necessário, cancela o plano e abre a OS de retirada do equipamento. <strong className="text-white">Sem precisar de uma pessoa para isso.</strong>
+        </p>
+        <div className="grid sm:grid-cols-3 gap-3 mb-5">
+          <div className="bg-white/5 rounded-xl p-4 border border-white/5">
+            <div className="text-2xl mb-2">📊</div>
+            <h5 className="font-bold text-white text-sm mb-1">Relatório diário no Telegram</h5>
+            <p className="text-xs text-slate-400 leading-relaxed">
+              Todo dia às 8h chega automaticamente: total de títulos em atraso, valor represado, clientes novos em atraso e os críticos (+30 dias) separados por categoria — sem você abrir nenhum sistema.
+            </p>
+          </div>
+          <div className="bg-white/5 rounded-xl p-4 border border-orange-500/10">
+            <div className="text-2xl mb-2">💬</div>
+            <h5 className="font-bold text-white text-sm mb-1">Cobrança e negociação automática</h5>
+            <p className="text-xs text-slate-400 leading-relaxed">
+              Clientes com mais de 30 dias em atraso recebem mensagem automática no WhatsApp. O agente cobra, oferece negociação, registra a resposta e decide o próximo passo — tudo sem a sua equipe precisar ligar.
+            </p>
+          </div>
+          <div className="bg-white/5 rounded-xl p-4 border border-red-500/10">
+            <div className="text-2xl mb-2">⛔</div>
+            <h5 className="font-bold text-white text-sm mb-1">Cancelamento e retirada de equipamento</h5>
+            <p className="text-xs text-slate-400 leading-relaxed">
+              Sem resposta após o prazo definido? O agente cancela o plano no sistema, notifica o responsável e abre automaticamente a ordem de serviço de retirada. O processo que levava dias acontece em minutos.
+            </p>
+          </div>
+        </div>
+        <div className="bg-teal-500/8 border border-teal-500/20 rounded-xl p-5">
+          <p className="text-teal-300 text-sm leading-relaxed">
+            <span className="font-bold text-white">Na prática:</span> enquanto você está no almoço, o agente já identificou os 12 clientes com mais de 30 dias em atraso, enviou mensagem para cada um, registrou quem respondeu, cancelou os 3 que ignoraram por mais de 5 dias e criou as ordens de retirada dos equipamentos. Tudo isso sem ninguém da sua equipe fazer absolutamente nada.
+          </p>
+          <p className="text-slate-500 text-xs mt-3 italic">
+            Esse é um script real construído com Claude Code + ISP.CORE que roda em produção em provedores que fizeram o curso.
+          </p>
+        </div>
+      </div>
+    ),
   },
   {
     num: '04',
@@ -475,29 +519,33 @@ export default function App() {
           Cada módulo entrega um projeto real funcionando. Você não aprende teoria — você lança produto.
         </p>
         <div className="grid md:grid-cols-2 gap-4">
-          {MODULES.map((mod, i) => (
-            <div key={i} className={`glass rounded-2xl p-6 hover:bg-white/10 transition-colors ${i === 0 ? 'md:col-span-2 border-teal-500/30 bg-teal-500/5' : ''}`}>
-              <div className="flex items-start justify-between gap-4 mb-4">
-                <div className="flex items-center gap-3">
-                  <span className="text-2xl">{mod.emoji}</span>
-                  <div>
-                    <div className="text-xs font-mono text-slate-500 mb-0.5">MÓDULO {mod.num}</div>
-                    <h3 className="font-bold text-white text-lg leading-tight">{mod.title}</h3>
+          {MODULES.map((mod, i) => {
+            const isWide = i === 0 || (mod as any).wide
+            return (
+              <div key={i} className={`glass rounded-2xl p-6 hover:bg-white/10 transition-colors ${isWide ? 'md:col-span-2 border-teal-500/30 bg-teal-500/5' : ''}`}>
+                <div className="flex items-start justify-between gap-4 mb-4">
+                  <div className="flex items-center gap-3">
+                    <span className="text-2xl">{mod.emoji}</span>
+                    <div>
+                      <div className="text-xs font-mono text-slate-500 mb-0.5">MÓDULO {mod.num}</div>
+                      <h3 className="font-bold text-white text-lg leading-tight">{mod.title}</h3>
+                    </div>
                   </div>
+                  <Badge className={`${mod.tagColor} flex-shrink-0`}>{mod.tag}</Badge>
                 </div>
-                <Badge className={`${mod.tagColor} flex-shrink-0`}>{mod.tag}</Badge>
+                <p className="text-slate-400 text-sm mb-4 leading-relaxed">{mod.desc}</p>
+                <div className="grid grid-cols-2 gap-2">
+                  {mod.items.map((item, j) => (
+                    <div key={j} className="flex items-center gap-2 text-xs text-slate-400">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-teal-400 flex-shrink-0" />
+                      {item}
+                    </div>
+                  ))}
+                </div>
+                {(mod as any).extra}
               </div>
-              <p className="text-slate-400 text-sm mb-4 leading-relaxed">{mod.desc}</p>
-              <div className="grid grid-cols-2 gap-2">
-                {mod.items.map((item, j) => (
-                  <div key={j} className="flex items-center gap-2 text-xs text-slate-400">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-teal-400 flex-shrink-0" />
-                    {item}
-                  </div>
-                ))}
-              </div>
-            </div>
-          ))}
+            )
+          })}
         </div>
       </Section>
 

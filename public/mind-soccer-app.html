@@ -1,0 +1,1333 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MindBase — Plataforma Digital · Mind Soccer Brasil</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+/* ══════════════════════════════════════════
+   TOKENS
+══════════════════════════════════════════ */
+:root {
+  --black:   #08090d;
+  --dark:    #0e1018;
+  --card:    #141620;
+  --card2:   #1a1d2a;
+  --border:  rgba(255,255,255,.07);
+  --green:   #00C853;
+  --green-d: #009e42;
+  --green-l: #69f0ae;
+  --accent:  #FFD600;
+  --blue:    #2979FF;
+  --purple:  #7C4DFF;
+  --white:   #f1f5f9;
+  --light:   #cbd5e1;
+  --gray:    #64748b;
+  --nav-h:   64px;
+}
+
+/* ══════════════════════════════════════════
+   RESET
+══════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background: var(--black);
+  color: var(--white);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+a { color: inherit; text-decoration: none; }
+ul { list-style: none; }
+
+/* ══════════════════════════════════════════
+   PROGRESS BAR
+══════════════════════════════════════════ */
+.progress-bar {
+  position: fixed; top: 0; left: 0; height: 3px;
+  background: linear-gradient(90deg,var(--green),var(--green-l));
+  z-index: 9999; width: 0; transition: width .1s;
+}
+
+/* ══════════════════════════════════════════
+   NAV
+══════════════════════════════════════════ */
+.topnav {
+  position: fixed; top: 3px; left: 0; right: 0; z-index: 900;
+  height: var(--nav-h);
+  background: rgba(8,9,13,.88);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  transition: transform .3s;
+}
+.topnav.hide { transform: translateY(calc(-1 * var(--nav-h) - 4px)); }
+.nav-inner {
+  max-width: 1160px; margin: 0 auto; height: 100%;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 40px;
+}
+.nav-logo {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 15px; font-weight: 800; letter-spacing: -.3px;
+}
+.nav-logo .dot { color: var(--green); font-size: 22px; }
+.nav-links { display: flex; gap: 32px; }
+.nav-links a { font-size: 13px; font-weight: 600; color: var(--gray); transition: color .2s; }
+.nav-links a:hover { color: var(--white); }
+.nav-cta {
+  display: flex; align-items: center; gap: 10px;
+  padding: 8px 20px; border-radius: 100px;
+  background: var(--green); color: var(--black);
+  font-size: 13px; font-weight: 800;
+  transition: transform .2s, box-shadow .2s;
+}
+.nav-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,200,83,.4); }
+
+/* ══════════════════════════════════════════
+   SECTIONS
+══════════════════════════════════════════ */
+.section {
+  padding: 100px 0;
+  position: relative;
+  overflow: hidden;
+}
+.section.is-hero { padding: 160px 0 120px; min-height: 100svh; display: flex; align-items: center; }
+.inner {
+  max-width: 1160px; margin: 0 auto;
+  padding: 0 40px;
+  position: relative; z-index: 2;
+}
+.inner.narrow { max-width: 860px; }
+.sec-divider {
+  width: 100%; height: 1px;
+  background: linear-gradient(90deg,transparent,rgba(0,200,83,.15),transparent);
+}
+
+/* ══════════════════════════════════════════
+   TYPOGRAPHY
+══════════════════════════════════════════ */
+.label {
+  display: inline-block;
+  font-size: 11px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase;
+  color: var(--green); background: rgba(0,200,83,.1);
+  padding: 4px 14px; border-radius: 100px;
+  border: 1px solid rgba(0,200,83,.25);
+  margin-bottom: 20px;
+}
+h1.hero-h {
+  font-size: 68px; font-weight: 900; letter-spacing: -2.5px; line-height: 1.05;
+  margin-bottom: 24px;
+}
+h2.sec-h {
+  font-size: 44px; font-weight: 900; letter-spacing: -1.5px; line-height: 1.1;
+  margin-bottom: 16px;
+}
+h2.sec-h span, h1.hero-h span { color: var(--green); }
+.sub {
+  font-size: 17px; color: var(--light); line-height: 1.7;
+  max-width: 640px;
+}
+.divider {
+  width: 48px; height: 3px; border-radius: 2px;
+  background: linear-gradient(90deg,var(--green),var(--green-l));
+  margin: 16px 0 36px;
+}
+.divider.c { margin: 16px auto 36px; }
+
+/* ══════════════════════════════════════════
+   GLOWS
+══════════════════════════════════════════ */
+.glow-green {
+  position: absolute; border-radius: 50%;
+  background: radial-gradient(circle,rgba(0,200,83,.18) 0%,transparent 70%);
+  pointer-events: none;
+}
+
+/* ══════════════════════════════════════════
+   GRIDS
+══════════════════════════════════════════ */
+.cols-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.cols-3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
+.cols-4 { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; }
+.gap-16 { gap: 16px; }
+
+/* ══════════════════════════════════════════
+   CARDS
+══════════════════════════════════════════ */
+.card {
+  background: var(--card); border-radius: 16px;
+  border: 1px solid var(--border);
+  padding: 24px;
+  transition: border-color .2s, transform .2s;
+}
+.card:hover { border-color: rgba(0,200,83,.25); transform: translateY(-2px); }
+.card h3 { font-size: 15px; font-weight: 700; margin-bottom: 10px; }
+.card p { font-size: 13.5px; color: var(--light); line-height: 1.65; }
+.card.green-border { border-color: rgba(0,200,83,.3); }
+.card.blue-border  { border-color: rgba(41,121,255,.3); }
+.card.gold-border  { border-color: rgba(255,214,0,.3); }
+.card.purple-border{ border-color: rgba(124,77,255,.3); }
+
+.hl {
+  background: var(--card2); border-radius: 12px;
+  border: 1px solid var(--border);
+  padding: 18px 22px;
+  font-size: 14px; color: var(--light); line-height: 1.65;
+}
+.hl strong { color: var(--white); }
+.hl.green-bg { background: rgba(0,200,83,.08); border-color: rgba(0,200,83,.2); }
+.hl.gold-bg  { background: rgba(255,214,0,.06); border-color: rgba(255,214,0,.2); }
+
+.check-list { display: flex; flex-direction: column; gap: 8px; }
+.check-list li {
+  font-size: 13.5px; color: var(--light); line-height: 1.5;
+  padding-left: 22px; position: relative;
+}
+.check-list li::before {
+  content: '✓'; position: absolute; left: 0;
+  color: var(--green); font-weight: 800; font-size: 12px;
+}
+.check-list.cross li::before { content: '✗'; color: #ef4444; }
+
+.tag {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 5px 12px; border-radius: 100px;
+  background: rgba(255,255,255,.06); border: 1px solid var(--border);
+  font-size: 12px; font-weight: 600; color: var(--light);
+}
+.tag.green { background: rgba(0,200,83,.1); border-color: rgba(0,200,83,.25); color: var(--green); }
+.tag.gold  { background: rgba(255,214,0,.1); border-color: rgba(255,214,0,.25); color: var(--accent); }
+.tag.blue  { background: rgba(41,121,255,.1); border-color: rgba(41,121,255,.25); color: #82b1ff; }
+
+/* ══════════════════════════════════════════
+   STATS
+══════════════════════════════════════════ */
+.stat-box {
+  background: var(--card); border-radius: 16px; border: 1px solid var(--border);
+  padding: 28px 20px; text-align: center;
+}
+.stat-box .snum {
+  font-size: 48px; font-weight: 900; line-height: 1;
+  background: linear-gradient(135deg,var(--green),var(--green-l));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+.stat-box .snum.y {
+  background: linear-gradient(135deg,var(--accent),#fff176);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+.stat-box .snum.b {
+  background: linear-gradient(135deg,var(--blue),#82b1ff);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+.stat-box .slbl { font-size: 12.5px; color: var(--gray); margin-top: 8px; font-weight: 600; }
+
+/* ══════════════════════════════════════════
+   PHONE MOCKUP
+══════════════════════════════════════════ */
+.phone-wrap {
+  display: flex; justify-content: center;
+  perspective: 1000px;
+}
+.phone {
+  width: 260px; height: 520px;
+  background: #0a0c12;
+  border-radius: 40px;
+  border: 2px solid rgba(255,255,255,.12);
+  box-shadow: 0 40px 80px rgba(0,0,0,.6), 0 0 0 1px rgba(255,255,255,.04), inset 0 0 40px rgba(0,200,83,.04);
+  position: relative; overflow: hidden;
+  transform: rotateY(-8deg) rotateX(4deg);
+}
+.phone::before {
+  content: ''; position: absolute;
+  top: 12px; left: 50%; transform: translateX(-50%);
+  width: 80px; height: 5px; border-radius: 3px;
+  background: rgba(255,255,255,.15); z-index: 10;
+}
+.phone-screen {
+  position: absolute; inset: 0;
+  padding: 28px 14px 14px;
+  display: flex; flex-direction: column; gap: 8px;
+  font-size: 10px;
+}
+.phone-bar {
+  background: var(--card2); border-radius: 10px; padding: 10px 12px;
+  display: flex; align-items: center; justify-content: space-between;
+  border: 1px solid var(--border);
+}
+.phone-bar .pb-label { font-size: 9px; color: var(--gray); font-weight: 600; }
+.phone-bar .pb-val { font-size: 13px; font-weight: 800; color: var(--green); }
+.phone-card {
+  background: var(--card); border-radius: 10px; padding: 10px 12px;
+  border: 1px solid var(--border);
+}
+.phone-card h4 { font-size: 9.5px; font-weight: 700; margin-bottom: 5px; }
+.phone-card p { font-size: 8.5px; color: var(--gray); }
+.phone-pipeline {
+  display: flex; gap: 5px; margin-top: 4px;
+}
+.pipe-dot {
+  width: 28px; height: 28px; border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 8px; font-weight: 700;
+}
+.pd-g { background: rgba(0,200,83,.2); color: var(--green); }
+.pd-y { background: rgba(255,214,0,.2); color: var(--accent); }
+.pd-b { background: rgba(41,121,255,.2); color: #82b1ff; }
+.pd-e { background: rgba(124,77,255,.2); color: #b39ddb; }
+.phone-mini-btn {
+  margin-top: 6px; padding: 6px; border-radius: 8px;
+  background: var(--green); color: var(--black);
+  font-size: 8.5px; font-weight: 800; text-align: center;
+}
+
+/* ══════════════════════════════════════════
+   MODULE CARDS (big)
+══════════════════════════════════════════ */
+.mod-card {
+  background: var(--card); border-radius: 20px;
+  border: 1px solid var(--border);
+  padding: 32px; position: relative; overflow: hidden;
+  transition: border-color .3s, transform .2s;
+}
+.mod-card:hover { border-color: rgba(0,200,83,.3); transform: translateY(-3px); }
+.mod-card .mod-icon {
+  font-size: 36px; margin-bottom: 16px;
+  width: 64px; height: 64px;
+  background: rgba(0,200,83,.1); border-radius: 16px;
+  display: flex; align-items: center; justify-content: center;
+}
+.mod-card.blue .mod-icon  { background: rgba(41,121,255,.1); }
+.mod-card.gold .mod-icon  { background: rgba(255,214,0,.1); }
+.mod-card.purple .mod-icon{ background: rgba(124,77,255,.1); }
+.mod-card.red .mod-icon   { background: rgba(239,68,68,.1); }
+.mod-card h3 { font-size: 18px; font-weight: 800; margin-bottom: 8px; }
+.mod-card > p { font-size: 13.5px; color: var(--gray); margin-bottom: 20px; line-height: 1.6; }
+.mod-card .mod-glow {
+  position: absolute; top: -60px; right: -60px;
+  width: 200px; height: 200px; border-radius: 50%;
+  background: radial-gradient(circle,rgba(0,200,83,.08),transparent 70%);
+  pointer-events: none;
+}
+.mod-card.blue .mod-glow  { background: radial-gradient(circle,rgba(41,121,255,.08),transparent 70%); }
+.mod-card.gold .mod-glow  { background: radial-gradient(circle,rgba(255,214,0,.07),transparent 70%); }
+.mod-card.purple .mod-glow{ background: radial-gradient(circle,rgba(124,77,255,.08),transparent 70%); }
+.mod-card.red .mod-glow   { background: radial-gradient(circle,rgba(239,68,68,.08),transparent 70%); }
+
+/* ══════════════════════════════════════════
+   PRICING TABLE
+══════════════════════════════════════════ */
+.pricing-card {
+  background: var(--card); border-radius: 20px;
+  border: 1px solid var(--border); padding: 32px;
+  display: flex; flex-direction: column; gap: 20px;
+  position: relative; overflow: hidden;
+  transition: transform .2s;
+}
+.pricing-card:hover { transform: translateY(-4px); }
+.pricing-card.featured {
+  border-color: var(--green);
+  background: linear-gradient(135deg,rgba(0,200,83,.06),var(--card));
+}
+.pricing-card .badge {
+  position: absolute; top: 20px; right: 20px;
+  padding: 3px 10px; border-radius: 100px;
+  background: var(--green); color: var(--black);
+  font-size: 10px; font-weight: 800;
+}
+.pricing-card .plan-name { font-size: 13px; font-weight: 700; color: var(--gray); text-transform: uppercase; letter-spacing: 1.5px; }
+.pricing-card .plan-price {
+  font-size: 42px; font-weight: 900; line-height: 1;
+  color: var(--white);
+}
+.pricing-card .plan-price span { font-size: 15px; font-weight: 400; color: var(--gray); }
+.pricing-card .plan-who { font-size: 13px; color: var(--gray); }
+.pricing-card .plan-features { display: flex; flex-direction: column; gap: 10px; }
+.pricing-card .plan-features li {
+  font-size: 13px; color: var(--light);
+  padding-left: 20px; position: relative; line-height: 1.5;
+}
+.pricing-card .plan-features li::before {
+  content: '✓'; position: absolute; left: 0;
+  color: var(--green); font-weight: 800; font-size: 11px;
+}
+
+/* ══════════════════════════════════════════
+   ROI BLOCK
+══════════════════════════════════════════ */
+.roi-row {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 16px 0; border-bottom: 1px solid var(--border);
+}
+.roi-row:last-child { border-bottom: none; }
+.roi-label { font-size: 14px; color: var(--light); }
+.roi-val { font-size: 18px; font-weight: 800; color: var(--green); }
+.roi-val.accent { color: var(--accent); }
+.roi-val.white { color: var(--white); }
+
+/* ══════════════════════════════════════════
+   TIMELINE / ROADMAP
+══════════════════════════════════════════ */
+.roadmap {
+  display: flex; flex-direction: column; gap: 0;
+}
+.roadmap-item {
+  display: flex; gap: 24px; align-items: flex-start;
+  position: relative; padding-bottom: 40px;
+}
+.roadmap-item:last-child { padding-bottom: 0; }
+.roadmap-left { display: flex; flex-direction: column; align-items: center; flex-shrink: 0; }
+.roadmap-dot {
+  width: 48px; height: 48px; border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 900; font-size: 15px;
+  background: rgba(0,200,83,.15); color: var(--green);
+  border: 1px solid rgba(0,200,83,.3);
+  flex-shrink: 0;
+}
+.roadmap-dot.blue { background: rgba(41,121,255,.15); color: #82b1ff; border-color: rgba(41,121,255,.3); }
+.roadmap-dot.gold { background: rgba(255,214,0,.12); color: var(--accent); border-color: rgba(255,214,0,.3); }
+.roadmap-line {
+  width: 2px; flex: 1; min-height: 32px;
+  background: linear-gradient(180deg,rgba(0,200,83,.3),rgba(0,200,83,.05));
+  margin-top: 8px;
+}
+.roadmap-body { flex: 1; padding-top: 6px; }
+.roadmap-body .rm-phase { font-size: 11px; font-weight: 700; color: var(--green); letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 6px; }
+.roadmap-body .rm-phase.blue { color: #82b1ff; }
+.roadmap-body .rm-phase.gold { color: var(--accent); }
+.roadmap-body h4 { font-size: 17px; font-weight: 800; margin-bottom: 6px; }
+.roadmap-body p { font-size: 13.5px; color: var(--light); line-height: 1.6; margin-bottom: 12px; }
+
+/* ══════════════════════════════════════════
+   PROBLEM / PAIN
+══════════════════════════════════════════ */
+.pain-item {
+  display: flex; align-items: flex-start; gap: 16px;
+  padding: 20px; background: var(--card); border-radius: 14px;
+  border: 1px solid var(--border);
+}
+.pain-icon { font-size: 28px; flex-shrink: 0; margin-top: 2px; }
+.pain-item h4 { font-size: 15px; font-weight: 700; margin-bottom: 6px; }
+.pain-item p  { font-size: 13px; color: var(--gray); line-height: 1.6; }
+
+/* ══════════════════════════════════════════
+   URGENCY BANNER
+══════════════════════════════════════════ */
+.urgency-banner {
+  background: linear-gradient(135deg,rgba(239,68,68,.12),rgba(239,68,68,.04));
+  border: 1px solid rgba(239,68,68,.3);
+  border-radius: 16px; padding: 28px 32px;
+  display: flex; align-items: flex-start; gap: 20px;
+}
+.urgency-banner .ub-icon { font-size: 36px; flex-shrink: 0; }
+.urgency-banner h3 { font-size: 18px; font-weight: 800; color: #fca5a5; margin-bottom: 8px; }
+.urgency-banner p  { font-size: 14px; color: var(--light); line-height: 1.65; }
+
+/* ══════════════════════════════════════════
+   ABOUT DEV
+══════════════════════════════════════════ */
+.dev-card {
+  background: var(--card); border-radius: 20px; border: 1px solid var(--border);
+  padding: 40px; display: flex; align-items: flex-start; gap: 32px;
+}
+.dev-avatar {
+  width: 88px; height: 88px; border-radius: 50%; flex-shrink: 0;
+  background: linear-gradient(135deg,var(--green),var(--green-l));
+  display: flex; align-items: center; justify-content: center;
+  font-size: 36px; font-weight: 900; color: var(--black);
+}
+.dev-card h3 { font-size: 22px; font-weight: 800; margin-bottom: 6px; }
+.dev-card .dev-role { font-size: 13px; color: var(--green); font-weight: 700; margin-bottom: 16px; letter-spacing: .5px; }
+.dev-card p { font-size: 14px; color: var(--light); line-height: 1.7; }
+
+/* ══════════════════════════════════════════
+   CTA FINAL
+══════════════════════════════════════════ */
+.cta-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  padding: 18px 48px; border-radius: 100px;
+  background: linear-gradient(135deg,var(--green),var(--green-l));
+  color: var(--black); font-size: 17px; font-weight: 800;
+  cursor: pointer; border: none; letter-spacing: .3px;
+  box-shadow: 0 8px 32px rgba(0,200,83,.35);
+  transition: transform .2s, box-shadow .2s;
+}
+.cta-btn:hover { transform: translateY(-4px); box-shadow: 0 16px 48px rgba(0,200,83,.5); }
+.cta-btn.ghost {
+  background: transparent; color: var(--white);
+  border: 1.5px solid rgba(255,255,255,.2);
+  box-shadow: none;
+}
+.cta-btn.ghost:hover { border-color: var(--white); box-shadow: none; }
+.cta-btn.wpp {
+  background: linear-gradient(135deg,#25D366,#128C7E);
+  box-shadow: 0 8px 32px rgba(37,211,102,.35);
+}
+
+/* ══════════════════════════════════════════
+   REVEAL ANIMATION
+══════════════════════════════════════════ */
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity .6s ease, transform .6s ease; }
+.reveal.visible { opacity: 1; transform: none; }
+
+/* ══════════════════════════════════════════
+   BACK TO TOP
+══════════════════════════════════════════ */
+.back-top {
+  position: fixed; bottom: 28px; right: 28px; z-index: 998;
+  width: 48px; height: 48px; border-radius: 50%;
+  background: var(--green); color: var(--black); border: none;
+  font-size: 20px; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 6px 24px rgba(0,200,83,.4);
+  opacity: 0; pointer-events: none;
+  transition: opacity .3s, transform .3s;
+  transform: translateY(12px);
+}
+.back-top.show { opacity: 1; pointer-events: auto; transform: translateY(0); }
+
+/* ══════════════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════════════ */
+@media (max-width: 900px) {
+  h1.hero-h { font-size: 44px; }
+  h2.sec-h  { font-size: 32px; }
+  .cols-3, .cols-4 { grid-template-columns: 1fr 1fr !important; }
+  .nav-links { display: none; }
+}
+@media (max-width: 700px) {
+  :root { --nav-h: 54px; }
+  .inner { padding: 0 20px; }
+  .nav-inner { padding: 0 20px; }
+  h1.hero-h { font-size: 34px; letter-spacing: -1px; }
+  h2.sec-h  { font-size: 26px; }
+  .sub      { font-size: 15px; }
+  .section  { padding: 72px 0; }
+  .section.is-hero { padding: 100px 0 80px; }
+  .cols-2, .cols-3, .cols-4 { grid-template-columns: 1fr !important; }
+  .phone-wrap { transform: scale(.85); transform-origin: top center; }
+  .dev-card { flex-direction: column; gap: 20px; }
+  .dev-card .dev-avatar { width: 64px; height: 64px; font-size: 26px; }
+  .urgency-banner { flex-direction: column; gap: 12px; }
+  .cta-btn { font-size: 15px; padding: 16px 32px; width: 100%; max-width: 340px; }
+}
+</style>
+</head>
+<body>
+
+<div class="progress-bar" id="pb"></div>
+
+<nav class="topnav" id="topnav">
+  <div class="nav-inner">
+    <div class="nav-logo">
+      <span class="dot">⚽</span> MindBase <span style="color:var(--gray);font-weight:400;margin-left:4px">· Proposta Técnica</span>
+    </div>
+    <div class="nav-links">
+      <a href="#problema">O Problema</a>
+      <a href="#solucao">A Solução</a>
+      <a href="#modulos">Módulos</a>
+      <a href="#receita">Receita</a>
+      <a href="#roadmap">Roadmap</a>
+      <a href="#contato">Contato</a>
+    </div>
+    <a href="#contato" class="nav-cta">📲 Falar agora</a>
+  </div>
+</nav>
+
+<button class="back-top" id="back-top" onclick="scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<!-- ════════════════════════════════════
+     HERO
+════════════════════════════════════ -->
+<section class="section is-hero" style="background:var(--dark)" id="s01">
+  <div class="glow-green" style="width:600px;height:600px;top:-200px;right:-100px;opacity:.6"></div>
+  <div class="glow-green" style="width:400px;height:400px;bottom:-100px;left:-80px;opacity:.3"></div>
+  <div class="inner" style="text-align:center">
+    <div class="reveal">
+      <div class="label" style="margin-bottom:24px">Proposta Exclusiva · Mind Soccer Brasil</div>
+      <h1 class="hero-h" style="max-width:920px;margin:0 auto 24px">
+        De 3.000 atletas<br>para <span>30.000</span> — com tecnologia
+      </h1>
+      <p class="sub" style="max-width:680px;margin:0 auto 40px;text-align:center">
+        A metodologia Mind Soccer já funciona. Falta o sistema que automatiza, escala e monetiza tudo — da captação pelo agente até o atleta assinar com um clube profissional.
+      </p>
+      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:56px">
+        <span class="tag green">⚽ 6 perfis de usuário</span>
+        <span class="tag green">📱 App iOS + Android</span>
+        <span class="tag green">💰 Nova fonte de receita</span>
+        <span class="tag green">🤖 Automação de ponta a ponta</span>
+      </div>
+      <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap">
+        <a href="#solucao" class="cta-btn">Ver a plataforma ↓</a>
+        <a href="#contato" class="cta-btn ghost">Falar com o dev</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="sec-divider"></div>
+
+<!-- ════════════════════════════════════
+     NÚMEROS DA MIND
+════════════════════════════════════ -->
+<section class="section" style="background:var(--black)" id="numeros">
+  <div class="inner reveal">
+    <div style="text-align:center;margin-bottom:48px">
+      <div class="label">Você já tem o que importa</div>
+      <h2 class="sec-h" style="text-align:center">A <span>prova</span> já existe</h2>
+      <div class="divider c"></div>
+      <p class="sub" style="text-align:center;margin:0 auto">Em 5 anos construíram algo que ninguém consegue copiar da noite pro dia. Agora é hora de transformar essa vantagem em produto.</p>
+    </div>
+    <div class="cols-4 gap-16">
+      <div class="stat-box"><div class="snum">+3k</div><div class="slbl">atletas captados</div></div>
+      <div class="stat-box"><div class="snum y">+5</div><div class="slbl">anos de metodologia</div></div>
+      <div class="stat-box"><div class="snum">+1M</div><div class="slbl">em faturamento</div></div>
+      <div class="stat-box"><div class="snum b">3</div><div class="slbl">na Seleção Brasileira</div></div>
+    </div>
+    <div style="margin-top:24px" class="hl green-bg" style="text-align:center">
+      <strong>Esses números são o maior ativo de vendas da plataforma.</strong> Nenhum concorrente vai chegar com "5 anos de experiência e 3.000 casos reais" no dia em que você lançar. A janela de vantagem existe agora — e vai fechar.
+    </div>
+  </div>
+</section>
+
+<div class="sec-divider"></div>
+
+<!-- ════════════════════════════════════
+     O PROBLEMA (DOR)
+════════════════════════════════════ -->
+<section class="section" style="background:var(--dark)" id="problema">
+  <div class="inner reveal">
+    <div class="label" style="background:rgba(239,68,68,.1);color:#fca5a5;border-color:rgba(239,68,68,.3)">O Problema Real</div>
+    <h2 class="sec-h">WhatsApp e planilha <span style="color:#f87171">não escalam</span></h2>
+    <div class="divider" style="background:linear-gradient(90deg,#ef4444,#f87171)"></div>
+    <p class="sub" style="margin-bottom:40px">Cada processo manual que a Mind faz hoje é um gargalo invisível. Com 3.000 atletas dá pra gerenciar. Com 10.000, o sistema colapsa.</p>
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <div class="pain-item">
+        <div class="pain-icon">📱</div>
+        <div>
+          <h4>Captadores gerenciam leads no WhatsApp pessoal</h4>
+          <p>Conversa cai, lead some, reunião fica sem registro. Sem CRM, o captador perde 30–40% dos leads por falta de follow-up estruturado.</p>
+        </div>
+      </div>
+      <div class="pain-item">
+        <div class="pain-icon">📊</div>
+        <div>
+          <h4>Comissões são calculadas na mão, toda semana</h4>
+          <p>Cada captação precisa ser conferida, calculada e registrada manualmente. Com 20 captadores ativos, isso vira horas de operação toda semana.</p>
+        </div>
+      </div>
+      <div class="pain-item">
+        <div class="pain-icon">🏟️</div>
+        <div>
+          <h4>Clubes parceiros recebem atletas por print de conversa</h4>
+          <p>Não há ficha técnica padronizada, histórico centralizado, nem rastreamento de quem indicou quem. Quando o atleta chega no clube, a informação está em 4 lugares diferentes.</p>
+        </div>
+      </div>
+      <div class="pain-item">
+        <div class="pain-icon">👨‍👩‍👦</div>
+        <div>
+          <h4>A família não tem visibilidade do progresso do filho</h4>
+          <p>O pai liga pro captador pra saber se o filho foi aprovado. O captador não sabe. Liga pro clube. O clube não tem o contato. Experiência péssima para quem está pagando.</p>
+        </div>
+      </div>
+      <div class="pain-item">
+        <div class="pain-icon">🎓</div>
+        <div>
+          <h4>Novos captadores são treinados por Zoom improvisado</h4>
+          <p>Sem plataforma de treinamento, cada turma exige recriar o mesmo conteúdo. Captadores entram sem a mesma qualidade de base. O método Mind fica na cabeça do Bruno, não num sistema.</p>
+        </div>
+      </div>
+      <div class="pain-item">
+        <div class="pain-icon">🌎</div>
+        <div>
+          <h4>O modelo não replica para outras cidades sem você estar presente</h4>
+          <p>Abrir CDM em Volta Redonda exige que alguém da Mind esteja lá. Com o sistema, o coordenador local tem tudo na mão e o diretor acompanha tudo do celular em tempo real.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="sec-divider"></div>
+
+<!-- ════════════════════════════════════
+     URGÊNCIA
+════════════════════════════════════ -->
+<section class="section" style="background:var(--black);padding:60px 0" id="urgencia">
+  <div class="inner reveal narrow">
+    <div class="urgency-banner">
+      <div class="ub-icon">⚠️</div>
+      <div>
+        <h3>A janela de vantagem está fechando</h3>
+        <p>O mercado de captação esportiva digital no Brasil ainda não tem um player dominante. Mas o futebol brasileiro movimenta bilhões, e onde há dinheiro, há interesse de empresas de tecnologia. <strong style="color:var(--white)">A Mind Soccer tem algo que nenhuma startup vai ter em 2 anos: 3.000 casos reais e relacionamentos com os clubes.</strong> O diferencial é agora — não daqui 18 meses quando um concorrente capitalizado aparecer.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="sec-divider"></div>
+
+<!-- ════════════════════════════════════
+     A SOLUÇÃO — MINDBASE
+════════════════════════════════════ -->
+<section class="section" style="background:var(--dark)" id="solucao">
+  <div class="glow-green" style="width:500px;height:500px;top:-100px;right:-150px;opacity:.4"></div>
+  <div class="inner reveal">
+    <div class="label">A Solução</div>
+    <h2 class="sec-h">Apresentando o <span>MindBase</span></h2>
+    <div class="divider"></div>
+    <div class="cols-2" style="align-items:center;gap:48px">
+      <div>
+        <p class="sub" style="max-width:100%;margin-bottom:28px">
+          Uma plataforma única que conecta todos os envolvidos na jornada do atleta — do primeiro contato com o captador até o contrato profissional — com automação, rastreamento em tempo real e uma nova fonte de receita recorrente para a Mind Soccer.
+        </p>
+        <div class="hl green-bg" style="margin-bottom:20px">
+          <strong>Não é só um app.</strong> É a metodologia Mind Soccer transformada em produto digital — vendável, escalável e defensável para qualquer concorrente.
+        </div>
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <div class="check-list">
+            <li>CRM completo para captadores com pipeline e comissão automática</li>
+            <li>Perfil digital do atleta com vídeos, métricas e histórico de clubes</li>
+            <li>Portal dos clubes parceiros para avaliação e gestão de plantel</li>
+            <li>Dashboard para pais acompanharem o filho em tempo real</li>
+            <li>LMS com treinamento da metodologia Mind para novos captadores</li>
+            <li>Painel de gestão 360° para os diretores com BI em tempo real</li>
+          </div>
+        </div>
+      </div>
+      <div class="phone-wrap">
+        <div class="phone">
+          <div class="phone-screen">
+            <div style="font-size:8px;color:var(--gray);font-weight:700;margin-bottom:4px">⚽ MindBase · Dashboard</div>
+            <div class="phone-bar">
+              <div><div class="pb-label">Captações este mês</div><div class="pb-val">12</div></div>
+              <div style="text-align:right"><div class="pb-label">Comissão acumulada</div><div class="pb-val" style="color:var(--accent)">R$1.440</div></div>
+            </div>
+            <div class="phone-card">
+              <h4>🔥 Pipeline ativo</h4>
+              <div class="phone-pipeline">
+                <div class="pipe-dot pd-g" title="Prospecção">8</div>
+                <div class="pipe-dot pd-y" title="Reunião">5</div>
+                <div class="pipe-dot pd-b" title="Avaliação">3</div>
+                <div class="pipe-dot pd-e" title="Aprovado">2</div>
+              </div>
+              <p style="font-size:7.5px;color:var(--gray);margin-top:5px">Prosp · Reunião · Aval · Aprovado</p>
+            </div>
+            <div class="phone-card">
+              <h4>📅 Próxima reunião</h4>
+              <p>Lucas Silva · Hoje 19h</p>
+              <p style="margin-top:2px;color:var(--green)">⭐ Atacante · Sub-15 · Campinas</p>
+              <div class="phone-mini-btn">Abrir roteiro de 7 passos →</div>
+            </div>
+            <div class="phone-card" style="background:rgba(0,200,83,.08);border-color:rgba(0,200,83,.2)">
+              <h4 style="color:var(--green)">🏆 Progresso Blue → Black</h4>
+              <p>12/10 captações atingidas</p>
+              <div style="height:5px;background:rgba(255,255,255,.08);border-radius:3px;margin-top:6px;overflow:hidden">
+                <div style="height:100%;width:85%;background:var(--green);border-radius:3px"></div>
+              </div>
+              <p style="margin-top:4px;font-size:7.5px;color:var(--green)">Promoção disponível!</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="sec-divider"></div>
+
+<!-- ════════════════════════════════════
+     MÓDULOS
+════════════════════════════════════ -->
+<section class="section" style="background:var(--black)" id="modulos">
+  <div class="inner reveal">
+    <div class="label">Os 6 Módulos</div>
+    <h2 class="sec-h">Tudo que a Mind precisa, <span>numa plataforma</span></h2>
+    <div class="divider"></div>
+    <p class="sub" style="margin-bottom:48px">Cada perfil de usuário tem seu próprio ambiente — com as informações certas, no momento certo, sem expor o que não precisa.</p>
+
+    <div class="cols-2" style="gap:20px">
+
+      <!-- M1 CRM DO CAPTADOR -->
+      <div class="mod-card">
+        <div class="mod-glow"></div>
+        <div class="mod-icon">🎯</div>
+        <h3>CRM do Captador</h3>
+        <p>Pipeline Kanban, roteiro da reunião de 7 passos, cálculo automático de comissão e barra de progresso Blue → Black → Sócio.</p>
+        <ul class="check-list">
+          <li>Prospecção → Reunião → Avaliação → Aprovado (drag & drop)</li>
+          <li>Roteiro dos 7 passos na tela durante a videochamada</li>
+          <li>Comissão calculada e paga automaticamente via PIX</li>
+          <li>Metas mensais com bônus automáticos quando atingidas</li>
+          <li>Histórico de todos os atletas captados, com status atual</li>
+        </ul>
+      </div>
+
+      <!-- M2 PERFIL DO ATLETA -->
+      <div class="mod-card blue">
+        <div class="mod-glow"></div>
+        <div class="mod-icon" style="font-size:32px">🏃</div>
+        <h3>Perfil Digital do Atleta</h3>
+        <p>Currículo esportivo vivo: vídeos, métricas físicas, histórico de avaliações, fase de desenvolvimento e match automático com clubes.</p>
+        <ul class="check-list">
+          <li>Reel técnico em vídeo + clips de jogos (hospedagem CDN)</li>
+          <li>Fases: 🔵 Lúdica (7-11) · 🟢 Especialização (12-15) · 🟡 Alto Rendimento (16-20)</li>
+          <li>Métricas físicas por temporada (velocidade, altura, peso)</li>
+          <li>Match automático: sistema sugere vagas abertas no clube certo</li>
+          <li>Histórico de avaliações por clube com feedback técnico</li>
+        </ul>
+      </div>
+
+      <!-- M3 PORTAL DO CLUBE -->
+      <div class="mod-card gold">
+        <div class="mod-glow"></div>
+        <div class="mod-icon" style="font-size:32px">🏟️</div>
+        <h3>Portal do Clube Parceiro</h3>
+        <p>DS Esportes, Araçatuba Safi e todos os parceiros têm acesso próprio para avaliar atletas, gerenciar plantel e se comunicar com a Mind.</p>
+        <ul class="check-list">
+          <li>Ficha técnica padronizada de avaliação (aprovado / reprovado + feedback)</li>
+          <li>Visualização de perfis dos atletas indicados com filtros</li>
+          <li>Plantel atual: atletas em desenvolvimento no clube</li>
+          <li>Agenda de testes e seletivas integrada ao calendário</li>
+          <li>Histórico completo da parceria com a Mind Soccer</li>
+        </ul>
+      </div>
+
+      <!-- M4 FAMÍLIA -->
+      <div class="mod-card purple">
+        <div class="mod-glow"></div>
+        <div class="mod-icon" style="font-size:32px">👨‍👩‍👦</div>
+        <h3>Dashboard da Família</h3>
+        <p>O pai abre o app e vê o filho. Sem precisar ligar pra ninguém. Progresso, avaliações, documentos, competições e mensalidades num só lugar.</p>
+        <ul class="check-list">
+          <li>Status em tempo real: "Em avaliação no DS Esportes até 20/06"</li>
+          <li>Relatório das avaliações com feedback do treinador do clube</li>
+          <li>Documentos digitais: contrato, autorização de viagem, fotos</li>
+          <li>Calendário de competições e eventos da Mind Academy</li>
+          <li>Histórico de pagamentos e mensalidades do CDM</li>
+        </ul>
+      </div>
+
+      <!-- M5 ACADEMIA LMS -->
+      <div class="mod-card" style="border-color:rgba(124,77,255,.2)">
+        <div class="mod-glow" style="background:radial-gradient(circle,rgba(124,77,255,.08),transparent 70%)"></div>
+        <div class="mod-icon" style="background:rgba(124,77,255,.1);font-size:32px">🎓</div>
+        <h3>Mind Academy — LMS</h3>
+        <p>A metodologia Mind ensinada em módulos, com certificação, quizzes e progresso rastreado. Tanto para captadores quanto para atletas.</p>
+        <ul class="check-list">
+          <li>Treinamento de entrada: Ter/Qua/Qui em módulos gravados</li>
+          <li>Certificação Blue, Black e Coordenador — desbloqueada por desempenho</li>
+          <li>Conteúdo para atletas: desenvolvimento mental, técnico e físico por fase</li>
+          <li>Biblioteca de partidas da Mind Academy para análise</li>
+          <li>Quizzes obrigatórios antes de avançar no treinamento</li>
+        </ul>
+      </div>
+
+      <!-- M6 DIRETOR -->
+      <div class="mod-card red">
+        <div class="mod-glow"></div>
+        <div class="mod-icon" style="background:rgba(239,68,68,.1);font-size:32px">📊</div>
+        <h3>Painel do Diretor (BI 360°)</h3>
+        <p>Tudo que Bruno e Jonas fazem hoje por WhatsApp e planilha — num dashboard em tempo real, com métricas, alertas e tomada de decisão baseada em dados.</p>
+        <ul class="check-list">
+          <li>Métricas ao vivo: captações por captador, estado, clube e fase</li>
+          <li>Funil de conversão: prospects → reuniões → aprovações</li>
+          <li>Ranking de captadores com produtividade e próximo bônus</li>
+          <li>Financeiro: comissões a pagar, receita por CDM, por clube</li>
+          <li>Pipeline de vagas abertas em todos os clubes parceiros</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="sec-divider"></div>
+
+<!-- ════════════════════════════════════
+     RECEITA NOVA
+════════════════════════════════════ -->
+<section class="section" style="background:var(--dark)" id="receita">
+  <div class="inner reveal">
+    <div class="label">Monetização</div>
+    <h2 class="sec-h">O app gera <span>receita recorrente</span></h2>
+    <div class="divider"></div>
+    <p class="sub" style="margin-bottom:48px">Além de organizar as operações, o MindBase vira uma nova linha de receita — com assinaturas mensais de captadores, famílias e clubes.</p>
+
+    <div class="cols-3 gap-16" style="margin-bottom:40px;align-items:start">
+
+      <!-- Captadores -->
+      <div style="display:flex;flex-direction:column;gap:16px">
+        <h3 style="font-size:16px;font-weight:800;color:var(--light);margin-bottom:4px">⚡ Para Captadores</h3>
+        <div class="pricing-card">
+          <div class="plan-name">Blue — Entrada</div>
+          <div class="plan-price">Grátis</div>
+          <div class="plan-who">Até 10 captações no total</div>
+          <ul class="plan-features">
+            <li>Pipeline básico (10 leads)</li>
+            <li>Acesso ao treinamento obrigatório</li>
+            <li>Comissão manual (sem automação)</li>
+          </ul>
+        </div>
+        <div class="pricing-card featured">
+          <div class="badge">+ popular</div>
+          <div class="plan-name">Black Pro</div>
+          <div class="plan-price">R$49 <span>/mês</span></div>
+          <div class="plan-who">Captador oficial ativo</div>
+          <ul class="plan-features">
+            <li>Pipeline ilimitado + histórico completo</li>
+            <li>Comissão calculada e paga automaticamente</li>
+            <li>Acesso a módulos avançados do LMS</li>
+            <li>Bônus e metas rastreados em tempo real</li>
+            <li>Relatório mensal de produtividade</li>
+          </ul>
+        </div>
+        <div class="pricing-card">
+          <div class="plan-name">Coordenador</div>
+          <div class="plan-price">R$149 <span>/mês</span></div>
+          <div class="plan-who">Líder de equipe / CDM</div>
+          <ul class="plan-features">
+            <li>Tudo do Black Pro</li>
+            <li>Gestão de equipe de captadores</li>
+            <li>Split de comissão configurável</li>
+            <li>Relatórios por captador sob gestão</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Famílias -->
+      <div style="display:flex;flex-direction:column;gap:16px">
+        <h3 style="font-size:16px;font-weight:800;color:var(--light);margin-bottom:4px">👨‍👩‍👦 Para Famílias</h3>
+        <div class="pricing-card">
+          <div class="plan-name">Básico</div>
+          <div class="plan-price">Grátis</div>
+          <div class="plan-who">Todo atleta captado</div>
+          <ul class="plan-features">
+            <li>Perfil público do atleta</li>
+            <li>3 vídeos técnicos</li>
+            <li>Status básico da jornada</li>
+          </ul>
+        </div>
+        <div class="pricing-card featured">
+          <div class="badge">+ valor</div>
+          <div class="plan-name">Família Premium</div>
+          <div class="plan-price">R$39 <span>/mês</span></div>
+          <div class="plan-who">Família engajada com a jornada</div>
+          <ul class="plan-features">
+            <li>Vídeos ilimitados + reels profissionais</li>
+            <li>Relatório de avaliações em tempo real</li>
+            <li>Match automático com clubes</li>
+            <li>Documentos digitais ilimitados</li>
+            <li>Acesso ao conteúdo de formação do atleta</li>
+          </ul>
+        </div>
+        <div class="pricing-card">
+          <div class="plan-name">Elite</div>
+          <div class="plan-price">R$99 <span>/mês</span></div>
+          <div class="plan-who">Alta performance</div>
+          <ul class="plan-features">
+            <li>Tudo do Premium</li>
+            <li>Análise de desempenho mensal personalizada</li>
+            <li>Acompanhamento mental com especialista</li>
+            <li>Prioridade na indicação para clubes maiores</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Clubes -->
+      <div style="display:flex;flex-direction:column;gap:16px">
+        <h3 style="font-size:16px;font-weight:800;color:var(--light);margin-bottom:4px">🏟️ Para Clubes</h3>
+        <div class="pricing-card">
+          <div class="plan-name">Parceiro</div>
+          <div class="plan-price">Grátis</div>
+          <div class="plan-who">Parceiros atuais da Mind</div>
+          <ul class="plan-features">
+            <li>5 avaliações/mês</li>
+            <li>Listagem básica no sistema</li>
+            <li>Comunicação com a Mind</li>
+          </ul>
+        </div>
+        <div class="pricing-card featured">
+          <div class="badge">recomendado</div>
+          <div class="plan-name">Clube Pro</div>
+          <div class="plan-price">R$299 <span>/mês</span></div>
+          <div class="plan-who">Clubes com alto volume</div>
+          <ul class="plan-features">
+            <li>Avaliações ilimitadas</li>
+            <li>Pipeline completo de candidatos</li>
+            <li>Vídeos e perfil completo dos atletas</li>
+            <li>Relatórios de aprovação e evolução</li>
+            <li>Match automático com vagas do clube</li>
+          </ul>
+        </div>
+        <div class="pricing-card">
+          <div class="plan-name">Enterprise</div>
+          <div class="plan-price" style="font-size:28px">Customizado</div>
+          <div class="plan-who">Grandes clubes / federações</div>
+          <ul class="plan-features">
+            <li>Integração via API</li>
+            <li>White-label com a marca do clube</li>
+            <li>Acesso ao banco completo de atletas</li>
+            <li>SLA dedicado + suporte prioritário</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ROI Table -->
+    <div class="card green-border" style="padding:32px">
+      <h3 style="font-size:18px;margin-bottom:4px">💰 Simulação de receita recorrente mensal</h3>
+      <p style="font-size:13.5px;color:var(--gray);margin-bottom:24px">Com números conservadores, no primeiro ano de operação:</p>
+      <div class="roi-row">
+        <div class="roi-label">100 captadores Black Pro × R$49/mês</div>
+        <div class="roi-val">R$ 4.900</div>
+      </div>
+      <div class="roi-row">
+        <div class="roi-label">20 coordenadores × R$149/mês</div>
+        <div class="roi-val">R$ 2.980</div>
+      </div>
+      <div class="roi-row">
+        <div class="roi-label">150 famílias Premium × R$39/mês</div>
+        <div class="roi-val">R$ 5.850</div>
+      </div>
+      <div class="roi-row">
+        <div class="roi-label">8 clubes Pro × R$299/mês</div>
+        <div class="roi-val">R$ 2.392</div>
+      </div>
+      <div class="roi-row" style="border-top:2px solid rgba(0,200,83,.3);margin-top:8px;padding-top:20px">
+        <div class="roi-label" style="font-size:17px;font-weight:800;color:var(--white)">Receita mensal recorrente (MRR)</div>
+        <div class="roi-val" style="font-size:28px">R$ 16.122</div>
+      </div>
+      <div class="roi-row">
+        <div class="roi-label" style="font-size:15px;font-weight:700;color:var(--white)">Receita anual projetada (ano 1)</div>
+        <div class="roi-val accent" style="font-size:22px">+ R$ 193.000</div>
+      </div>
+      <p style="font-size:12px;color:var(--gray);margin-top:16px">* Simulação conservadora. A Mind já tem 3.000+ atletas, vários clubes parceiros e dezenas de captadores ativos — base real para escalar esses números rapidamente.</p>
+    </div>
+  </div>
+</section>
+
+<div class="sec-divider"></div>
+
+<!-- ════════════════════════════════════
+     STACK TÉCNICA
+════════════════════════════════════ -->
+<section class="section" style="background:var(--black)" id="tech">
+  <div class="inner reveal">
+    <div class="label">Tecnologia</div>
+    <h2 class="sec-h">Stack <span>profissional</span>, sem dependência</h2>
+    <div class="divider"></div>
+    <p class="sub" style="margin-bottom:40px">Tecnologias usadas pelas maiores plataformas do mundo — mas escolhidas para que a Mind tenha controle total do seu sistema, sem ficar preso a nenhum fornecedor.</p>
+    <div class="cols-4 gap-16" style="margin-bottom:28px">
+      <div class="card" style="text-align:center;padding:20px">
+        <div style="font-size:28px;margin-bottom:10px">📱</div>
+        <h3 style="font-size:13px">React Native</h3>
+        <p>Um código → iOS e Android. App nativo, rápido, com acesso a câmera, notificações e GPS.</p>
+      </div>
+      <div class="card" style="text-align:center;padding:20px">
+        <div style="font-size:28px;margin-bottom:10px">⚡</div>
+        <h3 style="font-size:13px">Next.js (Web Admin)</h3>
+        <p>Painel do diretor e do clube: rápido, seguro, com BI e relatórios em tempo real.</p>
+      </div>
+      <div class="card" style="text-align:center;padding:20px">
+        <div style="font-size:28px;margin-bottom:10px">🗄️</div>
+        <h3 style="font-size:13px">Supabase</h3>
+        <p>Banco de dados PostgreSQL + autenticação + storage de vídeos e documentos. Open-source.</p>
+      </div>
+      <div class="card" style="text-align:center;padding:20px">
+        <div style="font-size:28px;margin-bottom:10px">💳</div>
+        <h3 style="font-size:13px">Asaas</h3>
+        <p>Pagamentos brasileiros: PIX, boleto e cartão. Marketplace split para comissões dos captadores.</p>
+      </div>
+      <div class="card" style="text-align:center;padding:20px">
+        <div style="font-size:28px;margin-bottom:10px">🎬</div>
+        <h3 style="font-size:13px">Cloudflare Stream</h3>
+        <p>Hospedagem de vídeos dos atletas. Cobra por minuto assistido, não por armazenamento.</p>
+      </div>
+      <div class="card" style="text-align:center;padding:20px">
+        <div style="font-size:28px;margin-bottom:10px">💬</div>
+        <h3 style="font-size:13px">WhatsApp (Evolution API)</h3>
+        <p>Notificações automáticas via WhatsApp para atletas, captadores e famílias.</p>
+      </div>
+      <div class="card" style="text-align:center;padding:20px">
+        <div style="font-size:28px;margin-bottom:10px">🔔</div>
+        <h3 style="font-size:13px">Firebase</h3>
+        <p>Push notifications nativas no celular — reunião daqui 1h, atleta aprovado, meta atingida.</p>
+      </div>
+      <div class="card" style="text-align:center;padding:20px">
+        <div style="font-size:28px;margin-bottom:10px">🤖</div>
+        <h3 style="font-size:13px">IA (Claude / GPT)</h3>
+        <p>Análise de vídeo, sugestão de próximo clube, relatório de evolução gerado automaticamente.</p>
+      </div>
+    </div>
+    <div class="hl green-bg">
+      <strong>A Mind fica com 100% da propriedade intelectual.</strong> Nenhuma dessas tecnologias exige licença proprietária cara ou lock-in com fornecedor. O código é seu. O banco de dados é seu. O aplicativo é publicado na conta da Mind Soccer nas lojas.
+    </div>
+  </div>
+</section>
+
+<div class="sec-divider"></div>
+
+<!-- ════════════════════════════════════
+     ROADMAP
+════════════════════════════════════ -->
+<section class="section" style="background:var(--dark)" id="roadmap">
+  <div class="inner reveal">
+    <div class="label">Plano de Execução</div>
+    <h2 class="sec-h">Pronto em <span>6 meses</span> — em 3 fases</h2>
+    <div class="divider"></div>
+    <p class="sub" style="margin-bottom:48px">Começamos pelo que gera receita mais rápido, sem esperar o sistema completo. Cada fase lança, valida e monetiza antes de construir a próxima.</p>
+    <div class="cols-2" style="align-items:start;gap:48px">
+      <div class="roadmap">
+        <div class="roadmap-item">
+          <div class="roadmap-left">
+            <div class="roadmap-dot">1</div>
+            <div class="roadmap-line"></div>
+          </div>
+          <div class="roadmap-body">
+            <div class="rm-phase">Fase 1 — Semanas 1 a 8</div>
+            <h4>MVP — O Core do Negócio</h4>
+            <p>CRM do captador com pipeline, roteiro de 7 passos e comissão automática. Perfil digital do atleta. Painel do diretor com métricas ao vivo. App mobile básico (iOS + Android).</p>
+            <div style="display:flex;gap:8px;flex-wrap:wrap">
+              <span class="tag green">CRM captador</span>
+              <span class="tag green">Perfil atleta</span>
+              <span class="tag green">Painel diretor</span>
+              <span class="tag green">Comissão auto</span>
+            </div>
+          </div>
+        </div>
+        <div class="roadmap-item">
+          <div class="roadmap-left">
+            <div class="roadmap-dot blue">2</div>
+            <div class="roadmap-line" style="background:linear-gradient(180deg,rgba(41,121,255,.3),rgba(41,121,255,.05))"></div>
+          </div>
+          <div class="roadmap-body">
+            <div class="rm-phase blue">Fase 2 — Semanas 9 a 18</div>
+            <h4>Expansão — Clubes e Famílias</h4>
+            <p>Portal do clube parceiro com fichas de avaliação. Dashboard da família para acompanhar o atleta. Documentos digitais. Pagamentos (assinaturas via PIX/boleto). Notificações via WhatsApp e push.</p>
+            <div style="display:flex;gap:8px;flex-wrap:wrap">
+              <span class="tag blue">Portal clubes</span>
+              <span class="tag blue">Dashboard família</span>
+              <span class="tag blue">Assinaturas Asaas</span>
+              <span class="tag blue">WhatsApp auto</span>
+            </div>
+          </div>
+        </div>
+        <div class="roadmap-item">
+          <div class="roadmap-left">
+            <div class="roadmap-dot gold">3</div>
+          </div>
+          <div class="roadmap-body">
+            <div class="rm-phase gold">Fase 3 — Semanas 19 a 26</div>
+            <h4>Escala — Academia e IA</h4>
+            <p>LMS com treinamento da metodologia Mind e certificação de captadores. Match automático de atletas com vagas. Análise de vídeo com IA. White-label para outras agências. Business Intelligence avançado.</p>
+            <div style="display:flex;gap:8px;flex-wrap:wrap">
+              <span class="tag gold">LMS Mind Method</span>
+              <span class="tag gold">Match IA</span>
+              <span class="tag gold">Análise de vídeo</span>
+              <span class="tag gold">White-label</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:16px">
+        <div class="card green-border" style="padding:28px">
+          <h3 style="font-size:17px;margin-bottom:16px">📆 O que acontece ao final de cada fase</h3>
+          <div style="display:flex;flex-direction:column;gap:14px">
+            <div class="hl" style="padding:14px 16px">
+              <strong style="color:var(--green)">Ao final da Fase 1 (2 meses):</strong><br>
+              Captadores migraram do WhatsApp para o app. Comissões são automáticas. Diretor enxerga o funil em tempo real. MVP em produção.
+            </div>
+            <div class="hl" style="padding:14px 16px">
+              <strong style="color:#82b1ff">Ao final da Fase 2 (4 meses):</strong><br>
+              Clubes usam o portal para avaliar. Famílias acompanham o filho. Receita recorrente (MRR) começa a entrar todo mês.
+            </div>
+            <div class="hl" style="padding:14px 16px">
+              <strong style="color:var(--accent)">Ao final da Fase 3 (6 meses):</strong><br>
+              Plataforma completa. LMS ativo. IA sugerindo matches. Produto pronto para ser vendido como SaaS para outras agências do Brasil.
+            </div>
+          </div>
+        </div>
+        <div class="card" style="padding:24px">
+          <h3 style="margin-bottom:12px">🔒 Garantias do processo</h3>
+          <ul class="check-list">
+            <li>Reunião semanal de alinhamento (15 min) — você sempre sabe o que está sendo construído</li>
+            <li>Acesso ao ambiente de homologação antes de cada entrega — você testa antes de ir ao ar</li>
+            <li>Código entregue junto com documentação técnica</li>
+            <li>6 meses de suporte pós-lançamento inclusos</li>
+            <li>Propriedade 100% da Mind Soccer — nenhum lock-in</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="sec-divider"></div>
+
+<!-- ════════════════════════════════════
+     POR QUE AGORA
+════════════════════════════════════ -->
+<section class="section" style="background:var(--black);padding:80px 0" id="porque">
+  <div class="inner reveal narrow" style="text-align:center">
+    <div class="label">Por que fazer isso agora</div>
+    <h2 class="sec-h">Três razões para <span>não esperar</span></h2>
+    <div class="divider c"></div>
+    <div class="cols-3 gap-16" style="margin-bottom:32px;text-align:left">
+      <div class="card" style="border-color:rgba(239,68,68,.3);padding:28px">
+        <div style="font-size:32px;margin-bottom:12px">🥇</div>
+        <h3 style="font-size:16px;margin-bottom:10px">Você é o primeiro</h3>
+        <p>Nenhuma agência de captação de futebol no Brasil tem esse sistema. Lançar agora é ser o padrão do setor — não um player num mercado já fragmentado.</p>
+      </div>
+      <div class="card" style="border-color:rgba(0,200,83,.3);padding:28px">
+        <div style="font-size:32px;margin-bottom:12px">📈</div>
+        <h3 style="font-size:16px;margin-bottom:10px">Os dados já existem</h3>
+        <p>3.000 atletas, 5+ anos de metodologia, clubes estabelecidos. Não precisam provar que o modelo funciona — ele já funciona. O app amplifica o que já existe.</p>
+      </div>
+      <div class="card" style="border-color:rgba(255,214,0,.3);padding:28px">
+        <div style="font-size:32px;margin-bottom:12px">💡</div>
+        <h3 style="font-size:16px;margin-bottom:10px">Receita desde o dia 1</h3>
+        <p>Fase 1 já gera valor para os captadores. A assinatura Black Pro (R$49/mês) paga o investimento no app em meses — antes mesmo de lançar a plataforma completa.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="sec-divider"></div>
+
+<!-- ════════════════════════════════════
+     SOBRE O DEV
+════════════════════════════════════ -->
+<section class="section" style="background:var(--dark)" id="dev">
+  <div class="inner reveal">
+    <div class="label">Quem vai construir</div>
+    <h2 class="sec-h">Tecnologia com <span>contexto de negócio</span></h2>
+    <div class="divider"></div>
+    <div class="dev-card" style="margin-bottom:24px">
+      <div class="dev-avatar">M</div>
+      <div style="flex:1">
+        <h3>Marciel Corado</h3>
+        <div class="dev-role">Founder · Kem Soluções · Desenvolvedor Full-Stack & Arquiteto de Sistemas</div>
+        <p style="margin-bottom:20px">
+          Não sou só um desenvolvedor que vai codificar o que você pedir. Entendo o negócio esportivo, o modelo de agência e o que faz um produto ser adotado — não só funcionar tecnicamente. Esse projeto nasce do entendimento profundo do problema, não de uma lista de funcionalidades.
+        </p>
+        <div class="cols-2 gap-16">
+          <div class="hl" style="padding:16px 20px">
+            <strong>Projetos em produção:</strong><br>
+            <span style="font-size:13px;color:var(--gray)">ISP Management System (provedores de fibra) · Sistema de inadimplência integrado com SGP · Plataforma EAD · App de gamificação infantil (KickUp) · Painel de automação com IA (EvoNexus)</span>
+          </div>
+          <div class="hl" style="padding:16px 20px">
+            <strong>Stack dominado:</strong><br>
+            <span style="font-size:13px;color:var(--gray)">React Native · Next.js · Supabase · PostgreSQL · Asaas · WhatsApp API · Docker · CI/CD · IA integrada</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="cols-3 gap-16">
+      <div class="hl green-bg" style="padding:20px 22px">
+        <strong>✅ Entrego código, não promessa</strong><br>
+        <span style="font-size:13px">Cada fase tem entregáveis claros e ambiente de teste antes do lançamento. Você vê o produto funcionando antes de pagar a próxima parcela.</span>
+      </div>
+      <div class="hl gold-bg" style="padding:20px 22px">
+        <strong>✅ Conheço o modelo de negócio</strong><br>
+        <span style="font-size:13px">Trabalhei com sistemas de comissionamento, gestão de parceiros e assinaturas recorrentes. Não vou precisar de aula sobre o que é uma captação.</span>
+      </div>
+      <div class="hl" style="padding:20px 22px">
+        <strong>✅ Suporte pós-lançamento</strong><br>
+        <span style="font-size:13px">6 meses de suporte inclusos. Bugs corrigidos em 24h. Evoluções discutidas em reuniões quinzenais. Parceiro de longo prazo, não freelancer pontual.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="sec-divider"></div>
+
+<!-- ════════════════════════════════════
+     CTA FINAL
+════════════════════════════════════ -->
+<section class="section" style="background:var(--black);min-height:100svh;display:flex;align-items:center;padding:100px 0" id="contato">
+  <div class="glow-green" style="width:700px;height:700px;top:50%;left:50%;transform:translate(-50%,-50%);opacity:.5"></div>
+  <div class="inner reveal narrow" style="text-align:center">
+    <div class="label">Próximo Passo</div>
+    <h2 class="sec-h" style="font-size:52px;max-width:800px;margin:0 auto 24px">
+      Uma conversa de <span>30 minutos</span> define se vale avançar
+    </h2>
+    <div class="divider c"></div>
+    <p class="sub" style="text-align:center;margin:0 auto 16px;font-size:17px">
+      Não precisa decidir nada agora. Numa chamada rápida eu mostro um protótipo navegável do app, a proposta comercial com fases e valores, e tiramos todas as dúvidas técnicas que você tiver.
+    </p>
+    <p style="font-size:14px;color:var(--gray);margin-bottom:48px">
+      Sem compromisso. Sem pressão. Só clareza sobre o que vai ser construído, quando e quanto custa.
+    </p>
+
+    <div class="cols-3 gap-16" style="margin-bottom:48px;text-align:left">
+      <div class="card" style="text-align:center;padding:24px">
+        <div style="font-size:32px;margin-bottom:8px">📋</div>
+        <h3 style="font-size:14px">Você recebe hoje</h3>
+        <p style="font-size:13px;margin-top:6px">Proposta comercial por fases, cronograma detalhado e protótipo navegável do CRM do captador</p>
+      </div>
+      <div class="card green-border" style="text-align:center;padding:24px">
+        <div style="font-size:32px;margin-bottom:8px">🚀</div>
+        <h3 style="font-size:14px">Começa em 1 semana</h3>
+        <p style="font-size:13px;margin-top:6px">Aprovado o projeto, desenvolvimento começa na semana seguinte. Sem meses de "planejamento" antes de ver algo na tela</p>
+      </div>
+      <div class="card" style="text-align:center;padding:24px">
+        <div style="font-size:32px;margin-bottom:8px">🏆</div>
+        <h3 style="font-size:14px">Resultado em 60 dias</h3>
+        <p style="font-size:13px;margin-top:6px">Em 2 meses os captadores têm o CRM funcionando. A Mind começa a operar diferente antes mesmo do app completo</p>
+      </div>
+    </div>
+
+    <div style="display:flex;flex-direction:column;align-items:center;gap:16px">
+      <a href="https://wa.me/5535992666148?text=Ol%C3%A1%20Marciel!%20Vi%20a%20proposta%20do%20MindBase%20e%20quero%20conversar%20sobre%20o%20projeto." class="cta-btn wpp" style="min-width:280px">
+        💬 Falar no WhatsApp agora
+      </a>
+      <p style="font-size:13px;color:var(--gray)">Ou mande um e-mail: <a href="mailto:vivanetelecom@gmail.com" style="color:var(--green)">vivanetelecom@gmail.com</a></p>
+    </div>
+
+    <div style="margin-top:64px;padding-top:40px;border-top:1px solid var(--border)">
+      <p style="font-size:13px;color:var(--gray)">
+        Proposta preparada por <strong style="color:var(--white)">Marciel Corado · Kem Soluções</strong> · Exclusivamente para a Mind Soccer Brasil
+      </p>
+      <p style="font-size:12px;color:var(--gray);margin-top:6px">
+        Este documento é confidencial. Não compartilhe sem autorização.
+      </p>
+    </div>
+  </div>
+</section>
+
+<script>
+const pb      = document.getElementById('pb');
+const topnav  = document.getElementById('topnav');
+const backTop = document.getElementById('back-top');
+
+let lastY = 0;
+function onScroll() {
+  const y     = window.scrollY;
+  const total = document.documentElement.scrollHeight - window.innerHeight;
+  pb.style.width = (total > 0 ? (y / total) * 100 : 0) + '%';
+  topnav.classList.toggle('hide', y > lastY && y > 120);
+  lastY = y;
+  backTop.classList.toggle('show', y > 400);
+}
+window.addEventListener('scroll', onScroll, { passive: true });
+
+const revealObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      revealObs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.07 });
+document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+onScroll();
+</script>
+</body>
+</html>

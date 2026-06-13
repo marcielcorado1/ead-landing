@@ -398,7 +398,7 @@ export default function App() {
             <div className="w-8 h-8 bg-gradient-to-br from-teal-400 to-emerald-500 rounded-lg flex items-center justify-center">
               <Wifi className="w-4 h-4 text-white" />
             </div>
-            <span className="font-bold text-white">ISP<span className="text-gradient">.CORE</span></span>
+            <span className="font-bold text-white">NEX<span className="text-gradient">CORE</span></span>
           </div>
           <div className="hidden md:flex items-center gap-6 text-sm text-slate-400">
             <a href="#modulos" className="hover:text-white transition-colors">Módulos</a>
@@ -826,7 +826,7 @@ export default function App() {
             <div className="w-7 h-7 bg-gradient-to-br from-teal-400 to-emerald-500 rounded-lg flex items-center justify-center">
               <Wifi className="w-3.5 h-3.5 text-white" />
             </div>
-            <span className="font-bold text-slate-400">ISP<span className="text-teal-400">.CORE</span></span>
+            <span className="font-bold text-slate-400">NEX<span className="text-teal-400">CORE</span></span>
           </div>
           <p className="text-sm text-slate-600">
             © 2026 Kem Soluções. Criado com Claude Code + NEXCORE.

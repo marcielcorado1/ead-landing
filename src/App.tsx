@@ -29,7 +29,7 @@ const PAINS = [
 
 const TOOLS = [
   { name: 'Claude Code', role: 'IA que escreve e executa código', cost: '~$20/mês', required: true, icon: <Bot className="w-5 h-5" /> },
-  { name: 'EvoNexus', role: 'Sistema operacional de agentes de IA', cost: 'Gratuito', required: false, icon: <Zap className="w-5 h-5" /> },
+  { name: 'NexCore', role: 'Sistema operacional de agentes de IA', cost: 'Gratuito', required: false, icon: <Zap className="w-5 h-5" /> },
   { name: 'GitHub', role: 'Versionamento do código', cost: 'Gratuito', required: false, icon: <Code2 className="w-5 h-5" /> },
   { name: 'Supabase', role: 'Banco de dados + Auth + API', cost: 'Gratuito', required: false, icon: <Database className="w-5 h-5" /> },
   { name: 'Vercel', role: 'Deploy em 1 clique', cost: 'Gratuito', required: false, icon: <Globe className="w-5 h-5" /> },
@@ -43,7 +43,7 @@ const MODULES = [
     tag: 'GRATUITO',
     tagColor: 'text-emerald-400 bg-emerald-400/10 border-emerald-400/30',
     desc: 'Configure o ambiente completo em 2 horas e rode seu primeiro agente de IA. Sem enrolação.',
-    items: ['Instalar Claude Code', 'Criar conta GitHub + Supabase + Vercel', 'Configurar EvoNexus no servidor', 'Primeiro agente rodando'],
+    items: ['Instalar Claude Code', 'Criar conta GitHub + Supabase + Vercel', 'Configurar NexCore no servidor', 'Primeiro agente rodando'],
   },
   {
     num: '01',
@@ -166,8 +166,8 @@ const FAQS = [
     a: 'No Módulo 0 (gratuito) você já tem um app publicado em 7 dias. No Módulo 2 você já tem um portal do cliente funcional. Resultados concretos em semanas, não meses.',
   },
   {
-    q: 'O conteúdo fica desatualizado quando o EvoNexus mudar?',
-    a: 'Não. Sou dono de ISP e uso EvoNexus no dia a dia. Quando a ferramenta evolui, eu evoluo junto e atualizo o conteúdo. Os alunos da Trilha Provedor têm acesso a todas as atualizações.',
+    q: 'O conteúdo fica desatualizado quando o NexCore mudar?',
+    a: 'Não. Sou dono de ISP e uso NexCore no dia a dia. Quando a ferramenta evolui, eu evoluo junto e atualizo o conteúdo. Os alunos da Trilha Provedor têm acesso a todas as atualizações.',
   },
 ]
 
@@ -280,7 +280,7 @@ export default function App() {
           </h1>
 
           <p className="animate-fade-up text-lg sm:text-xl text-slate-400 max-w-2xl mx-auto mb-10 leading-relaxed">
-            Aprenda a usar <strong className="text-white">Claude Code + EvoNexus</strong> para construir portal do cliente,
+            Aprenda a usar <strong className="text-white">Claude Code + NexCore</strong> para construir portal do cliente,
             bot de WhatsApp, gestão de OS e muito mais — com ferramentas <strong className="text-white">gratuitas</strong>.
             Único investimento: ~$20/mês.
           </p>
@@ -372,7 +372,7 @@ export default function App() {
                 Aprenda a criar suas próprias soluções com <span className="text-gradient">Inteligência Artificial</span>
               </h2>
               <p className="text-slate-400 leading-relaxed mb-6">
-                Em vez de contratar dev ou pagar por sistemas caros, você aprende a usar o <strong className="text-white">Claude Code + EvoNexus</strong> para construir exatamente o que o seu provedor precisa.
+                Em vez de contratar dev ou pagar por sistemas caros, você aprende a usar o <strong className="text-white">Claude Code + NexCore</strong> para construir exatamente o que o seu provedor precisa.
               </p>
               <p className="text-slate-400 leading-relaxed mb-8">
                 Módulo a módulo, você cria projetos reais: portal do cliente, bot de WhatsApp, gestão de OSes, relatórios automáticos. Tudo publicado, tudo funcionando.
@@ -517,7 +517,7 @@ export default function App() {
                   Sou <strong className="text-white">Marciel Corado</strong>, dono da <strong className="text-white">Kem Soluções</strong> — um provedor de acesso à internet que fornece fibra óptica para residências, empresas e governo.
                 </p>
                 <p className="text-slate-400 leading-relaxed mb-4">
-                  Usei EvoNexus + Claude Code para resolver os mesmos problemas que você enfrenta. Criei o portal do cliente, automatizei o atendimento no WhatsApp, e construí um sistema de gestão interno — gastando menos de $20/mês.
+                  Usei NexCore + Claude Code para resolver os mesmos problemas que você enfrenta. Criei o portal do cliente, automatizei o atendimento no WhatsApp, e construí um sistema de gestão interno — gastando menos de $20/mês.
                 </p>
                 <p className="text-slate-400 leading-relaxed">
                   Agora transformei tudo isso em curso para que qualquer dono de ISP consiga fazer o mesmo, independente de saber programar.
@@ -526,7 +526,7 @@ export default function App() {
               <div className="space-y-4">
                 {[
                   { icon: <Wifi className="w-5 h-5 text-teal-400" />, label: 'Dono de ISP há mais de 5 anos', sub: 'Kem Soluções — fibra óptica' },
-                  { icon: <Terminal className="w-5 h-5 text-teal-400" />, label: 'Usuário ativo do EvoNexus', sub: 'Usa no provedor e em apps em produção' },
+                  { icon: <Terminal className="w-5 h-5 text-teal-400" />, label: 'Usuário ativo do NexCore', sub: 'Usa no provedor e em apps em produção' },
                   { icon: <Code2 className="w-5 h-5 text-teal-400" />, label: '3 apps em produção', sub: 'Recompensa, Futsal Sorteio, Vida2026' },
                   { icon: <BookOpen className="w-5 h-5 text-teal-400" />, label: 'Conteúdo sempre atualizado', sub: 'Aprende e atualiza o curso junto' },
                 ].map((item, i) => (
@@ -667,7 +667,7 @@ export default function App() {
             <span className="font-bold text-slate-400">ISP<span className="text-teal-400">.AI</span></span>
           </div>
           <p className="text-sm text-slate-600">
-            © 2026 Kem Soluções. Criado com Claude Code + EvoNexus.
+            © 2026 Kem Soluções. Criado com Claude Code + NexCore.
           </p>
           <div className="text-xs text-slate-700">
             Construído exatamente como ensinamos no curso.

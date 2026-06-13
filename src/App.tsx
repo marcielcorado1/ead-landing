@@ -88,7 +88,7 @@ const MODULES = [
           <p className="text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-3">O ciclo completo que o agente executa sozinho</p>
           <div className="grid grid-cols-2 sm:grid-cols-5 gap-2">
             {[
-              { step: '01', icon: '📊', label: 'Identifica', sub: 'Lê o SGP e classifica por dias de atraso' },
+              { step: '01', icon: '📊', label: 'Identifica', sub: 'Lê o ERP do provedor e classifica por dias de atraso' },
               { step: '02', icon: '💬', label: 'Contata', sub: 'Envia mensagem personalizada no WhatsApp' },
               { step: '03', icon: '🤝', label: 'Negocia', sub: 'Conduz parcelamento ou pagamento à vista' },
               { step: '04', icon: '🔗', label: 'Gera boleto', sub: 'Emite boleto atualizado e envia o link' },
@@ -131,17 +131,17 @@ const MODULES = [
               <h5 className="font-bold text-white text-sm">Críticos (+31d)</h5>
             </div>
             <p className="text-xs text-slate-400 leading-relaxed">
-              Cobrança com prazo explícito. Se não houver resposta ou pagamento: desativação automática no SGP + notificação da equipe + OS de retirada de equipamento aberta.
+              Cobrança com prazo explícito. Se não houver resposta ou pagamento: desativação automática no sistema de gestão + notificação da equipe + OS de retirada de equipamento aberta.
             </p>
           </div>
         </div>
 
         <div className="bg-teal-500/8 border border-teal-500/20 rounded-xl p-5">
           <p className="text-teal-300 text-sm leading-relaxed mb-3">
-            <span className="font-bold text-white">Na prática:</span> às 8h o relatório do SGP chegou no Telegram. Às 9h o agente de cobrança já entrou em contato com todos os inadimplentes — personalizando a mensagem pelo tempo de atraso. Às 9h12 um cliente de 45 dias respondeu que quer parcelar em 3x. O agente calculou, gerou os 3 boletos e enviou os links. Às 11h, 2 clientes que não responderam depois de 7 dias foram desativados no sistema e as OSes de retirada foram abertas. <strong className="text-white">Você tomou café e foi cuidar de outra coisa.</strong>
+            <span className="font-bold text-white">Na prática:</span> às 8h o relatório do ERP chegou no Telegram. Às 9h o agente de cobrança já entrou em contato com todos os inadimplentes — personalizando a mensagem pelo tempo de atraso. Às 9h12 um cliente de 45 dias respondeu que quer parcelar em 3x. O agente calculou, gerou os 3 boletos e enviou os links. Às 11h, 2 clientes que não responderam depois de 7 dias foram desativados no sistema e as OSes de retirada foram abertas. <strong className="text-white">Você tomou café e foi cuidar de outra coisa.</strong>
           </p>
           <p className="text-slate-500 text-xs italic">
-            Este é o sistema documentado e em construção com Claude Code + NEXCORE — base da Aula 3.8 do curso. O relatório do SGP (Componente 1) já roda em produção.
+            Este é o sistema documentado e em construção com Claude Code + NEXCORE — base da Aula 3.8 do curso. A integração com ERP (Componente 1) já roda em produção com o SGP — e pode ser adaptada para outros sistemas.
           </p>
         </div>
       </div>
@@ -286,7 +286,7 @@ const MODULES = [
     tag: 'PILOTO AUTOMÁTICO',
     tagColor: 'text-orange-400 bg-orange-400/10 border-orange-400/30',
     desc: 'Relatório de inadimplência, alertas de link caído, briefing diário. Tudo automático.',
-    items: ['Relatório SGP integrado', 'Monitoramento de links', 'Morning briefing por IA', 'ISP no piloto automático'],
+    items: ['Relatório de inadimplência integrado', 'Monitoramento de links', 'Morning briefing por IA', 'ISP no piloto automático'],
   },
 ]
 

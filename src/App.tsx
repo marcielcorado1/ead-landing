@@ -687,7 +687,7 @@ export default function App() {
               </div>
               <div className="space-y-4">
                 {[
-                  { icon: <Wifi className="w-5 h-5 text-teal-400" />, label: 'Dono de ISP há mais de 5 anos', sub: 'Kem Soluções — fibra óptica' },
+                  { icon: <Wifi className="w-5 h-5 text-teal-400" />, label: 'Dono de ISP há mais de 17 anos', sub: 'Kem Soluções — fibra óptica' },
                   { icon: <Terminal className="w-5 h-5 text-teal-400" />, label: 'Usuário ativo do ISP.CORE', sub: 'Usa no provedor e em apps em produção' },
                   { icon: <Code2 className="w-5 h-5 text-teal-400" />, label: '3 apps em produção', sub: 'Recompensa Pro, Fut Sorteio, Assessor Digital' },
                   { icon: <BookOpen className="w-5 h-5 text-teal-400" />, label: 'Conteúdo sempre atualizado', sub: 'Aprende e atualiza o curso junto' },

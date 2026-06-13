@@ -74,43 +74,74 @@ const MODULES = [
     wide: true,
     extra: (
       <div className="mt-6 pt-6 border-t border-white/10">
-        <div className="flex flex-wrap items-center gap-3 mb-5">
+        <div className="flex flex-wrap items-center gap-3 mb-4">
           <span className="text-xl">🚨</span>
-          <h4 className="font-bold text-white text-base">Vai além do bot: Agente Autônomo de Inadimplência</h4>
-          <span className="text-[10px] font-bold bg-orange-500/15 text-orange-400 border border-orange-500/30 px-2.5 py-1 rounded-full tracking-wider">EXEMPLO REAL DO CURSO</span>
+          <h4 className="font-bold text-white text-base">Módulo 03 vai além do bot: Sistema Completo de Cobrança Autônoma</h4>
+          <span className="text-[10px] font-bold bg-orange-500/15 text-orange-400 border border-orange-500/30 px-2.5 py-1 rounded-full tracking-wider">CASO REAL EM PRODUÇÃO</span>
         </div>
         <p className="text-slate-400 text-sm leading-relaxed mb-5">
-          Todo provedor tem o mesmo problema: clientes em atraso que ninguém tem tempo de cobrar. No módulo 03 você cria um agente que roda sozinho — identifica os inadimplentes, manda mensagem, negocia e, se necessário, cancela o plano e abre a OS de retirada do equipamento. <strong className="text-white">Sem precisar de uma pessoa para isso.</strong>
+          Todo provedor tem inadimplência. A diferença é que a maioria depende de alguém lembrar de cobrar. No módulo 03 você cria um agente que cuida do ciclo completo — <strong className="text-white">do primeiro contato ao cancelamento do contrato</strong> — sem nenhuma pessoa envolvida.
         </p>
+
+        {/* Pipeline visual */}
+        <div className="mb-5">
+          <p className="text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-3">O ciclo completo que o agente executa sozinho</p>
+          <div className="grid grid-cols-2 sm:grid-cols-5 gap-2">
+            {[
+              { step: '01', icon: '📊', label: 'Identifica', sub: 'Lê o SGP e classifica por dias de atraso' },
+              { step: '02', icon: '💬', label: 'Contata', sub: 'Envia mensagem personalizada no WhatsApp' },
+              { step: '03', icon: '🤝', label: 'Negocia', sub: 'Conduz parcelamento ou pagamento à vista' },
+              { step: '04', icon: '🔗', label: 'Gera boleto', sub: 'Emite boleto atualizado e envia o link' },
+              { step: '05', icon: '⛔', label: 'Desativa', sub: 'Cancela no sistema se não pagar no prazo' },
+            ].map((s, i) => (
+              <div key={i} className="bg-white/5 rounded-xl p-3 border border-white/5 text-center relative">
+                {i < 4 && <div className="hidden sm:block absolute -right-1 top-1/2 -translate-y-1/2 text-slate-600 text-xs z-10">→</div>}
+                <div className="text-[10px] font-bold text-slate-600 mb-1">{s.step}</div>
+                <div className="text-xl mb-1">{s.icon}</div>
+                <div className="text-xs font-bold text-white mb-1">{s.label}</div>
+                <div className="text-[10px] text-slate-500 leading-tight">{s.sub}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* 3 categoria cards */}
         <div className="grid sm:grid-cols-3 gap-3 mb-5">
-          <div className="bg-white/5 rounded-xl p-4 border border-white/5">
-            <div className="text-2xl mb-2">📊</div>
-            <h5 className="font-bold text-white text-sm mb-1">Relatório diário no Telegram</h5>
+          <div className="bg-white/5 rounded-xl p-4 border border-emerald-500/15">
+            <div className="flex items-center gap-2 mb-2">
+              <span className="text-base">🟢</span>
+              <h5 className="font-bold text-white text-sm">Recentes (1–15d)</h5>
+            </div>
             <p className="text-xs text-slate-400 leading-relaxed">
-              Todo dia às 8h chega automaticamente: total de títulos em atraso, valor represado, clientes novos em atraso e os críticos (+30 dias) separados por categoria — sem você abrir nenhum sistema.
+              Lembrete amigável + boleto atualizado enviado no WhatsApp. Follow-up em 3 dias se não pagar. Tom de parceiro, não de cobrador.
             </p>
           </div>
-          <div className="bg-white/5 rounded-xl p-4 border border-orange-500/10">
-            <div className="text-2xl mb-2">💬</div>
-            <h5 className="font-bold text-white text-sm mb-1">Cobrança e negociação automática</h5>
+          <div className="bg-white/5 rounded-xl p-4 border border-yellow-500/15">
+            <div className="flex items-center gap-2 mb-2">
+              <span className="text-base">🟡</span>
+              <h5 className="font-bold text-white text-sm">Atenção (16–30d)</h5>
+            </div>
             <p className="text-xs text-slate-400 leading-relaxed">
-              Clientes com mais de 30 dias em atraso recebem mensagem automática no WhatsApp. O agente cobra, oferece negociação, registra a resposta e decide o próximo passo — tudo sem a sua equipe precisar ligar.
+              Mensagem firme com proposta de parcelamento. Agente negocia a forma de pagamento, gera os boletos e envia os links — sem nenhum humano na conversa.
             </p>
           </div>
-          <div className="bg-white/5 rounded-xl p-4 border border-red-500/10">
-            <div className="text-2xl mb-2">⛔</div>
-            <h5 className="font-bold text-white text-sm mb-1">Cancelamento e retirada de equipamento</h5>
+          <div className="bg-white/5 rounded-xl p-4 border border-red-500/15">
+            <div className="flex items-center gap-2 mb-2">
+              <span className="text-base">🔴</span>
+              <h5 className="font-bold text-white text-sm">Críticos (+31d)</h5>
+            </div>
             <p className="text-xs text-slate-400 leading-relaxed">
-              Sem resposta após o prazo definido? O agente cancela o plano no sistema, notifica o responsável e abre automaticamente a ordem de serviço de retirada. O processo que levava dias acontece em minutos.
+              Cobrança com prazo explícito. Se não houver resposta ou pagamento: desativação automática no SGP + notificação da equipe + OS de retirada de equipamento aberta.
             </p>
           </div>
         </div>
+
         <div className="bg-teal-500/8 border border-teal-500/20 rounded-xl p-5">
-          <p className="text-teal-300 text-sm leading-relaxed">
-            <span className="font-bold text-white">Na prática:</span> enquanto você está no almoço, o agente já identificou os 12 clientes com mais de 30 dias em atraso, enviou mensagem para cada um, registrou quem respondeu, cancelou os 3 que ignoraram por mais de 5 dias e criou as ordens de retirada dos equipamentos. Tudo isso sem ninguém da sua equipe fazer absolutamente nada.
+          <p className="text-teal-300 text-sm leading-relaxed mb-3">
+            <span className="font-bold text-white">Na prática:</span> às 8h o relatório do SGP chegou no Telegram. Às 9h o agente de cobrança já entrou em contato com todos os inadimplentes — personalizando a mensagem pelo tempo de atraso. Às 9h12 um cliente de 45 dias respondeu que quer parcelar em 3x. O agente calculou, gerou os 3 boletos e enviou os links. Às 11h, 2 clientes que não responderam depois de 7 dias foram desativados no sistema e as OSes de retirada foram abertas. <strong className="text-white">Você tomou café e foi cuidar de outra coisa.</strong>
           </p>
-          <p className="text-slate-500 text-xs mt-3 italic">
-            Esse é um script real construído com Claude Code + NEXCORE que roda em produção em provedores que fizeram o curso.
+          <p className="text-slate-500 text-xs italic">
+            Este é o sistema documentado e em construção com Claude Code + NEXCORE — base da Aula 3.8 do curso. O relatório do SGP (Componente 1) já roda em produção.
           </p>
         </div>
       </div>

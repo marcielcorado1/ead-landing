@@ -1,3 +1,5 @@
+import type { ReactNode } from 'react'
+
 export default function PrivacyPolicyPage() {
   const updated = '12 de junho de 2025'
   const company = 'Kem Soluções Ltda'
@@ -180,7 +182,7 @@ export default function PrivacyPolicyPage() {
 
 // ── Helper ────────────────────────────────────────────────────────────────────
 
-function Section({ title, children }: { title: string; children: React.ReactNode }) {
+function Section({ title, children }: { title: string; children: ReactNode }) {
   return (
     <section style={{ marginBottom: '36px' }}>
       <h2 style={{ fontSize: '1.1rem', fontWeight: 700, color: '#c7d2fe', marginBottom: '12px', paddingBottom: '8px', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>

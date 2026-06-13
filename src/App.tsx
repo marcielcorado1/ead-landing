@@ -226,7 +226,7 @@ const MODULES = [
           <p className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-3">Outros SVAs que você pode criar no curso</p>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
             {[
-              { emoji: '🔒', name: 'Controle Parental', sub: 'Bloqueio de sites por horário' },
+              { emoji: '🔒', name: 'Bloqueio de sites por horário', sub: 'Controle de acesso por faixa etária' },
               { emoji: '🏆', name: 'Clube de Benefícios', sub: 'Descontos em parceiros locais' },
               { emoji: '📡', name: 'Monitor de Sinal', sub: 'Cliente vê a qualidade em tempo real' },
               { emoji: '🎓', name: 'Plataforma EAD', sub: 'Cursos para a comunidade' },
@@ -689,7 +689,7 @@ export default function App() {
                 {[
                   { icon: <Wifi className="w-5 h-5 text-teal-400" />, label: 'Dono de ISP há mais de 5 anos', sub: 'Kem Soluções — fibra óptica' },
                   { icon: <Terminal className="w-5 h-5 text-teal-400" />, label: 'Usuário ativo do ISP.CORE', sub: 'Usa no provedor e em apps em produção' },
-                  { icon: <Code2 className="w-5 h-5 text-teal-400" />, label: '3 apps em produção', sub: 'Recompensa, Futsal Sorteio, Vida2026' },
+                  { icon: <Code2 className="w-5 h-5 text-teal-400" />, label: '3 apps em produção', sub: 'Recompensa Pro, Fut Sorteio, Assessor Digital' },
                   { icon: <BookOpen className="w-5 h-5 text-teal-400" />, label: 'Conteúdo sempre atualizado', sub: 'Aprende e atualiza o curso junto' },
                 ].map((item, i) => (
                   <div key={i} className="flex items-start gap-4 p-4 rounded-xl bg-white/5">

@@ -167,7 +167,7 @@ export default function SVAPage() {
             <div className="w-7 h-7 bg-gradient-to-br from-violet-500 to-purple-600 rounded-lg flex items-center justify-center">
               <Cpu className="w-3.5 h-3.5 text-white" />
             </div>
-            <span className="font-black text-white tracking-tight">NEX<span className="text-violet-400">CORE</span></span>
+            <span className="font-black text-white tracking-tight">ISP<span className="text-violet-400">.CORE</span></span>
           </div>
           <div className="flex items-center gap-3">
             <span className="hidden sm:block text-xs text-slate-500 bg-white/5 px-3 py-1 rounded-full">

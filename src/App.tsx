@@ -1,9 +1,12 @@
 import './App.css'
 import {
-  Wifi, Bot, Code2, Database, Globe, CheckCircle2,
-  ArrowRight, Zap, Shield, TrendingUp, Users, BookOpen,
-  Terminal, Package, ChevronDown, Star, Clock, DollarSign,
-  Smartphone, BarChart3, MessageSquare, Wrench, Play, Mail
+  Bot, Code2, Database, Globe, CheckCircle2,
+  ArrowRight, Zap, Shield, TrendingUp, BookOpen,
+  Terminal, ChevronDown, Star, Clock, DollarSign,
+  Play, Mail,
+  Wifi, Briefcase, ShoppingCart, HeartPulse, GraduationCap,
+  Building2, Cpu, Layers, Settings, BellRing, TargetIcon,
+  Sparkles
 } from 'lucide-react'
 import { useState } from 'react'
 
@@ -12,162 +15,129 @@ import { useState } from 'react'
 const PAINS = [
   {
     icon: <Clock className="w-6 h-6 text-red-400" />,
-    title: "Atendimento manual que não escala",
-    desc: "Sua equipe responde as mesmas perguntas repetidamente — boleto, senha Wi-Fi, status da conexão. Tempo jogado fora.",
-  },
-  {
-    icon: <TrendingUp className="w-6 h-6 text-orange-400" />,
-    title: "Todo provedor vende a mesma coisa",
-    desc: "Internet virou commodity. Quem sobrevive é quem cria serviços extras. Mas você não tem time nem orçamento para desenvolver.",
+    title: "Você paga pessoas para fazer o que uma IA pode fazer sozinha",
+    desc: "Cobranças, follow-ups, relatórios, triagem de e-mail, agendamentos, atualizações de planilha. Tarefas repetidas que sugam horas toda semana — e que o NEXCORE executa sozinho, sem falhar, sem dormir.",
   },
   {
     icon: <DollarSign className="w-6 h-6 text-yellow-400" />,
-    title: "Dev caro ou sistema engessado",
-    desc: "Contratar desenvolvedor está fora do orçamento. Os sistemas do mercado custam caro e não fazem exatamente o que você precisa.",
+    title: "Dev caro, SaaS engessado, planilha que não escala",
+    desc: "Contratar desenvolvedor está fora do orçamento. Os sistemas prontos não fazem exatamente o que você precisa. E você acaba improvisando com planilhas que um dia vão quebrar.",
+  },
+  {
+    icon: <TrendingUp className="w-6 h-6 text-orange-400" />,
+    title: "Você trabalha no negócio em vez de trabalhar no negócio",
+    desc: "No final do dia você operou — respondeu e-mail, fez cobrança, gerou relatório, atualizou dashboard. O que você quer é crescer. O NEXCORE assume o operacional.",
+  },
+]
+
+const AGENTS = [
+  { emoji: '💰', name: 'Flux', role: 'Finanças', desc: 'Fluxo de caixa, Stripe, ERP, fechamento mensal — tudo automático', color: 'text-emerald-400 bg-emerald-400/10' },
+  { emoji: '📣', name: 'Mako', role: 'Marketing', desc: 'Campanhas, SEO, sequências de e-mail, análise de performance', color: 'text-pink-400 bg-pink-400/10' },
+  { emoji: '📋', name: 'Atlas', role: 'Projetos', desc: 'Status, milestones, blockers — seu PM sempre acordado', color: 'text-blue-400 bg-blue-400/10' },
+  { emoji: '🤝', name: 'Nex', role: 'Vendas', desc: 'Pipeline, qualificação de leads, follow-up, propostas', color: 'text-orange-400 bg-orange-400/10' },
+  { emoji: '💬', name: 'Zara', role: 'Suporte', desc: 'Triagem de tickets, respostas, base de conhecimento, escalonamento', color: 'text-violet-400 bg-violet-400/10' },
+  { emoji: '📊', name: 'Nova', role: 'Produto', desc: 'Specs, métricas, roadmap, pesquisa de usuário sintetizada', color: 'text-sky-400 bg-sky-400/10' },
+  { emoji: '⚖️', name: 'Lex', role: 'Jurídico', desc: 'Revisão de contratos, compliance, LGPD, triagem de NDAs', color: 'text-amber-400 bg-amber-400/10' },
+  { emoji: '🌐', name: 'Pixel', role: 'Social', desc: 'Conteúdo, calendário, relatório de plataformas, estratégia', color: 'text-rose-400 bg-rose-400/10' },
+]
+
+const USE_CASES = [
+  {
+    sector: 'Provedor de Internet',
+    icon: <Wifi className="w-5 h-5 text-teal-400" />,
+    color: 'border-teal-500/30 bg-teal-500/5',
+    items: ['Cobrança autônoma no WhatsApp', 'Monitor de ONUs offline', 'Portal do cliente com 2ª via'],
+    link: '/provedor',
+    linkLabel: 'Ver curso específico para ISPs →',
+  },
+  {
+    sector: 'E-commerce / Varejo',
+    icon: <ShoppingCart className="w-5 h-5 text-rose-400" />,
+    color: 'border-rose-500/20 bg-rose-500/5',
+    items: ['Follow-up de carrinho abandonado', 'Relatório de vendas diário por IA', 'Conciliação financeira automática'],
+    link: null, linkLabel: null,
+  },
+  {
+    sector: 'Clínicas / Saúde',
+    icon: <HeartPulse className="w-5 h-5 text-pink-400" />,
+    color: 'border-pink-500/20 bg-pink-500/5',
+    items: ['Lembrete de consultas no WhatsApp', 'Triagem de sintomas via bot', 'Relatório mensal de atendimentos'],
+    link: null, linkLabel: null,
+  },
+  {
+    sector: 'Educação / EAD',
+    icon: <GraduationCap className="w-5 h-5 text-yellow-400" />,
+    color: 'border-yellow-500/20 bg-yellow-500/5',
+    items: ['Engajamento automático de alunos', 'Relatório de progresso por turma', 'Suporte 24h via IA'],
+    link: null, linkLabel: null,
+  },
+  {
+    sector: 'Agências / Consultoria',
+    icon: <Briefcase className="w-5 h-5 text-sky-400" />,
+    color: 'border-sky-500/20 bg-sky-500/5',
+    items: ['Briefing de cliente automatizado', 'Relatório de resultado por cliente', 'Gestão de projetos e tarefas'],
+    link: null, linkLabel: null,
+  },
+  {
+    sector: 'Imobiliárias / Condomínios',
+    icon: <Building2 className="w-5 h-5 text-orange-400" />,
+    color: 'border-orange-500/20 bg-orange-500/5',
+    items: ['Cobrança de condomínio automática', 'Gestão de chamados de manutenção', 'Follow-up de leads imobiliários'],
+    link: null, linkLabel: null,
+  },
+]
+
+const FEATURES = [
+  {
+    icon: <BellRing className="w-5 h-5 text-teal-400" />,
+    title: 'Heartbeats — Agentes que acordam sozinhos',
+    desc: 'Defina quando e por que um agente deve agir. Ele verifica o estado, decide se há trabalho, executa — e só consome tokens quando necessário.',
+  },
+  {
+    icon: <TargetIcon className="w-5 h-5 text-purple-400" />,
+    title: 'Goal Cascade — Metas que se conectam',
+    desc: 'De missão a tarefa: tudo rastreado. Agentes recebem contexto de qual objetivo estão servindo — sem você precisar repetir toda vez.',
+  },
+  {
+    icon: <Layers className="w-5 h-5 text-blue-400" />,
+    title: '175+ Skills prontas para usar',
+    desc: 'Finanças, marketing, RH, jurídico, social, produto, engenharia. Skills especializadas que você ativa — sem escrever um prompt sequer.',
+  },
+  {
+    icon: <Settings className="w-5 h-5 text-orange-400" />,
+    title: 'Rotinas automáticas no horário certo',
+    desc: 'Briefing matinal às 7h. Fechamento financeiro no dia 1. Relatório de inadimplência toda sexta. Configure uma vez, roda para sempre.',
   },
 ]
 
 const TOOLS = [
-  { name: 'Claude Code', role: 'IA que escreve e executa código', cost: '~$20/mês', required: true, icon: <Bot className="w-5 h-5" /> },
-  { name: 'EvoNexus', role: 'Sistema operacional de agentes de IA', cost: 'Gratuito', required: false, icon: <Zap className="w-5 h-5" /> },
-  { name: 'GitHub', role: 'Versionamento do código', cost: 'Gratuito', required: false, icon: <Code2 className="w-5 h-5" /> },
-  { name: 'Supabase', role: 'Banco de dados + Auth + API', cost: 'Gratuito', required: false, icon: <Database className="w-5 h-5" /> },
+  { name: 'IA (Claude Code)', role: 'Motor que executa tudo', cost: '~$20/mês', required: true, icon: <Bot className="w-5 h-5" /> },
+  { name: 'NEXCORE', role: 'OS de agentes de IA', cost: 'Gratuito', required: false, icon: <Zap className="w-5 h-5" /> },
+  { name: 'GitHub', role: 'Versionamento', cost: 'Gratuito', required: false, icon: <Code2 className="w-5 h-5" /> },
+  { name: 'Supabase', role: 'Banco de dados + Auth', cost: 'Gratuito', required: false, icon: <Database className="w-5 h-5" /> },
   { name: 'Vercel', role: 'Deploy em 1 clique', cost: 'Gratuito', required: false, icon: <Globe className="w-5 h-5" /> },
-]
-
-const MODULES = [
-  {
-    num: '00',
-    emoji: '🆓',
-    title: 'Setup e Primeiros Passos',
-    tag: 'GRATUITO',
-    tagColor: 'text-emerald-400 bg-emerald-400/10 border-emerald-400/30',
-    desc: 'Configure o ambiente completo em 2 horas e rode seu primeiro agente de IA. Sem enrolação.',
-    items: ['Instalar Claude Code', 'Criar conta GitHub + Supabase + Vercel', 'Configurar EvoNexus no servidor', 'Primeiro agente rodando'],
-  },
-  {
-    num: '01',
-    emoji: '🧠',
-    title: 'Fundamentos de Agentes de IA',
-    tag: 'ESSENCIAL',
-    tagColor: 'text-teal-400 bg-teal-400/10 border-teal-400/30',
-    desc: 'Entenda a lógica de agentes, skills e rotinas. Crie seu primeiro agente personalizado para o provedor.',
-    items: ['Como o Claude Code pensa', 'Criando agentes customizados', 'Skills e automações', 'Memória persistente'],
-  },
-  {
-    num: '02',
-    emoji: '🌐',
-    title: 'Portal do Cliente',
-    tag: 'PROJETO REAL',
-    tagColor: 'text-blue-400 bg-blue-400/10 border-blue-400/30',
-    desc: 'Crie e publique um portal completo: login, painel do cliente, 2ª via de boleto, suporte.',
-    items: ['React + Supabase do zero', 'Autenticação de clientes', '2ª via de boleto integrada', 'Deploy com domínio próprio'],
-  },
-  {
-    num: '03',
-    emoji: '📱',
-    title: 'WhatsApp Bot para Atendimento',
-    tag: 'PROJETO REAL',
-    tagColor: 'text-blue-400 bg-blue-400/10 border-blue-400/30',
-    desc: 'Bot que responde boleto, status de conexão e abre chamados — sem contratar atendente.',
-    items: ['Integração Evolution API', 'Bot de boleto e suporte', 'Escalada para humano', 'Notificações proativas'],
-  },
-  {
-    num: '04',
-    emoji: '🔧',
-    title: 'Gestão de Instalações',
-    tag: 'PROJETO REAL',
-    tagColor: 'text-blue-400 bg-blue-400/10 border-blue-400/30',
-    desc: 'App interno para ordens de serviço, técnicos em campo e dashboard em tempo real.',
-    items: ['CRUD de ordens de serviço', 'App mobile para técnicos', 'Notificações automáticas', 'Relatório diário por IA'],
-  },
-  {
-    num: '05',
-    emoji: '💰',
-    title: 'Serviços Agregados',
-    tag: 'RECEITA EXTRA',
-    tagColor: 'text-purple-400 bg-purple-400/10 border-purple-400/30',
-    desc: 'Crie serviços pagos para seus clientes: controle parental, benefícios, apps de valor.',
-    items: ['App de controle parental', 'Benefícios para clientes', 'Pagamento recorrente', 'Como precificar'],
-  },
-  {
-    num: '06',
-    emoji: '⚙️',
-    title: 'Automações e Rotinas',
-    tag: 'PILOTO AUTOMÁTICO',
-    tagColor: 'text-orange-400 bg-orange-400/10 border-orange-400/30',
-    desc: 'Relatório de inadimplência, alertas de link caído, briefing diário. Tudo automático.',
-    items: ['Relatório de inadimplência', 'Monitoramento de links', 'Morning briefing por IA', 'ISP no piloto automático'],
-  },
-]
-
-const PLANS = [
-  {
-    name: 'Mini-Curso Gratuito',
-    price: 'R$ 0',
-    period: '',
-    highlight: false,
-    cta: 'Começar Grátis',
-    ctaStyle: 'border border-teal-500 text-teal-400 hover:bg-teal-500/10',
-    items: [
-      'Módulo 0 completo (setup)',
-      'App funcionando em 7 dias',
-      'Acesso à comunidade básica',
-      'Requer Claude Code (~$20/mês)',
-    ],
-  },
-  {
-    name: 'Trilha Provedor',
-    price: 'R$ 97',
-    period: '/mês',
-    highlight: true,
-    cta: 'Entrar na Lista de Espera',
-    ctaStyle: 'bg-gradient-to-r from-teal-500 to-emerald-500 text-white hover:from-teal-400 hover:to-emerald-400',
-    badge: 'MAIS POPULAR',
-    items: [
-      'Todos os 7 módulos',
-      'Novos módulos todo mês',
-      'Comunidade fechada de ISPs',
-      'Suporte por WhatsApp',
-      'Calls mensais ao vivo',
-    ],
-  },
-  {
-    name: 'Curso Essencial',
-    price: 'R$ 297',
-    period: ' único',
-    highlight: false,
-    cta: 'Entrar na Lista de Espera',
-    ctaStyle: 'border border-slate-500 text-slate-300 hover:bg-slate-500/10',
-    items: [
-      'Módulos 0 a 6 completos',
-      'Acesso vitalício',
-      'Atualizações incluídas',
-      'Comunidade básica',
-    ],
-  },
 ]
 
 const FAQS = [
   {
-    q: 'Preciso saber programar para fazer o curso?',
-    a: 'Não. O Claude Code escreve o código por você. Você precisa entender lógica básica, mas não precisa memorizar nenhuma sintaxe. Provedores sem nenhuma experiência técnica concluíram o Módulo 0 em menos de 3 horas.',
+    q: 'Preciso saber programar para usar o NEXCORE?',
+    a: 'Não. A IA escreve e executa o código. Você descreve o que quer, ela faz. Pessoas sem nenhuma experiência técnica criaram e publicaram apps reais em menos de uma semana.',
   },
   {
-    q: 'Qual o custo total para começar?',
-    a: 'Apenas a assinatura do Claude Code (~$20/mês ≈ R$110/mês). GitHub, Supabase e Vercel são gratuitos no tier inicial. O mini-curso é gratuito. Você pode construir e publicar apps reais gastando menos de R$110/mês.',
+    q: 'Qual o custo real para começar?',
+    a: 'A única assinatura paga é a IA que opera o NEXCORE — cerca de $20/mês (≈ R$110/mês). GitHub, Supabase e Vercel são gratuitos no tier inicial. O NEXCORE em si é gratuito. Você publica apps reais gastando menos de R$110/mês.',
   },
   {
-    q: 'Para qual tamanho de provedor é indicado?',
-    a: 'Ideal para ISPs entre 100 e 5.000 clientes. Se você ainda está começando, vai acelerar muito. Se já é grande, vai economizar muito em desenvolvimento e automações internas.',
+    q: 'Para qualquer tipo de negócio?',
+    a: 'Sim. Provedores de internet, e-commerces, clínicas, imobiliárias, agências, construtoras. Se há tarefa repetitiva, relatório manual ou processo sem automação — o NEXCORE resolve.',
   },
   {
     q: 'Em quanto tempo vejo resultado?',
-    a: 'No Módulo 0 (gratuito) você já tem um app publicado em 7 dias. No Módulo 2 você já tem um portal do cliente funcional. Resultados concretos em semanas, não meses.',
+    a: 'A primeira automação roda no mesmo dia do setup. Apps publicados em dias. Automações complexas em 1-2 semanas. Resultado concreto, não promessa.',
   },
   {
-    q: 'O conteúdo fica desatualizado quando o EvoNexus mudar?',
-    a: 'Não. Sou dono de ISP e uso EvoNexus no dia a dia. Quando a ferramenta evolui, eu evoluo junto e atualizo o conteúdo. Os alunos da Trilha Provedor têm acesso a todas as atualizações.',
+    q: 'E se o NEXCORE mudar?',
+    a: 'O NEXCORE é mantido por quem o usa no dia a dia. Quando evolui, o conteúdo evolui junto. Alunos têm acesso a todas as atualizações.',
   },
 ]
 
@@ -238,102 +208,103 @@ export default function App() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <div className="w-8 h-8 bg-gradient-to-br from-teal-400 to-emerald-500 rounded-lg flex items-center justify-center">
-              <Wifi className="w-4 h-4 text-white" />
+              <Cpu className="w-4 h-4 text-white" />
             </div>
-            <span className="font-bold text-white">ISP<span className="text-gradient">.AI</span></span>
+            <span className="font-bold text-white">NEX<span className="text-teal-400">CORE</span></span>
           </div>
           <div className="hidden md:flex items-center gap-6 text-sm text-slate-400">
-            <a href="#modulos" className="hover:text-white transition-colors">Módulos</a>
-            <a href="#stack" className="hover:text-white transition-colors">Stack</a>
-            <a href="#precos" className="hover:text-white transition-colors">Preços</a>
+            <a href="#como-funciona" className="hover:text-white transition-colors">Como funciona</a>
+            <a href="#casos" className="hover:text-white transition-colors">Casos de uso</a>
+            <a href="#agentes" className="hover:text-white transition-colors">Agentes</a>
             <a href="#faq" className="hover:text-white transition-colors">FAQ</a>
+            <a href="/provedor" className="hover:text-teal-400 transition-colors text-teal-400/70">Para Provedores</a>
           </div>
           <a
             href="#lista-espera"
             className="text-sm font-semibold bg-gradient-to-r from-teal-500 to-emerald-500 text-white px-4 py-2 rounded-xl hover:from-teal-400 hover:to-emerald-400 transition-all"
           >
-            Entrar na Lista →
+            Começar Grátis →
           </a>
         </div>
       </nav>
 
       {/* ── Hero ── */}
       <div className="relative overflow-hidden">
-        {/* Background glow */}
         <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-teal-500/10 rounded-full blur-3xl" />
-          <div className="absolute top-20 left-1/4 w-[400px] h-[400px] bg-emerald-500/5 rounded-full blur-3xl" />
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[600px] bg-teal-500/8 rounded-full blur-3xl" />
+          <div className="absolute top-40 right-1/4 w-[300px] h-[300px] bg-purple-500/5 rounded-full blur-3xl" />
         </div>
 
         <Section className="text-center pt-24 pb-16 relative">
-          <div className="animate-fade-up">
-            <Badge className="text-teal-400 bg-teal-400/10 border-teal-400/30 mb-6">
-              <Wifi className="w-3 h-3" />
-              Para Provedores de Internet
+          <div className="mb-6">
+            <Badge className="text-teal-400 bg-teal-400/10 border-teal-400/30">
+              <Sparkles className="w-3 h-3" />
+              38 agentes · 175+ skills · qualquer negócio
             </Badge>
           </div>
 
-          <h1 className="animate-fade-up text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black text-white leading-[1.05] tracking-tight mb-6">
-            Crie apps e automações<br />
-            para o seu provedor<br />
-            <span className="text-gradient">sem programador.</span>
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black text-white leading-[1.05] tracking-tight mb-6">
+            Seu negócio no<br />
+            piloto automático.<br />
+            <span className="text-gradient">Com IA. De verdade.</span>
           </h1>
 
-          <p className="animate-fade-up text-lg sm:text-xl text-slate-400 max-w-2xl mx-auto mb-10 leading-relaxed">
-            Aprenda a usar <strong className="text-white">Claude Code + EvoNexus</strong> para construir portal do cliente,
-            bot de WhatsApp, gestão de OS e muito mais — com ferramentas <strong className="text-white">gratuitas</strong>.
-            Único investimento: ~$20/mês.
+          <p className="text-lg sm:text-xl text-slate-400 max-w-2xl mx-auto mb-10 leading-relaxed">
+            O <strong className="text-white">NEXCORE</strong> é um sistema operacional de agentes de IA que automatiza o que você faz manualmente todo dia —
+            cobrança, marketing, suporte, relatórios, vendas, operações.{' '}
+            <strong className="text-white">Sem programador. Com ~$20/mês.</strong>
           </p>
 
-          <div className="animate-fade-up flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-14">
             <a
               href="#lista-espera"
               className="group w-full sm:w-auto flex items-center justify-center gap-2 bg-gradient-to-r from-teal-500 to-emerald-500 hover:from-teal-400 hover:to-emerald-400 text-white font-bold px-8 py-4 rounded-2xl text-lg transition-all shadow-lg shadow-teal-500/20"
             >
-              Quero Aprender Grátis
+              Quero automatizar meu negócio
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </a>
             <a
-              href="#modulos"
+              href="#como-funciona"
               className="w-full sm:w-auto flex items-center justify-center gap-2 border border-white/20 text-slate-300 hover:text-white hover:border-white/40 px-8 py-4 rounded-2xl text-lg transition-all"
             >
-              <Play className="w-4 h-4" /> Ver os Módulos
+              <Play className="w-4 h-4" /> Ver como funciona
             </a>
           </div>
 
-          {/* Social proof bar */}
-          <div className="animate-fade-up flex flex-wrap items-center justify-center gap-6 text-sm text-slate-500">
+          {/* Stats bar */}
+          <div className="flex flex-wrap items-center justify-center gap-8 text-sm">
             {[
-              { icon: <Users className="w-4 h-4 text-teal-400" />, text: 'Para ISPs de 100 a 5.000 clientes' },
-              { icon: <Clock className="w-4 h-4 text-teal-400" />, text: 'App publicado em 7 dias' },
-              { icon: <DollarSign className="w-4 h-4 text-teal-400" />, text: 'Começa de graça' },
-            ].map((item, i) => (
-              <div key={i} className="flex items-center gap-2">
-                {item.icon}
-                <span>{item.text}</span>
+              { val: '38', label: 'Agentes especializados', color: 'text-teal-400' },
+              { val: '175+', label: 'Skills prontas', color: 'text-purple-400' },
+              { val: '~$20', label: 'Por mês, tudo incluso', color: 'text-emerald-400' },
+              { val: '24/7', label: 'Operando enquanto você dorme', color: 'text-orange-400' },
+            ].map((s, i) => (
+              <div key={i} className="text-center">
+                <div className={`text-2xl font-black ${s.color}`}>{s.val}</div>
+                <div className="text-slate-500 text-xs mt-0.5">{s.label}</div>
               </div>
             ))}
           </div>
         </Section>
 
-        {/* Terminal preview */}
+        {/* Terminal */}
         <div className="max-w-3xl mx-auto px-4 sm:px-6 pb-20">
           <div className="glass rounded-2xl overflow-hidden shadow-2xl shadow-black/50">
             <div className="flex items-center gap-2 px-4 py-3 bg-white/5 border-b border-white/10">
               <div className="w-3 h-3 rounded-full bg-red-500/80" />
               <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
               <div className="w-3 h-3 rounded-full bg-green-500/80" />
-              <span className="ml-2 text-xs text-slate-500 font-mono">claude — terminal</span>
+              <span className="ml-2 text-xs text-slate-500 font-mono">nexcore — terminal</span>
             </div>
             <div className="p-6 font-mono text-sm space-y-2">
-              <div className="text-slate-500">$ <span className="text-white">claude "crie um portal do cliente para meu provedor com login, boleto e suporte"</span></div>
-              <div className="text-teal-400">● Analisando requisitos...</div>
-              <div className="text-teal-400">● Criando estrutura React + Supabase...</div>
-              <div className="text-teal-400">● Implementando autenticação...</div>
-              <div className="text-teal-400">● Integrando gateway de boleto...</div>
-              <div className="text-emerald-400">✓ Portal criado em src/components/ClientPortal.tsx</div>
-              <div className="text-emerald-400">✓ 3 rotas criadas: /login /painel /suporte</div>
-              <div className="text-emerald-400">✓ Pronto para deploy no Vercel</div>
+              <div className="text-slate-500">$ <span className="text-white">claude "crie uma régua de cobrança que envia WhatsApp automático para clientes inadimplentes"</span></div>
+              <div className="text-teal-400">● Lendo lista de inadimplentes do ERP...</div>
+              <div className="text-teal-400">● Segmentando por dias de atraso (1-7, 8-15, 16-30, 30+)...</div>
+              <div className="text-teal-400">● Configurando mensagens personalizadas por grupo...</div>
+              <div className="text-teal-400">● Integrando WhatsApp (Evolution API)...</div>
+              <div className="text-emerald-400">✓ Rotina criada: roda todo dia às 08h00</div>
+              <div className="text-emerald-400">✓ Hoje: 47 inadimplentes notificados. 12 já pagaram.</div>
+              <div className="text-emerald-400">✓ Estimativa de recuperação: R$ 8.400,00</div>
               <div className="text-slate-500 mt-2">$ <span className="text-white animate-pulse">_</span></div>
             </div>
           </div>
@@ -344,10 +315,10 @@ export default function App() {
       <Section>
         <SectionLabel>O Problema</SectionLabel>
         <h2 className="text-3xl sm:text-4xl font-black text-white text-center mb-4">
-          Você reconhece alguma dessas situações?
+          Você toca o negócio — ou o negócio te consome?
         </h2>
         <p className="text-slate-400 text-center max-w-2xl mx-auto mb-12">
-          A maioria dos provedores trava nos mesmos problemas. Não é falta de esforço — é falta de ferramenta certa.
+          A maioria dos donos de negócio está presa no operacional. Não é preguiça. É falta da ferramenta certa.
         </p>
         <div className="grid md:grid-cols-3 gap-6">
           {PAINS.map((pain, i) => (
@@ -362,77 +333,147 @@ export default function App() {
         </div>
       </Section>
 
-      {/* ── Solução ── */}
-      <div className="bg-gradient-to-b from-teal-950/30 to-transparent">
+      {/* ── Como funciona ── */}
+      <div id="como-funciona" className="bg-gradient-to-b from-teal-950/20 to-transparent">
         <Section>
-          <SectionLabel>A Solução</SectionLabel>
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-3xl sm:text-4xl font-black text-white mb-6 leading-tight">
-                Aprenda a criar suas próprias soluções com <span className="text-gradient">Inteligência Artificial</span>
-              </h2>
-              <p className="text-slate-400 leading-relaxed mb-6">
-                Em vez de contratar dev ou pagar por sistemas caros, você aprende a usar o <strong className="text-white">Claude Code + EvoNexus</strong> para construir exatamente o que o seu provedor precisa.
-              </p>
-              <p className="text-slate-400 leading-relaxed mb-8">
-                Módulo a módulo, você cria projetos reais: portal do cliente, bot de WhatsApp, gestão de OSes, relatórios automáticos. Tudo publicado, tudo funcionando.
-              </p>
-              <div className="space-y-3">
-                {[
-                  'Sem precisar saber programar',
-                  'Ferramentas gratuitas (exceto Claude Code)',
-                  'Resultados em dias, não meses',
-                  'Conteúdo criado por dono de ISP',
-                ].map((item, i) => (
-                  <div key={i} className="flex items-center gap-3 text-slate-300">
-                    <CheckCircle2 className="w-5 h-5 text-teal-400 flex-shrink-0" />
-                    <span>{item}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-            <div className="glass rounded-2xl p-6">
-              <div className="flex items-center gap-2 mb-4">
-                <div className="w-8 h-8 bg-teal-500/20 rounded-lg flex items-center justify-center">
-                  <Wrench className="w-4 h-4 text-teal-400" />
+          <SectionLabel>Como Funciona</SectionLabel>
+          <h2 className="text-3xl sm:text-4xl font-black text-white text-center mb-4">
+            Um OS de IA que gerencia seu negócio
+          </h2>
+          <p className="text-slate-400 text-center max-w-2xl mx-auto mb-16">
+            O NEXCORE não é um chatbot. É um sistema operacional de agentes especializados que trabalham com contexto real do seu negócio.
+          </p>
+
+          <div className="grid md:grid-cols-2 gap-6 mb-12">
+            {FEATURES.map((f, i) => (
+              <div key={i} className="glass rounded-2xl p-6 hover:bg-white/10 transition-colors flex gap-5">
+                <div className="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center flex-shrink-0">
+                  {f.icon}
                 </div>
-                <span className="font-bold text-white">O que você vai construir</span>
+                <div>
+                  <h3 className="font-bold text-white mb-2">{f.title}</h3>
+                  <p className="text-slate-400 text-sm leading-relaxed">{f.desc}</p>
+                </div>
               </div>
-              <div className="space-y-3">
-                {[
-                  { icon: <Globe className="w-4 h-4 text-blue-400" />, label: 'Portal do Cliente', sub: 'Login, boleto, suporte' },
-                  { icon: <MessageSquare className="w-4 h-4 text-green-400" />, label: 'Bot WhatsApp', sub: 'Atendimento 24h automático' },
-                  { icon: <Package className="w-4 h-4 text-purple-400" />, label: 'Gestão de OSes', sub: 'Equipe técnica organizada' },
-                  { icon: <Smartphone className="w-4 h-4 text-orange-400" />, label: 'App para Clientes', sub: 'Serviços extras com receita' },
-                  { icon: <BarChart3 className="w-4 h-4 text-teal-400" />, label: 'Relatórios Automáticos', sub: 'IA gera, você decide' },
-                  { icon: <Bot className="w-4 h-4 text-pink-400" />, label: 'Agentes de IA', sub: 'Trabalham enquanto você dorme' },
-                ].map((item, i) => (
-                  <div key={i} className="flex items-center gap-3 p-3 rounded-xl bg-white/5 hover:bg-white/10 transition-colors">
-                    <div className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center flex-shrink-0">
-                      {item.icon}
-                    </div>
-                    <div>
-                      <div className="text-sm font-semibold text-white">{item.label}</div>
-                      <div className="text-xs text-slate-500">{item.sub}</div>
-                    </div>
-                  </div>
-                ))}
+            ))}
+          </div>
+
+          {/* Exemplo de automação */}
+          <div className="glass rounded-3xl p-8 border border-teal-500/20 bg-teal-500/5">
+            <div className="flex flex-wrap items-center gap-3 mb-6">
+              <div className="w-10 h-10 rounded-xl bg-teal-500/20 flex items-center justify-center">
+                <BellRing className="w-5 h-5 text-teal-400" />
+              </div>
+              <div>
+                <div className="text-xs font-bold text-teal-400 uppercase tracking-wider">Exemplo real</div>
+                <h3 className="font-bold text-white text-lg">O dia a dia no piloto automático</h3>
               </div>
             </div>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+              {[
+                { time: '07:00', icon: '☀️', event: 'Briefing matinal gerado pela IA', sub: 'Agenda, tarefas, finanças do dia' },
+                { time: '07:15', icon: '📬', event: 'Triagem de e-mails priorizada', sub: 'Só o que importa chega até você' },
+                { time: '08:00', icon: '💰', event: 'Régua de cobrança rodando', sub: 'Inadimplentes notificados no WhatsApp' },
+                { time: '18:00', icon: '📊', event: 'Relatório de performance do dia', sub: 'Vendas, leads, chamados resolvidos' },
+                { time: '20:00', icon: '🌐', event: 'Análise de redes sociais', sub: 'Engajamento, alcance, oportunidades' },
+                { time: '21:00', icon: '📝', event: 'Fechamento e próximos passos', sub: 'O que ficou aberto, prioridades amanhã' },
+              ].map((item, i) => (
+                <div key={i} className="bg-white/5 rounded-xl p-4 border border-white/5">
+                  <div className="flex items-center gap-2 mb-2">
+                    <span className="text-xs font-mono text-teal-400 font-bold">{item.time}</span>
+                    <span className="text-base">{item.icon}</span>
+                  </div>
+                  <div className="text-sm font-semibold text-white mb-0.5">{item.event}</div>
+                  <div className="text-xs text-slate-500">{item.sub}</div>
+                </div>
+              ))}
+            </div>
+            <p className="text-slate-500 text-sm mt-4 text-center italic">
+              Tudo isso sem você fazer nada. Configure uma vez — roda todos os dias.
+            </p>
           </div>
         </Section>
       </div>
+
+      {/* ── Agentes ── */}
+      <Section id="agentes">
+        <SectionLabel>Os Agentes</SectionLabel>
+        <h2 className="text-3xl sm:text-4xl font-black text-white text-center mb-4">
+          38 especialistas de IA trabalhando para você
+        </h2>
+        <p className="text-slate-400 text-center max-w-2xl mx-auto mb-12">
+          Cada agente tem um domínio específico, memória própria e contexto do seu negócio. Não é um chatbot genérico — é uma equipe virtual treinada.
+        </p>
+
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+          {AGENTS.map((agent, i) => (
+            <div key={i} className="glass rounded-2xl p-5 hover:bg-white/10 transition-colors">
+              <div className={`w-10 h-10 rounded-xl ${agent.color} flex items-center justify-center text-lg mb-3`}>
+                {agent.emoji}
+              </div>
+              <div className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-0.5">{agent.role}</div>
+              <div className="font-bold text-white text-base mb-2">{agent.name}</div>
+              <p className="text-xs text-slate-400 leading-relaxed">{agent.desc}</p>
+            </div>
+          ))}
+        </div>
+
+        <div className="text-center">
+          <p className="text-slate-500 text-sm">
+            + 30 agentes de engenharia (arquiteto, executor, revisor, testador, debugger, segurança e mais)
+          </p>
+        </div>
+      </Section>
+
+      {/* ── Casos de uso ── */}
+      <Section id="casos">
+        <SectionLabel>Casos de Uso</SectionLabel>
+        <h2 className="text-3xl sm:text-4xl font-black text-white text-center mb-4">
+          Para qualquer negócio que tem processos repetitivos
+        </h2>
+        <p className="text-slate-400 text-center max-w-2xl mx-auto mb-12">
+          Se existe tarefa manual que ocorre toda semana — o NEXCORE pode automatizar.
+        </p>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+          {USE_CASES.map((uc, i) => (
+            <div key={i} className={`glass rounded-2xl p-6 border transition-colors hover:bg-white/10 ${uc.color}`}>
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-9 h-9 rounded-xl bg-white/5 flex items-center justify-center">
+                  {uc.icon}
+                </div>
+                <h3 className="font-bold text-white text-base">{uc.sector}</h3>
+              </div>
+              <ul className="space-y-2 mb-4">
+                {uc.items.map((item, j) => (
+                  <li key={j} className="flex items-center gap-2 text-sm text-slate-400">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-teal-400 flex-shrink-0" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+              {uc.link && (
+                <a
+                  href={uc.link}
+                  className="text-xs font-semibold text-teal-400 hover:text-teal-300 transition-colors flex items-center gap-1"
+                >
+                  {uc.linkLabel}
+                </a>
+              )}
+            </div>
+          ))}
+        </div>
+      </Section>
 
       {/* ── Stack ── */}
       <Section id="stack">
         <SectionLabel>A Stack</SectionLabel>
         <h2 className="text-3xl sm:text-4xl font-black text-white text-center mb-4">
-          Ferramentas gratuitas. Um único investimento.
+          Gratuito para começar. Escala sem trocar de stack.
         </h2>
         <p className="text-slate-400 text-center max-w-2xl mx-auto mb-12">
-          Toda a stack ensinada no curso é gratuita ou tem tier gratuito. A única assinatura obrigatória é o Claude Code — a IA que faz o trabalho pesado por você.
+          Toda a infraestrutura é open-source ou gratuita no tier inicial. Você só paga a IA — o motor que opera tudo.
         </p>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-4">
           {TOOLS.map((tool, i) => (
             <div
               key={i}
@@ -458,77 +499,42 @@ export default function App() {
         </div>
         <div className="mt-8 p-6 glass rounded-2xl text-center">
           <p className="text-slate-300">
-            💡 <strong className="text-white">Custo total para começar:</strong>{' '}
-            <span className="text-teal-400 font-bold">~$20/mês</span> (só Claude Code).
-            GitHub, Supabase e Vercel são <span className="text-emerald-400 font-bold">gratuitos</span> até você escalar.
+            💡 <strong className="text-white">Custo total:</strong>{' '}
+            <span className="text-teal-400 font-bold">~$20/mês</span> — a assinatura da IA.
+            O resto é <span className="text-emerald-400 font-bold">gratuito</span> até você escalar.
           </p>
         </div>
       </Section>
 
-      {/* ── Módulos ── */}
-      <Section id="modulos">
-        <SectionLabel>O Conteúdo</SectionLabel>
-        <h2 className="text-3xl sm:text-4xl font-black text-white text-center mb-4">
-          7 módulos. Do setup ao piloto automático.
-        </h2>
-        <p className="text-slate-400 text-center max-w-2xl mx-auto mb-12">
-          Cada módulo entrega um projeto real funcionando. Você não aprende teoria — você lança produto.
-        </p>
-        <div className="grid md:grid-cols-2 gap-4">
-          {MODULES.map((mod, i) => (
-            <div key={i} className={`glass rounded-2xl p-6 hover:bg-white/10 transition-colors ${i === 0 ? 'md:col-span-2 border-teal-500/30 bg-teal-500/5' : ''}`}>
-              <div className="flex items-start justify-between gap-4 mb-4">
-                <div className="flex items-center gap-3">
-                  <span className="text-2xl">{mod.emoji}</span>
-                  <div>
-                    <div className="text-xs font-mono text-slate-500 mb-0.5">MÓDULO {mod.num}</div>
-                    <h3 className="font-bold text-white text-lg leading-tight">{mod.title}</h3>
-                  </div>
-                </div>
-                <Badge className={`${mod.tagColor} flex-shrink-0`}>{mod.tag}</Badge>
-              </div>
-              <p className="text-slate-400 text-sm mb-4 leading-relaxed">{mod.desc}</p>
-              <div className="grid grid-cols-2 gap-2">
-                {mod.items.map((item, j) => (
-                  <div key={j} className="flex items-center gap-2 text-xs text-slate-400">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-teal-400 flex-shrink-0" />
-                    {item}
-                  </div>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
-      </Section>
-
-      {/* ── Quem sou ── */}
+      {/* ── Quem criou ── */}
       <div className="bg-gradient-to-b from-transparent via-slate-900/50 to-transparent">
         <Section>
           <div className="glass rounded-3xl p-8 lg:p-12">
-            <div className="grid lg:grid-cols-2 gap-8 items-center">
+            <div className="grid lg:grid-cols-2 gap-10 items-center">
               <div>
-                <Badge className="text-teal-400 bg-teal-400/10 border-teal-400/30 mb-4">
-                  <Shield className="w-3 h-3" /> Quem criou esse curso
+                <Badge className="text-teal-400 bg-teal-400/10 border-teal-400/30 mb-5">
+                  <Shield className="w-3 h-3" /> Quem está por trás
                 </Badge>
-                <h2 className="text-3xl font-black text-white mb-4">
-                  Criado por quem vive o mesmo problema que você
+                <h2 className="text-3xl font-black text-white mb-4 leading-tight">
+                  Criado por quem usa no próprio negócio — não por quem teoriza sobre IA
                 </h2>
                 <p className="text-slate-400 leading-relaxed mb-4">
-                  Sou <strong className="text-white">Marciel Corado</strong>, dono da <strong className="text-white">Kem Soluções</strong> — um provedor de acesso à internet que fornece fibra óptica para residências, empresas e governo.
+                  Sou <strong className="text-white">Marciel Corado</strong>, dono da <strong className="text-white">Kem Soluções</strong> — provedor de fibra óptica há mais de 17 anos.
+                  Usei o NEXCORE para resolver problemas reais: cobrança automática, portal do cliente, atendimento no WhatsApp, gestão interna.
                 </p>
                 <p className="text-slate-400 leading-relaxed mb-4">
-                  Usei EvoNexus + Claude Code para resolver os mesmos problemas que você enfrenta. Criei o portal do cliente, automatizei o atendimento no WhatsApp, e construí um sistema de gestão interno — gastando menos de $20/mês.
+                  Não aprendi em livro. Cada automação que o NEXCORE tem, eu precisei, construí e testei no meu negócio antes de ensinar.
                 </p>
                 <p className="text-slate-400 leading-relaxed">
-                  Agora transformei tudo isso em curso para que qualquer dono de ISP consiga fazer o mesmo, independente de saber programar.
+                  Agora ensino qualquer dono de negócio a fazer o mesmo — independente de saber programar, de ter equipe técnica, de ter orçamento.
                 </p>
               </div>
               <div className="space-y-4">
                 {[
-                  { icon: <Wifi className="w-5 h-5 text-teal-400" />, label: 'Dono de ISP há mais de 5 anos', sub: 'Kem Soluções — fibra óptica' },
-                  { icon: <Terminal className="w-5 h-5 text-teal-400" />, label: 'Usuário ativo do EvoNexus', sub: 'Usa no provedor e em apps em produção' },
-                  { icon: <Code2 className="w-5 h-5 text-teal-400" />, label: '3 apps em produção', sub: 'Recompensa, Futsal Sorteio, Vida2026' },
-                  { icon: <BookOpen className="w-5 h-5 text-teal-400" />, label: 'Conteúdo sempre atualizado', sub: 'Aprende e atualiza o curso junto' },
+                  { icon: <Wifi className="w-5 h-5 text-teal-400" />, label: 'Dono de ISP há mais de 17 anos', sub: 'Kem Soluções — fibra óptica para residências e empresas' },
+                  { icon: <Terminal className="w-5 h-5 text-teal-400" />, label: 'Usuário ativo do NEXCORE', sub: 'Usa nas automações do provedor em produção hoje' },
+                  { icon: <Code2 className="w-5 h-5 text-teal-400" />, label: '3 apps em produção', sub: 'Recompensa Pro, Fut Sorteio, Assessor Digital' },
+                  { icon: <BookOpen className="w-5 h-5 text-teal-400" />, label: 'Conteúdo sempre atualizado', sub: 'Quando o NEXCORE evolui, o conteúdo evolui junto' },
                 ].map((item, i) => (
                   <div key={i} className="flex items-start gap-4 p-4 rounded-xl bg-white/5">
                     <div className="w-10 h-10 rounded-xl bg-teal-500/10 flex items-center justify-center flex-shrink-0">
@@ -546,57 +552,33 @@ export default function App() {
         </Section>
       </div>
 
-      {/* ── Preços ── */}
-      <Section id="precos">
-        <SectionLabel>Planos</SectionLabel>
-        <h2 className="text-3xl sm:text-4xl font-black text-white text-center mb-4">
-          Comece grátis. Escale quando quiser.
-        </h2>
-        <p className="text-slate-400 text-center max-w-2xl mx-auto mb-12">
-          O Módulo 0 é gratuito para sempre. Você só investe no curso se quiser ir mais fundo.
-        </p>
-        <div className="grid md:grid-cols-3 gap-6">
-          {PLANS.map((plan, i) => (
-            <div
-              key={i}
-              className={`relative glass rounded-2xl p-6 flex flex-col ${
-                plan.highlight ? 'border-teal-500/50 shadow-xl shadow-teal-500/10 bg-teal-500/5 scale-105' : ''
-              }`}
-            >
-              {plan.badge && (
-                <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-gradient-to-r from-teal-500 to-emerald-500 text-white text-xs font-bold px-4 py-1 rounded-full">
-                  {plan.badge}
-                </div>
-              )}
-              <div className="mb-6">
-                <div className="font-bold text-white text-lg mb-2">{plan.name}</div>
-                <div className="flex items-baseline gap-1">
-                  <span className="text-4xl font-black text-white">{plan.price}</span>
-                  <span className="text-slate-400 text-sm">{plan.period}</span>
-                </div>
-              </div>
-              <ul className="space-y-3 mb-8 flex-1">
-                {plan.items.map((item, j) => (
-                  <li key={j} className="flex items-start gap-2 text-sm text-slate-300">
-                    <CheckCircle2 className="w-4 h-4 text-teal-400 flex-shrink-0 mt-0.5" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-              <a
-                href="#lista-espera"
-                className={`w-full text-center py-3 rounded-xl font-semibold text-sm transition-all ${plan.ctaStyle}`}
-              >
-                {plan.cta}
-              </a>
+      {/* ── ISP CTA ── */}
+      <Section>
+        <div className="glass rounded-3xl p-8 lg:p-10 border border-teal-500/20 bg-teal-500/5 flex flex-col lg:flex-row items-center justify-between gap-8">
+          <div className="flex items-start gap-5">
+            <div className="w-14 h-14 rounded-2xl bg-teal-500/20 flex items-center justify-center flex-shrink-0">
+              <Wifi className="w-7 h-7 text-teal-400" />
             </div>
-          ))}
+            <div>
+              <div className="text-xs font-bold text-teal-400 uppercase tracking-wider mb-1">Para Provedores de Internet</div>
+              <h3 className="font-black text-white text-xl mb-2">Tem um ISP? Existe um curso feito especificamente para você.</h3>
+              <p className="text-slate-400 text-sm leading-relaxed max-w-xl">
+                Portal do cliente, WhatsApp bot de cobrança autônoma, integração com SGP, gestão de instalações, SVAs — tudo construído do zero, módulo a módulo, pelo dono de um provedor.
+              </p>
+            </div>
+          </div>
+          <a
+            href="/provedor"
+            className="flex-shrink-0 flex items-center gap-2 bg-gradient-to-r from-teal-500 to-emerald-500 hover:from-teal-400 hover:to-emerald-400 text-white font-bold px-7 py-4 rounded-2xl transition-all text-sm whitespace-nowrap"
+          >
+            Ver o curso para ISPs <ArrowRight className="w-4 h-4" />
+          </a>
         </div>
       </Section>
 
       {/* ── FAQ ── */}
       <Section id="faq">
-        <SectionLabel>Dúvidas Frequentes</SectionLabel>
+        <SectionLabel>Dúvidas</SectionLabel>
         <h2 className="text-3xl sm:text-4xl font-black text-white text-center mb-12">
           Perguntas e respostas
         </h2>
@@ -613,13 +595,14 @@ export default function App() {
           <div className="absolute inset-0 bg-gradient-to-br from-teal-500/10 to-emerald-500/5 pointer-events-none" />
           <div className="relative">
             <Badge className="text-teal-400 bg-teal-400/10 border-teal-400/30 mb-6">
-              <Star className="w-3 h-3" /> Lista de Espera Aberta
+              <Star className="w-3 h-3" /> Acesso antecipado
             </Badge>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white mb-4 leading-tight">
-              Seja o primeiro a saber<br />quando lançar
+              Comece a automatizar<br />seu negócio agora
             </h2>
             <p className="text-slate-400 text-lg max-w-xl mx-auto mb-10">
-              Entre na lista de espera e garanta <strong className="text-white">acesso antecipado</strong> com desconto exclusivo para os primeiros 50 provedores.
+              Entre na lista e receba <strong className="text-white">acesso antecipado</strong> com desconto exclusivo.
+              O primeiro módulo é sempre gratuito.
             </p>
 
             {submitted ? (
@@ -646,7 +629,7 @@ export default function App() {
               </form>
             )}
 
-            <p className="text-slate-600 text-xs mt-4">Sem spam. Cancelamento a qualquer momento.</p>
+            <p className="text-slate-600 text-xs mt-4">Sem spam. Sem compromisso. Cancela quando quiser.</p>
 
             <div className="flex flex-wrap items-center justify-center gap-6 mt-10 text-sm text-slate-500">
               <div className="flex items-center gap-2"><Shield className="w-4 h-4 text-teal-400" /> Sem compromisso</div>
@@ -662,16 +645,18 @@ export default function App() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2">
             <div className="w-7 h-7 bg-gradient-to-br from-teal-400 to-emerald-500 rounded-lg flex items-center justify-center">
-              <Wifi className="w-3.5 h-3.5 text-white" />
+              <Cpu className="w-3.5 h-3.5 text-white" />
             </div>
-            <span className="font-bold text-slate-400">ISP<span className="text-teal-400">.AI</span></span>
+            <span className="font-bold text-slate-400">NEX<span className="text-teal-400">CORE</span></span>
+          </div>
+          <div className="flex items-center gap-6 text-xs text-slate-600">
+            <a href="/provedor" className="hover:text-slate-400 transition-colors">Curso para ISPs</a>
+            <a href="/sva" className="hover:text-slate-400 transition-colors">SVAs</a>
+            <a href="/privacidade" className="hover:text-slate-400 transition-colors">Privacidade</a>
           </div>
           <p className="text-sm text-slate-600">
-            © 2026 Kem Soluções. Criado com Claude Code + EvoNexus.
+            © 2026 Kem Soluções. Construído com NEXCORE.
           </p>
-          <div className="text-xs text-slate-700">
-            Construído exatamente como ensinamos no curso.
-          </div>
         </div>
       </footer>
 

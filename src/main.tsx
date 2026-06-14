@@ -2,11 +2,19 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.tsx'
+import ProvedorPage from './pages/ProvedorPage.tsx'
 import SVAPage from './pages/SVAPage.tsx'
+import PrivacyPolicyPage from './pages/PrivacyPolicyPage.tsx'
 
 // Path-based routing sem React Router
 const path = window.location.pathname
-const Root = path.startsWith('/sva') ? SVAPage : App
+const Root = path.startsWith('/sva')
+  ? SVAPage
+  : path.startsWith('/privacidade') || path.startsWith('/privacy')
+  ? PrivacyPolicyPage
+  : path.startsWith('/provedor')
+  ? ProvedorPage
+  : App
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

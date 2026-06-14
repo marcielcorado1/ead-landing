@@ -12,8 +12,8 @@ import { useState } from 'react'
 const PAINS = [
   {
     icon: <Clock className="w-6 h-6 text-red-400" />,
-    title: "Atendimento manual que não escala",
-    desc: "Sua equipe responde as mesmas perguntas repetidamente — boleto, senha Wi-Fi, status da conexão. Tempo jogado fora.",
+    title: "Tarefas repetidas que não deixam você escalar",
+    desc: "Com uma simples rotina, o NEXCORE contata seus clientes sozinho — sem nenhum humano iniciar a conversa. Cobrança automática, avisos de vencimento, campanhas de marketing, notificações de manutenção. E se quiser ir além: apps personalizados criados em poucas horas para oferecer de graça ou cobrar dos seus clientes.",
   },
   {
     icon: <TrendingUp className="w-6 h-6 text-orange-400" />,
@@ -28,7 +28,7 @@ const PAINS = [
 ]
 
 const TOOLS = [
-  { name: 'Claude Code', role: 'IA que escreve e executa código', cost: '~$20/mês', required: true, icon: <Bot className="w-5 h-5" /> },
+  { name: 'IA (Inteligência Artificial)', role: 'Motor que opera o NEXCORE e executa tudo', cost: '~$20/mês', required: true, icon: <Bot className="w-5 h-5" /> },
   { name: 'NEXCORE', role: 'Sistema operacional de agentes de IA', cost: 'Gratuito', required: false, icon: <Zap className="w-5 h-5" /> },
   { name: 'GitHub', role: 'Versionamento do código', cost: 'Gratuito', required: false, icon: <Code2 className="w-5 h-5" /> },
   { name: 'Supabase', role: 'Banco de dados + Auth + API', cost: 'Gratuito', required: false, icon: <Database className="w-5 h-5" /> },
@@ -43,7 +43,7 @@ const MODULES = [
     tag: 'GRATUITO',
     tagColor: 'text-emerald-400 bg-emerald-400/10 border-emerald-400/30',
     desc: 'Configure o ambiente completo em 2 horas e rode seu primeiro agente de IA. Sem enrolação.',
-    items: ['Instalar Claude Code', 'Criar conta GitHub + Supabase + Vercel', 'Configurar NEXCORE no servidor', 'Primeiro agente rodando'],
+    items: ['Ativar a IA do NEXCORE', 'Criar conta GitHub + Supabase + Vercel', 'Configurar NEXCORE no servidor', 'Primeiro agente rodando'],
   },
   {
     num: '01',
@@ -52,7 +52,7 @@ const MODULES = [
     tag: 'ESSENCIAL',
     tagColor: 'text-teal-400 bg-teal-400/10 border-teal-400/30',
     desc: 'Entenda a lógica de agentes, skills e rotinas. Crie seu primeiro agente personalizado para o provedor.',
-    items: ['Como o Claude Code pensa', 'Criando agentes customizados', 'Skills e automações', 'Memória persistente'],
+    items: ['Como a IA age e decide', 'Criando agentes customizados', 'Skills e automações', 'Memória persistente'],
   },
   {
     num: '02',
@@ -141,7 +141,7 @@ const MODULES = [
             <span className="font-bold text-white">Na prática:</span> às 8h o relatório do ERP chegou no Telegram. Às 9h o agente de cobrança já entrou em contato com todos os inadimplentes — personalizando a mensagem pelo tempo de atraso. Às 9h12 um cliente de 45 dias respondeu que quer parcelar em 3x. O agente calculou, gerou os 3 boletos e enviou os links. Às 11h, 2 clientes que não responderam depois de 7 dias foram desativados no sistema e as OSes de retirada foram abertas. <strong className="text-white">Você tomou café e foi cuidar de outra coisa.</strong>
           </p>
           <p className="text-slate-500 text-xs italic">
-            Este é o sistema documentado e em construção com Claude Code + NEXCORE — base da Aula 3.8 do curso. A integração com ERP (Componente 1) já roda em produção com o SGP — e pode ser adaptada para outros sistemas.
+            Este é o sistema documentado e em construção com NEXCORE — base da Aula 3.8 do curso. A integração com ERP (Componente 1) já roda em produção com o SGP — e pode ser adaptada para outros sistemas.
           </p>
         </div>
       </div>
@@ -181,7 +181,7 @@ const MODULES = [
           </p>
           <p className="text-slate-400 text-sm leading-relaxed">
             Esses serviços se chamam SVAs — Serviços de Valor Agregado. E no módulo 05 você aprende a criá-los do zero,
-            sem contratar um desenvolvedor, usando Claude Code + NEXCORE.
+            sem contratar um desenvolvedor, usando o NEXCORE.
           </p>
         </div>
 
@@ -302,7 +302,7 @@ const PLANS = [
       'Módulo 0 completo (setup)',
       'App funcionando em 7 dias',
       'Acesso à comunidade básica',
-      'Requer Claude Code (~$20/mês)',
+      'Requer assinatura de IA (~$20/mês ≈ R$110)',
     ],
   },
   {
@@ -340,11 +340,11 @@ const PLANS = [
 const FAQS = [
   {
     q: 'Preciso saber programar para fazer o curso?',
-    a: 'Não. O Claude Code escreve o código por você. Você precisa entender lógica básica, mas não precisa memorizar nenhuma sintaxe. Provedores sem nenhuma experiência técnica concluíram o Módulo 0 em menos de 3 horas.',
+    a: 'Não. A inteligência artificial escreve e executa o código por você. Você precisa entender lógica básica, mas não precisa memorizar nenhuma sintaxe. Provedores sem nenhuma experiência técnica concluíram o Módulo 0 em menos de 3 horas.',
   },
   {
     q: 'Qual o custo total para começar?',
-    a: 'Apenas a assinatura do Claude Code (~$20/mês ≈ R$110/mês). GitHub, Supabase e Vercel são gratuitos no tier inicial. O mini-curso é gratuito. Você pode construir e publicar apps reais gastando menos de R$110/mês.',
+    a: 'A única assinatura paga é a da IA que opera o NEXCORE — cerca de $20/mês (≈ R$110/mês). GitHub, Supabase e Vercel são gratuitos no tier inicial. O mini-curso é gratuito. Você pode construir e publicar apps reais gastando menos de R$110/mês.',
   },
   {
     q: 'Para qual tamanho de provedor é indicado?',
@@ -469,9 +469,9 @@ export default function App() {
           </h1>
 
           <p className="animate-fade-up text-lg sm:text-xl text-slate-400 max-w-2xl mx-auto mb-10 leading-relaxed">
-            Aprenda a usar <strong className="text-white">Claude Code + NEXCORE</strong> para construir portal do cliente,
+            Use o <strong className="text-white">NEXCORE</strong> para construir portal do cliente,
             bot de WhatsApp, gestão de OS e muito mais — com ferramentas <strong className="text-white">gratuitas</strong>.
-            Único investimento: ~$20/mês.
+            Único investimento: <strong className="text-white">~$20/mês</strong> (a IA que opera tudo).
           </p>
 
           <div className="animate-fade-up flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
@@ -561,7 +561,7 @@ export default function App() {
                 Aprenda a criar suas próprias soluções com <span className="text-gradient">Inteligência Artificial</span>
               </h2>
               <p className="text-slate-400 leading-relaxed mb-6">
-                Em vez de contratar dev ou pagar por sistemas caros, você aprende a usar o <strong className="text-white">Claude Code + NEXCORE</strong> para construir exatamente o que o seu provedor precisa.
+                Em vez de contratar dev ou pagar por sistemas caros, você aprende a usar o <strong className="text-white">NEXCORE</strong> para construir exatamente o que o seu provedor precisa.
               </p>
               <p className="text-slate-400 leading-relaxed mb-8">
                 Módulo a módulo, você cria projetos reais: portal do cliente, bot de WhatsApp, gestão de OSes, relatórios automáticos. Tudo publicado, tudo funcionando.
@@ -569,7 +569,7 @@ export default function App() {
               <div className="space-y-3">
                 {[
                   'Sem precisar saber programar',
-                  'Ferramentas gratuitas (exceto Claude Code)',
+                  'Ferramentas gratuitas (exceto a IA — ~$20/mês)',
                   'Resultados em dias, não meses',
                   'Conteúdo criado por dono de ISP',
                 ].map((item, i) => (
@@ -619,7 +619,7 @@ export default function App() {
           Ferramentas gratuitas. Um único investimento.
         </h2>
         <p className="text-slate-400 text-center max-w-2xl mx-auto mb-12">
-          Toda a stack ensinada no curso é gratuita ou tem tier gratuito. A única assinatura obrigatória é o Claude Code — a IA que faz o trabalho pesado por você.
+          Toda a stack ensinada no curso é gratuita ou tem tier gratuito. A única assinatura obrigatória é a IA — o motor que opera o NEXCORE e faz o trabalho pesado por você.
         </p>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
           {TOOLS.map((tool, i) => (
@@ -648,7 +648,7 @@ export default function App() {
         <div className="mt-8 p-6 glass rounded-2xl text-center">
           <p className="text-slate-300">
             💡 <strong className="text-white">Custo total para começar:</strong>{' '}
-            <span className="text-teal-400 font-bold">~$20/mês</span> (só Claude Code).
+            <span className="text-teal-400 font-bold">~$20/mês</span> (assinatura da IA que opera o NEXCORE).
             GitHub, Supabase e Vercel são <span className="text-emerald-400 font-bold">gratuitos</span> até você escalar.
           </p>
         </div>
@@ -710,7 +710,7 @@ export default function App() {
                   Sou <strong className="text-white">Marciel Corado</strong>, dono da <strong className="text-white">Kem Soluções</strong> — um provedor de acesso à internet que fornece fibra óptica para residências, empresas e governo.
                 </p>
                 <p className="text-slate-400 leading-relaxed mb-4">
-                  Usei NEXCORE + Claude Code para resolver os mesmos problemas que você enfrenta. Criei o portal do cliente, automatizei o atendimento no WhatsApp, e construí um sistema de gestão interno — gastando menos de $20/mês.
+                  Usei o NEXCORE para resolver os mesmos problemas que você enfrenta. Criei o portal do cliente, automatizei o atendimento no WhatsApp, e construí um sistema de gestão interno — gastando menos de $20/mês com a IA que opera tudo.
                 </p>
                 <p className="text-slate-400 leading-relaxed">
                   Agora transformei tudo isso em curso para que qualquer dono de ISP consiga fazer o mesmo, independente de saber programar.
@@ -860,7 +860,7 @@ export default function App() {
             <span className="font-bold text-slate-400">NEX<span className="text-teal-400">CORE</span></span>
           </div>
           <p className="text-sm text-slate-600">
-            © 2026 Kem Soluções. Criado com Claude Code + NEXCORE.
+            © 2026 Kem Soluções. Criado com NEXCORE.
           </p>
           <div className="text-xs text-slate-700">
             Construído exatamente como ensinamos no curso.

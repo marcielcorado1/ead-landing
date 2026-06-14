@@ -66,17 +66,17 @@ const MODULES = [
   {
     num: '03',
     emoji: '📱',
-    title: 'WhatsApp Bot para Atendimento',
+    title: 'WhatsApp + Cobrança Autônoma',
     tag: 'PROJETO REAL',
     tagColor: 'text-blue-400 bg-blue-400/10 border-blue-400/30',
-    desc: 'Bot que responde boleto, status de conexão e abre chamados — sem contratar atendente.',
-    items: ['Integração Evolution API', 'Bot de boleto e suporte', 'Escalada para humano', 'Notificações proativas'],
+    desc: 'Conecte o WhatsApp ao NEXCORE e implante o sistema completo de cobrança autônoma — do primeiro aviso até o cancelamento do contrato.',
+    items: ['Integração Evolution API', 'Agente proativo de cobrança', 'Negociação e parcelamento automático', 'Desativação automática no sistema'],
     wide: true,
     extra: (
       <div className="mt-6 pt-6 border-t border-white/10">
         <div className="flex flex-wrap items-center gap-3 mb-4">
           <span className="text-xl">🚨</span>
-          <h4 className="font-bold text-white text-base">Módulo 03 vai além do bot: Sistema Completo de Cobrança Autônoma</h4>
+          <h4 className="font-bold text-white text-base">O agente que contacta seus clientes sozinho — sem ninguém iniciar a conversa</h4>
           <span className="text-[10px] font-bold bg-orange-500/15 text-orange-400 border border-orange-500/30 px-2.5 py-1 rounded-full tracking-wider">CASO REAL EM PRODUÇÃO</span>
         </div>
         <p className="text-slate-400 text-sm leading-relaxed mb-5">
@@ -162,8 +162,8 @@ const MODULES = [
     title: 'Serviços Agregados (SVAs)',
     tag: 'RECEITA EXTRA',
     tagColor: 'text-purple-400 bg-purple-400/10 border-purple-400/30',
-    desc: 'Crie serviços pagos ou gratuitos para seus clientes: controle parental, benefícios, apps de valor que fidelizam.',
-    items: ['App de controle parental', 'Benefícios para clientes', 'Pagamento recorrente', 'Como precificar'],
+    desc: 'Crie serviços pagos ou gratuitos para seus clientes: bloqueio de sites por horário, benefícios, apps de valor que fidelizam.',
+    items: ['Bloqueio de sites por horário', 'Benefícios para clientes', 'Pagamento recorrente', 'Como precificar'],
     wide: true,
     extra: (
       <div className="mt-6 pt-6 border-t border-white/10">

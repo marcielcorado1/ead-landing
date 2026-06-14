@@ -469,8 +469,11 @@ export default function App() {
           </h1>
 
           <p className="animate-fade-up text-lg sm:text-xl text-slate-400 max-w-2xl mx-auto mb-10 leading-relaxed">
-            Use o <strong className="text-white">NEXCORE</strong> para construir portal do cliente,
-            bot de WhatsApp, gestão de OS e muito mais — com ferramentas <strong className="text-white">gratuitas</strong>.
+            Use o <strong className="text-white">NEXCORE</strong> para construir{' '}
+            <strong className="text-white">portal do cliente</strong>,{' '}
+            <strong className="text-white">agentes que contactam seus clientes no WhatsApp automaticamente</strong> — sem nenhum humano iniciar a conversa —,{' '}
+            <strong className="text-white">apps personalizados para oferecer grátis ou cobrar</strong>,{' '}
+            gestão de OS e muito mais. Ferramentas <strong className="text-white">gratuitas</strong>.
             Único investimento: <strong className="text-white">~$20/mês</strong> (a IA que opera tudo).
           </p>
 

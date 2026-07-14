@@ -1,0 +1,22 @@
+Pasta de imagens dos cards da Central de Sistemas (/sistemas)
+================================================================
+
+Coloque aqui as imagens reais de cada sistema (screenshot do app,
+mockup, print do dashboard etc). O card troca sozinho, sem precisar
+mexer em código, desde que o arquivo tenha EXATAMENTE este nome:
+
+  rifas-app.jpg               → Rifas App
+  recompensa-kickup.jpg       → Recompensa (Kickup)
+  fincontrol.jpg              → FinControl
+  futsal-sorteio.jpg          → Futsal Sorteio
+  internet-lucrativa.jpg      → Grupo Internet Lucrativa
+  inespi-soccer.jpg           → Inespi Soccer
+
+Formato recomendado: .jpg, proporção 16:10 (ex: 1600x1000px),
+peso menor que 300kb para não pesar o carregamento da página.
+
+Enquanto o arquivo não existir, o card mostra automaticamente o
+ícone do sistema com a etiqueta "Imagem em breve" — nenhuma imagem
+quebrada aparece para o visitante.
+
+Componente responsável: src/pages/SistemasPage.tsx (ProductThumb)

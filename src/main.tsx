@@ -5,6 +5,7 @@ import App from './App.tsx'
 import ProvedorPage from './pages/ProvedorPage.tsx'
 import SVAPage from './pages/SVAPage.tsx'
 import PrivacyPolicyPage from './pages/PrivacyPolicyPage.tsx'
+import SistemasPage from './pages/SistemasPage.tsx'
 
 // Path-based routing sem React Router
 const path = window.location.pathname
@@ -14,6 +15,8 @@ const Root = path.startsWith('/sva')
   ? PrivacyPolicyPage
   : path.startsWith('/provedor')
   ? ProvedorPage
+  : path.startsWith('/sistemas')
+  ? SistemasPage
   : App
 
 createRoot(document.getElementById('root')!).render(

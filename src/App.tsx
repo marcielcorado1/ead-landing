@@ -216,6 +216,7 @@ export default function App() {
             <a href="#como-funciona" className="hover:text-white transition-colors">Como funciona</a>
             <a href="#casos" className="hover:text-white transition-colors">Casos de uso</a>
             <a href="#agentes" className="hover:text-white transition-colors">Agentes</a>
+            <a href="/sistemas" className="hover:text-white transition-colors">Sistemas</a>
             <a href="#faq" className="hover:text-white transition-colors">FAQ</a>
             <a href="/provedor" className="hover:text-teal-400 transition-colors text-teal-400/70">Para Provedores</a>
           </div>
@@ -552,6 +553,30 @@ export default function App() {
         </Section>
       </div>
 
+      {/* ── Central de Sistemas CTA ── */}
+      <Section>
+        <div className="glass rounded-3xl p-8 lg:p-10 border border-emerald-500/20 bg-emerald-500/5 flex flex-col lg:flex-row items-center justify-between gap-8">
+          <div className="flex items-start gap-5">
+            <div className="w-14 h-14 rounded-2xl bg-emerald-500/20 flex items-center justify-center flex-shrink-0">
+              <Layers className="w-7 h-7 text-emerald-400" />
+            </div>
+            <div>
+              <div className="text-xs font-bold text-emerald-400 uppercase tracking-wider mb-1">Central de Sistemas</div>
+              <h3 className="font-black text-white text-xl mb-2">Prefere usar em vez de construir? Assine um sistema pronto.</h3>
+              <p className="text-slate-400 text-sm leading-relaxed max-w-xl">
+                Rifas, gamificação infantil, gestão financeira, sorteio de times, plataforma de afiliados, CRM de captação de atletas — sistemas já construídos e em produção, prontos para assinar hoje.
+              </p>
+            </div>
+          </div>
+          <a
+            href="/sistemas"
+            className="flex-shrink-0 flex items-center gap-2 bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-white font-bold px-7 py-4 rounded-2xl transition-all text-sm whitespace-nowrap"
+          >
+            Ver a Central de Sistemas <ArrowRight className="w-4 h-4" />
+          </a>
+        </div>
+      </Section>
+
       {/* ── ISP CTA ── */}
       <Section>
         <div className="glass rounded-3xl p-8 lg:p-10 border border-teal-500/20 bg-teal-500/5 flex flex-col lg:flex-row items-center justify-between gap-8">
@@ -650,6 +675,7 @@ export default function App() {
             <span className="font-bold text-slate-400">NEX<span className="text-teal-400">CORE</span></span>
           </div>
           <div className="flex items-center gap-6 text-xs text-slate-600">
+            <a href="/sistemas" className="hover:text-slate-400 transition-colors">Central de Sistemas</a>
             <a href="/provedor" className="hover:text-slate-400 transition-colors">Curso para ISPs</a>
             <a href="/sva" className="hover:text-slate-400 transition-colors">SVAs</a>
             <a href="/privacidade" className="hover:text-slate-400 transition-colors">Privacidade</a>

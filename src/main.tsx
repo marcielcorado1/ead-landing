@@ -4,19 +4,25 @@ import './index.css'
 import App from './App.tsx'
 import ProvedorPage from './pages/ProvedorPage.tsx'
 import SVAPage from './pages/SVAPage.tsx'
-import PrivacyPolicyPage from './pages/PrivacyPolicyPage.tsx'
 import SistemasPage from './pages/SistemasPage.tsx'
+import FinControlPage from './pages/FinControlPage.tsx'
+import HomePage from './pages/HomePage.tsx'
+import PrivacidadePage from './pages/PrivacidadePage.tsx'
 
 // Path-based routing sem React Router
 const path = window.location.pathname
 const Root = path.startsWith('/sva')
   ? SVAPage
   : path.startsWith('/privacidade') || path.startsWith('/privacy')
-  ? PrivacyPolicyPage
+  ? PrivacidadePage
   : path.startsWith('/provedor')
   ? ProvedorPage
   : path.startsWith('/sistemas')
   ? SistemasPage
+  : path.startsWith('/fincontrol')
+  ? FinControlPage
+  : path.startsWith('/home')
+  ? HomePage
   : App
 
 createRoot(document.getElementById('root')!).render(

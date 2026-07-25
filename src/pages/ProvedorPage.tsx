@@ -28,7 +28,7 @@ const PAINS = [
 ]
 
 const TOOLS = [
-  { name: 'IA (Inteligência Artificial)', role: 'Motor que opera o KemOS e executa tudo', cost: '~$20/mês', required: true, icon: <Bot className="w-5 h-5" /> },
+  { name: 'IA (Inteligência Artificial)', role: 'Motor que opera o KemOS e executa tudo', cost: 'R$110/mês', required: true, icon: <Bot className="w-5 h-5" /> },
   { name: 'KemOS', role: 'Sistema operacional de agentes de IA', cost: 'Gratuito', required: false, icon: <Zap className="w-5 h-5" /> },
   { name: 'GitHub', role: 'Versionamento do código', cost: 'Gratuito', required: false, icon: <Code2 className="w-5 h-5" /> },
   { name: 'Supabase', role: 'Banco de dados + Auth + API', cost: 'Gratuito', required: false, icon: <Database className="w-5 h-5" /> },
@@ -302,7 +302,7 @@ const PLANS = [
       'Módulo 0 completo (setup)',
       'App funcionando em 7 dias',
       'Acesso à comunidade básica',
-      'Requer assinatura de IA (~$20/mês ≈ R$110)',
+      'Requer assinatura de IA (R$110/mês)',
     ],
   },
   {
@@ -344,7 +344,7 @@ const FAQS = [
   },
   {
     q: 'Qual o custo total para começar?',
-    a: 'A única assinatura paga é a da IA que opera o KemOS — cerca de $20/mês (≈ R$110/mês). GitHub, Supabase e Vercel são gratuitos no tier inicial. O mini-curso é gratuito. Você pode construir e publicar apps reais gastando menos de R$110/mês.',
+    a: 'A única assinatura paga é a da IA que opera o KemOS — R$110/mês. GitHub, Supabase e Vercel são gratuitos no tier inicial. O mini-curso é gratuito. Você pode construir e publicar apps reais gastando R$110/mês.',
   },
   {
     q: 'Para qual tamanho de provedor é indicado?',
@@ -474,7 +474,7 @@ export default function ProvedorPage() {
             <strong className="text-white">agentes que contactam seus clientes no WhatsApp automaticamente</strong> — sem nenhum humano iniciar a conversa —,{' '}
             <strong className="text-white">apps personalizados para oferecer grátis ou cobrar</strong>,{' '}
             gestão de OS e muito mais. Ferramentas <strong className="text-white">gratuitas</strong>.
-            Único investimento: <strong className="text-white">~$20/mês</strong> (a IA que opera tudo).
+            Único investimento: <strong className="text-white">R$110/mês</strong> (a IA que opera tudo).
           </p>
 
           <div className="animate-fade-up flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
@@ -572,7 +572,7 @@ export default function ProvedorPage() {
               <div className="space-y-3">
                 {[
                   'Sem precisar saber programar',
-                  'Ferramentas gratuitas (exceto a IA — ~$20/mês)',
+                  'Ferramentas gratuitas (exceto a IA — R$110/mês)',
                   'Resultados em dias, não meses',
                   'Conteúdo criado por dono de ISP',
                 ].map((item, i) => (
@@ -651,7 +651,7 @@ export default function ProvedorPage() {
         <div className="mt-8 p-6 glass rounded-2xl text-center">
           <p className="text-slate-300">
             💡 <strong className="text-white">Custo total para começar:</strong>{' '}
-            <span className="text-teal-400 font-bold">~$20/mês</span> (assinatura da IA que opera o KemOS).
+            <span className="text-teal-400 font-bold">R$110/mês</span> (assinatura da IA que opera o KemOS).
             GitHub, Supabase e Vercel são <span className="text-emerald-400 font-bold">gratuitos</span> até você escalar.
           </p>
         </div>
@@ -713,7 +713,7 @@ export default function ProvedorPage() {
                   Sou <strong className="text-white">Marciel Corado</strong>, dono da <strong className="text-white">Kem Soluções</strong> — um provedor de acesso à internet que fornece fibra óptica para residências, empresas e governo.
                 </p>
                 <p className="text-slate-400 leading-relaxed mb-4">
-                  Usei o KemOS para resolver os mesmos problemas que você enfrenta. Criei o portal do cliente, automatizei o atendimento no WhatsApp, e construí um sistema de gestão interno — gastando menos de $20/mês com a IA que opera tudo.
+                  Usei o KemOS para resolver os mesmos problemas que você enfrenta. Criei o portal do cliente, automatizei o atendimento no WhatsApp, e construí um sistema de gestão interno — gastando R$110/mês com a IA que opera tudo.
                 </p>
                 <p className="text-slate-400 leading-relaxed">
                   Agora transformei tudo isso em curso para que qualquer dono de ISP consiga fazer o mesmo, independente de saber programar.

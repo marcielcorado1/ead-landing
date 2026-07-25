@@ -252,7 +252,7 @@ const FAQS = [
   },
   {
     q: 'Quanto custa manter o sistema rodando?',
-    a: 'A VPS que usamos tem um free tier permanente — máquina robusta com 4 vCPUs e 24GB RAM, zero reais por mês para sempre. O banco de dados, o painel de deploy e o sistema de monitoramento também são gratuitos. O único custo é a assinatura da IA — cerca de $20/mês (≈ R$110/mês). Total: menos de R$120/mês para ter tudo rodando.',
+    a: 'A VPS que usamos tem um free tier permanente — máquina robusta com 4 vCPUs e 24GB RAM, zero reais por mês para sempre. O banco de dados, o painel de deploy e o sistema de monitoramento também são gratuitos. O único custo é a assinatura da IA — R$110/mês. Total: R$110/mês para ter tudo rodando.',
   },
   {
     q: 'Quanto tempo leva para ter tudo instalado?',

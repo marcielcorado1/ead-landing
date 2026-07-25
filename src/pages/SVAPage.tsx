@@ -35,7 +35,7 @@ const STACK = [
   {
     name: 'Assinatura de IA',
     sub: 'A IA que escreve os apps por você',
-    cost: '~$20/mês',
+    cost: 'R$110/mês',
     badge: 'ÚNICO CUSTO',
     badgeColor: 'bg-orange-500',
     icon: <Sparkles className="w-5 h-5 text-orange-400" />,
@@ -118,7 +118,7 @@ const FAQS = [
   },
   {
     q: 'Qual o custo mensal para manter o sistema rodando?',
-    a: 'VPS (~R$40/mês) + assinatura de IA (~$20/mês ≈ R$110). Supabase, GitHub e Vercel são gratuitos. Total: menos de R$160/mês para criar e manter apps ilimitados.',
+    a: 'VPS (~R$40/mês) + assinatura de IA (R$110/mês). Supabase, GitHub e Vercel são gratuitos. Total: menos de R$160/mês para criar e manter apps ilimitados.',
   },
   {
     q: 'Quanto posso cobrar de SVA para os meus clientes?',
@@ -204,7 +204,7 @@ export default function SVAPage() {
             e começa a cobrar SVA dos seus clientes — sem saber programar, sem contratar desenvolvedor.
           </p>
           <p className="text-sm text-slate-500 max-w-xl mx-auto mb-3">
-            Stack 100% gratuita (Supabase · GitHub · Vercel) + Claude Code Pro (~$20/mês). Só isso.
+            Stack 100% gratuita (banco de dados · versionamento · deploy) + IA (R$110/mês). Só isso.
           </p>
           <p className="text-xs text-violet-400/80 font-semibold max-w-xl mx-auto mb-10 bg-violet-500/10 px-4 py-2 rounded-full">
             📚 Você compra o curso — não um sistema pronto. Você vai criar seus próprios apps.
@@ -227,7 +227,7 @@ export default function SVAPage() {
             {[
               { val: '35+', label: 'Agentes de IA' },
               { val: '190+', label: 'Skills prontas' },
-              { val: '~$20', label: 'Único custo/mês' },
+              { val: 'R$110', label: 'Único custo/mês' },
             ].map((s, i) => (
               <div key={i} className="bg-white/5 rounded-2xl py-4 px-3">
                 <div className="text-2xl font-black text-white">{s.val}</div>
@@ -577,7 +577,7 @@ export default function SVAPage() {
               {[
                 'Quem espera receber apps prontos para usar',
                 'Quem não quer aprender a instalar e operar o NEXCORE',
-                'Quem não quer pagar a assinatura de IA (~$20/mês)',
+                'Quem não quer pagar a assinatura de IA (R$110/mês)',
                 'Empresas fora do setor de provedores de internet',
                 'Quem busca "plug and play" sem nenhum esforço',
               ].map((item, i) => (

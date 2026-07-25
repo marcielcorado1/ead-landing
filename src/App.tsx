@@ -3,141 +3,276 @@ import {
   Bot, Code2, Database, Globe, CheckCircle2,
   ArrowRight, Zap, Shield, TrendingUp, BookOpen,
   Terminal, ChevronDown, Star, Clock, DollarSign,
-  Play, Mail,
-  Wifi, Briefcase, ShoppingCart, HeartPulse, GraduationCap,
-  Building2, Cpu, Layers, Settings, BellRing, TargetIcon,
-  Sparkles
+  Play, Wifi, Briefcase, GraduationCap,
+  Building2, Cpu, Layers, Settings, BellRing,
+  Sparkles, Server, Lock, Package, Users,
+  BarChart3, MessageSquare, HardDrive, Monitor,
+  ChevronRight,
 } from 'lucide-react'
 import { useState } from 'react'
 
 // ── Data ─────────────────────────────────────────────────────────────────────
 
-const PAINS = [
+const PERSONAS = [
   {
-    icon: <Clock className="w-6 h-6 text-red-400" />,
-    title: "Você paga pessoas para fazer o que uma IA pode fazer sozinha",
-    desc: "Cobranças, follow-ups, relatórios, triagem de e-mail, agendamentos, atualizações de planilha. Tarefas repetidas que sugam horas toda semana — e que o KemOS executa sozinho, sem falhar, sem dormir.",
-  },
-  {
-    icon: <DollarSign className="w-6 h-6 text-yellow-400" />,
-    title: "Dev caro, SaaS engessado, planilha que não escala",
-    desc: "Contratar desenvolvedor está fora do orçamento. Os sistemas prontos não fazem exatamente o que você precisa. E você acaba improvisando com planilhas que um dia vão quebrar.",
-  },
-  {
-    icon: <TrendingUp className="w-6 h-6 text-orange-400" />,
-    title: "Você trabalha no negócio em vez de trabalhar no negócio",
-    desc: "No final do dia você operou — respondeu e-mail, fez cobrança, gerou relatório, atualizou dashboard. O que você quer é crescer. O KemOS assume o operacional.",
-  },
-]
-
-const AGENTS = [
-  { emoji: '💰', name: 'Flux', role: 'Finanças', desc: 'Fluxo de caixa, Stripe, ERP, fechamento mensal — tudo automático', color: 'text-emerald-400 bg-emerald-400/10' },
-  { emoji: '📣', name: 'Mako', role: 'Marketing', desc: 'Campanhas, SEO, sequências de e-mail, análise de performance', color: 'text-pink-400 bg-pink-400/10' },
-  { emoji: '📋', name: 'Atlas', role: 'Projetos', desc: 'Status, milestones, blockers — seu PM sempre acordado', color: 'text-blue-400 bg-blue-400/10' },
-  { emoji: '🤝', name: 'Nex', role: 'Vendas', desc: 'Pipeline, qualificação de leads, follow-up, propostas', color: 'text-orange-400 bg-orange-400/10' },
-  { emoji: '💬', name: 'Zara', role: 'Suporte', desc: 'Triagem de tickets, respostas, base de conhecimento, escalonamento', color: 'text-violet-400 bg-violet-400/10' },
-  { emoji: '📊', name: 'Nova', role: 'Produto', desc: 'Specs, métricas, roadmap, pesquisa de usuário sintetizada', color: 'text-sky-400 bg-sky-400/10' },
-  { emoji: '⚖️', name: 'Lex', role: 'Jurídico', desc: 'Revisão de contratos, compliance, LGPD, triagem de NDAs', color: 'text-amber-400 bg-amber-400/10' },
-  { emoji: '🌐', name: 'Pixel', role: 'Social', desc: 'Conteúdo, calendário, relatório de plataformas, estratégia', color: 'text-rose-400 bg-rose-400/10' },
-]
-
-const USE_CASES = [
-  {
-    sector: 'Provedor de Internet',
-    icon: <Wifi className="w-5 h-5 text-teal-400" />,
+    icon: <Briefcase className="w-6 h-6 text-teal-400" />,
+    type: 'Empreendedor',
+    headline: 'Seu negócio no piloto automático',
+    desc: 'Instale o sistema na sua VPS, conecte seus processos e deixe 38 agentes de IA cuidarem do operacional enquanto você foca no crescimento.',
+    bullets: ['Briefing matinal automático', 'Cobrança e follow-up sem você', 'Relatórios prontos todo dia'],
     color: 'border-teal-500/30 bg-teal-500/5',
-    items: ['Cobrança autônoma no WhatsApp', 'Monitor de ONUs offline', 'Portal do cliente com 2ª via'],
-    link: '/provedor',
-    linkLabel: 'Ver curso específico para ISPs →',
+    accent: 'text-teal-400',
   },
   {
-    sector: 'E-commerce / Varejo',
-    icon: <ShoppingCart className="w-5 h-5 text-rose-400" />,
-    color: 'border-rose-500/20 bg-rose-500/5',
-    items: ['Follow-up de carrinho abandonado', 'Relatório de vendas diário por IA', 'Conciliação financeira automática'],
-    link: null, linkLabel: null,
+    icon: <Code2 className="w-6 h-6 text-purple-400" />,
+    type: 'Dev / Freelancer',
+    headline: 'Cobre R$2.500 por setup',
+    desc: 'Aprenda a instalar, configure para um cliente, entregue em 2 dias. Produto pronto, margem alta, suporte mensal recorrente.',
+    bullets: ['Setup em 2 dias úteis', 'R$2.000–3.500 por cliente', 'Suporte mensal: +R$500/mês'],
+    color: 'border-purple-500/30 bg-purple-500/5',
+    accent: 'text-purple-400',
   },
   {
-    sector: 'Clínicas / Saúde',
-    icon: <HeartPulse className="w-5 h-5 text-pink-400" />,
-    color: 'border-pink-500/20 bg-pink-500/5',
-    items: ['Lembrete de consultas no WhatsApp', 'Triagem de sintomas via bot', 'Relatório mensal de atendimentos'],
-    link: null, linkLabel: null,
-  },
-  {
-    sector: 'Educação / EAD',
-    icon: <GraduationCap className="w-5 h-5 text-yellow-400" />,
-    color: 'border-yellow-500/20 bg-yellow-500/5',
-    items: ['Engajamento automático de alunos', 'Relatório de progresso por turma', 'Suporte 24h via IA'],
-    link: null, linkLabel: null,
-  },
-  {
-    sector: 'Agências / Consultoria',
-    icon: <Briefcase className="w-5 h-5 text-sky-400" />,
-    color: 'border-sky-500/20 bg-sky-500/5',
-    items: ['Briefing de cliente automatizado', 'Relatório de resultado por cliente', 'Gestão de projetos e tarefas'],
-    link: null, linkLabel: null,
-  },
-  {
-    sector: 'Imobiliárias / Condomínios',
-    icon: <Building2 className="w-5 h-5 text-orange-400" />,
-    color: 'border-orange-500/20 bg-orange-500/5',
-    items: ['Cobrança de condomínio automática', 'Gestão de chamados de manutenção', 'Follow-up de leads imobiliários'],
-    link: null, linkLabel: null,
+    icon: <Building2 className="w-6 h-6 text-orange-400" />,
+    type: 'Agência de IA',
+    headline: 'Escale com white-label',
+    desc: 'Crie sua própria marca sobre o sistema, venda para clientes com domínio deles, gerencie via painel central. A Kem Soluções fez exatamente isso.',
+    bullets: ['Sua marca, sua precificação', 'Domínio próprio por cliente', 'Painel de gestão centralizado'],
+    color: 'border-orange-500/30 bg-orange-500/5',
+    accent: 'text-orange-400',
   },
 ]
 
-const FEATURES = [
+const AULAS = [
   {
-    icon: <BellRing className="w-5 h-5 text-teal-400" />,
-    title: 'Heartbeats — Agentes que acordam sozinhos',
-    desc: 'Defina quando e por que um agente deve agir. Ele verifica o estado, decide se há trabalho, executa — e só consome tokens quando necessário.',
+    num: 'CC',
+    title: 'Seu ambiente de IA pronto',
+    desc: 'Instale e configure a CLI de IA que comanda toda a infraestrutura. Primeiro comando à VPS ainda nesta aula.',
+    tags: ['Claude Code', 'CLI', 'Autenticação'],
+    icon: <Terminal className="w-5 h-5 text-teal-400" />,
   },
   {
-    icon: <TargetIcon className="w-5 h-5 text-purple-400" />,
-    title: 'Goal Cascade — Metas que se conectam',
-    desc: 'De missão a tarefa: tudo rastreado. Agentes recebem contexto de qual objetivo estão servindo — sem você precisar repetir toda vez.',
+    num: '0',
+    title: 'Workspace e .env único',
+    desc: 'Configure seu ambiente de desenvolvimento central. A cada aula você adiciona uma credencial ao mesmo arquivo — e a IA age com ela.',
+    tags: ['IDE', '.env_local', 'SSH'],
+    icon: <Settings className="w-5 h-5 text-teal-400" />,
   },
   {
-    icon: <Layers className="w-5 h-5 text-blue-400" />,
-    title: '175+ Skills prontas para usar',
-    desc: 'Finanças, marketing, RH, jurídico, social, produto, engenharia. Skills especializadas que você ativa — sem escrever um prompt sequer.',
+    num: '1',
+    title: 'VPS gratuita (Oracle Cloud)',
+    desc: 'A IA cria usuário, configura SSH e abre portas. Você só copia o IP. Infraestrutura de R$0/mês para sempre.',
+    tags: ['Oracle Cloud', 'ARM', 'Free Tier'],
+    icon: <Server className="w-5 h-5 text-blue-400" />,
   },
   {
-    icon: <Settings className="w-5 h-5 text-orange-400" />,
-    title: 'Rotinas automáticas no horário certo',
-    desc: 'Briefing matinal às 7h. Fechamento financeiro no dia 1. Relatório de inadimplência toda sexta. Configure uma vez, roda para sempre.',
+    num: '2',
+    title: 'Domínio + SSL automático',
+    desc: 'Configure os registros DNS dos subdomínios. A IA valida propagação e configura SSL automático via Coolify.',
+    tags: ['DNS', 'SSL', 'Subdomínios'],
+    icon: <Globe className="w-5 h-5 text-emerald-400" />,
+  },
+  {
+    num: '3',
+    title: 'Docker — sem precisar saber Docker',
+    desc: 'A IA instala e configura via SSH. Você valida com um hello-world. Nenhum comando Docker para decorar.',
+    tags: ['Docker', 'SSH', 'Containers'],
+    icon: <Package className="w-5 h-5 text-blue-400" />,
+  },
+  {
+    num: '4',
+    title: 'Painel de deploy visual',
+    desc: 'Instale o Coolify — painel web para gerenciar todos os seus serviços com UI, logs e SSL automático.',
+    tags: ['Coolify', 'Deploy', 'UI'],
+    icon: <Monitor className="w-5 h-5 text-purple-400" />,
+  },
+  {
+    num: '5',
+    title: 'Deploy dos 38 agentes de IA',
+    desc: 'A IA usa a API do Coolify para criar o sistema completo com seus 38 agentes e 193+ skills em 1 clique.',
+    tags: ['38 agentes', '193+ skills', 'API'],
+    icon: <Bot className="w-5 h-5 text-teal-400" />,
+  },
+  {
+    num: '5.1',
+    title: 'Ativação e primeiro chat',
+    desc: 'Injete suas credenciais externas (GitHub, Telegram, Vercel) e abra o chat com o Oracle — seu agente de onboarding.',
+    tags: ['GitHub', 'Telegram', 'Oracle'],
+    icon: <MessageSquare className="w-5 h-5 text-emerald-400" />,
+  },
+  {
+    num: '6',
+    title: 'Banco de dados próprio',
+    desc: 'Deploy do Supabase via Coolify. Auth, banco relacional e storage — tudo no seu servidor, zero custo.',
+    tags: ['Supabase', 'PostgreSQL', 'Auth'],
+    icon: <Database className="w-5 h-5 text-blue-400" />,
+  },
+  {
+    num: '7',
+    title: 'E-mails transacionais',
+    desc: 'Configure SMTP com Resend. Seus agentes enviam e-mails com o seu domínio a partir desta aula.',
+    tags: ['Resend', 'SMTP', 'Domínio'],
+    icon: <Zap className="w-5 h-5 text-yellow-400" />,
+  },
+  {
+    num: '8',
+    title: 'Backup automático diário',
+    desc: 'Script de backup roda às 2h toda madrugada no Oracle Object Storage (gratuito). Você dorme, os dados ficam seguros.',
+    tags: ['Backup', 'Cron', 'Object Storage'],
+    icon: <HardDrive className="w-5 h-5 text-orange-400" />,
+  },
+  {
+    num: '9',
+    title: 'Monitoramento 24/7',
+    desc: 'Instale o Beszel para acompanhar CPU, memória, disco e uptime de todos os serviços em um painel único.',
+    tags: ['Beszel', 'Uptime', 'Alertas'],
+    icon: <BarChart3 className="w-5 h-5 text-teal-400" />,
   },
 ]
 
-const TOOLS = [
-  { name: 'IA (Claude Code)', role: 'Motor que executa tudo', cost: '~$20/mês', required: true, icon: <Bot className="w-5 h-5" /> },
-  { name: 'KemOS', role: 'OS de agentes de IA', cost: 'Gratuito', required: false, icon: <Zap className="w-5 h-5" /> },
-  { name: 'GitHub', role: 'Versionamento', cost: 'Gratuito', required: false, icon: <Code2 className="w-5 h-5" /> },
-  { name: 'Supabase', role: 'Banco de dados + Auth', cost: 'Gratuito', required: false, icon: <Database className="w-5 h-5" /> },
-  { name: 'Vercel', role: 'Deploy em 1 clique', cost: 'Gratuito', required: false, icon: <Globe className="w-5 h-5" /> },
+const REVENUE_PATHS = [
+  {
+    icon: '⚡',
+    path: 'Setup como serviço',
+    value: 'R$2.000–3.500',
+    period: 'por instalação',
+    desc: 'Instale para outros, entregue em 2 dias, inclua suporte mensal de R$500.',
+    color: 'text-teal-400',
+    bg: 'bg-teal-500/10 border-teal-500/20',
+  },
+  {
+    icon: '🛒',
+    path: 'Apps no marketplace',
+    value: 'R$15–60k',
+    period: 'por mês',
+    desc: 'Venda licenças dos apps que você constrói — rifas, gamificação, financeiro, nicho específico.',
+    color: 'text-orange-400',
+    bg: 'bg-orange-500/10 border-orange-500/20',
+  },
+  {
+    icon: '🔄',
+    path: 'SaaS com MRR',
+    value: 'R$50–200k',
+    period: 'MRR',
+    desc: 'Ofereça o sistema como SaaS recorrente. Starter / Pro / Enterprise com suporte e updates.',
+    color: 'text-purple-400',
+    bg: 'bg-purple-500/10 border-purple-500/20',
+  },
+  {
+    icon: '🏢',
+    path: 'Agência de IA',
+    value: 'R$50–300k',
+    period: 'por mês',
+    desc: 'Implemente sob medida para empresas. Ticket alto, projetos custom, retainer mensal.',
+    color: 'text-blue-400',
+    bg: 'bg-blue-500/10 border-blue-500/20',
+  },
+  {
+    icon: '👥',
+    path: 'Comunidade premium',
+    value: 'R$10–50k',
+    period: 'MRR',
+    desc: 'Membros pagam por acesso a canais exclusivos, mentorias e early access de novos agentes.',
+    color: 'text-pink-400',
+    bg: 'bg-pink-500/10 border-pink-500/20',
+  },
+  {
+    icon: '🤝',
+    path: 'Programa de afiliados',
+    value: '+30–50%',
+    period: 'nas vendas',
+    desc: 'Alunos e parceiros indicam e recebem 30% nos cursos, 20% no SaaS recorrente.',
+    color: 'text-amber-400',
+    bg: 'bg-amber-500/10 border-amber-500/20',
+  },
+  {
+    icon: '🤖',
+    path: 'Marketplace de agentes',
+    value: 'R$20–100k',
+    period: 'por mês',
+    desc: 'Venda agentes e skills personalizados para nichos. Plataforma aberta, você fica com 70%.',
+    color: 'text-emerald-400',
+    bg: 'bg-emerald-500/10 border-emerald-500/20',
+  },
+]
+
+const PROOF_APPS = [
+  {
+    name: 'FinControl / KemOS',
+    desc: 'SaaS financeiro multi-tenant com módulos, Academy e white-label. Em produção com clientes reais.',
+    tech: 'Next.js · Supabase · TanStack',
+    badge: 'Em produção',
+    badgeColor: 'text-emerald-400 bg-emerald-400/10 border-emerald-400/30',
+    icon: <DollarSign className="w-5 h-5 text-emerald-400" />,
+  },
+  {
+    name: 'Rifas App',
+    desc: 'Plataforma de rifas online com Pix via Asaas, sorteio automático e gestão de campanhas.',
+    tech: 'Next.js · Supabase · Asaas',
+    badge: 'Em produção',
+    badgeColor: 'text-emerald-400 bg-emerald-400/10 border-emerald-400/30',
+    icon: <Star className="w-5 h-5 text-yellow-400" />,
+  },
+  {
+    name: 'Kickup',
+    desc: 'App de gamificação infantil para futebol — XP, missões, modo pai vs filho, treinos táticos.',
+    tech: 'Next.js · Supabase',
+    badge: 'MVP 2 em andamento',
+    badgeColor: 'text-blue-400 bg-blue-400/10 border-blue-400/30',
+    icon: <TrendingUp className="w-5 h-5 text-blue-400" />,
+  },
+  {
+    name: 'Futsal Sorteio',
+    desc: 'Sistema de sorteio de times com tiebreaker, votação e winner-stays. Construído em dias.',
+    tech: 'Next.js · Supabase',
+    badge: 'Em produção',
+    badgeColor: 'text-emerald-400 bg-emerald-400/10 border-emerald-400/30',
+    icon: <Users className="w-5 h-5 text-orange-400" />,
+  },
+]
+
+const INCLUDES = [
+  '12 aulas de infraestrutura (Pré-Fase completa)',
+  '38 agentes especializados instalados na sua VPS',
+  '193+ skills prontas para ativar',
+  'Heartbeats — agentes que acordam e agem sozinhos',
+  'VPS Oracle Cloud gratuita para sempre',
+  'Banco de dados e auth (Supabase) próprios',
+  'Backup automático diário configurado',
+  'Monitoramento 24/7 com alertas',
+  'Acesso ao roadmap completo de monetização (7 frentes)',
+  'Atualizações do conteúdo conforme o sistema evolui',
+  'Comunidade de alunos no Discord',
 ]
 
 const FAQS = [
   {
-    q: 'Preciso saber programar para usar o KemOS?',
-    a: 'Não. A IA escreve e executa o código. Você descreve o que quer, ela faz. Pessoas sem nenhuma experiência técnica criaram e publicaram apps reais em menos de uma semana.',
+    q: 'Preciso saber programar ou ter experiência com servidor?',
+    a: 'Não. Cada aula tem um padrão: você faz as etapas manuais (criar conta, copiar chave, clicar em um botão) e a IA de desenvolvimento executa o resto via SSH. Não tem nenhum comando para memorizar — a IA escreve e roda tudo.',
   },
   {
-    q: 'Qual o custo real para começar?',
-    a: 'A única assinatura paga é a IA que opera o KemOS — cerca de $20/mês (≈ R$110/mês). GitHub, Supabase e Vercel são gratuitos no tier inicial. O KemOS em si é gratuito. Você publica apps reais gastando menos de R$110/mês.',
+    q: 'Quanto custa manter o sistema rodando?',
+    a: 'A VPS Oracle Cloud é gratuita para sempre no Free Tier (máquina ARM com 4 OCPUs e 24GB RAM). O banco de dados Supabase e o Coolify também são gratuitos. O único custo é a assinatura da IA de desenvolvimento — cerca de $20/mês (≈ R$110/mês). Total: menos de R$120/mês para ter tudo rodando.',
   },
   {
-    q: 'Para qualquer tipo de negócio?',
-    a: 'Sim. Provedores de internet, e-commerces, clínicas, imobiliárias, agências, construtoras. Se há tarefa repetitiva, relatório manual ou processo sem automação — o KemOS resolve.',
+    q: 'Quanto tempo leva para ter tudo instalado?',
+    a: 'O Pré-Fase tem 12 aulas. Com dedicação de 2-3 horas por dia, você tem a infraestrutura completa em 4-5 dias. A maioria das aulas tem mais tempo de "esperar a IA fazer" do que de ação manual da sua parte.',
   },
   {
-    q: 'Em quanto tempo vejo resultado?',
-    a: 'A primeira automação roda no mesmo dia do setup. Apps publicados em dias. Automações complexas em 1-2 semanas. Resultado concreto, não promessa.',
+    q: 'Posso instalar para clientes e cobrar por isso?',
+    a: 'Sim. Este é um dos principais casos de uso do treinamento. Você instala na VPS do cliente, configura os agentes para o negócio dele e cobra o setup (R$2.000–3.500) mais suporte mensal (R$300–500). O roadmap completo de monetização está incluso no treinamento.',
   },
   {
-    q: 'E se o KemOS mudar?',
-    a: 'O KemOS é mantido por quem o usa no dia a dia. Quando evolui, o conteúdo evolui junto. Alunos têm acesso a todas as atualizações.',
+    q: 'Qual é o sistema que vou instalar? Posso ver antes?',
+    a: 'O sistema que você instala é o KemOS — desenvolvido e mantido pela Kem Soluções. Tem 38 agentes especializados (financeiro, marketing, vendas, suporte, jurídico, produto e mais), 193+ skills prontas e um sistema de heartbeats que faz os agentes agirem proativamente. A Kem Soluções usa em produção no próprio provedor de internet há mais de 1 ano.',
+  },
+  {
+    q: 'E se eu travar em alguma aula?',
+    a: 'Cada aula tem suporte via comunidade no Discord e sessões de dúvidas ao vivo. Se o problema for técnico na VPS, há um protocolo de diagnóstico que a IA de desenvolvimento roda para identificar o erro — você não vai ficar preso.',
+  },
+  {
+    q: 'O conteúdo vai ficar desatualizado?',
+    a: 'Não. O KemOS está em evolução contínua — quando evolui, o conteúdo de aula evolui junto. Todos os alunos têm acesso às atualizações sem custo adicional.',
   },
 ]
 
@@ -191,15 +326,9 @@ function FAQItem({ q, a }: { q: string; a: string }) {
 
 // ── Main App ──────────────────────────────────────────────────────────────────
 
+const WA_LINK = 'https://wa.me/5518997681155?text=Ol%C3%A1%2C+quero+saber+mais+sobre+o+treinamento+KemOS'
+
 export default function App() {
-  const [email, setEmail] = useState('')
-  const [submitted, setSubmitted] = useState(false)
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    if (email) setSubmitted(true)
-  }
-
   return (
     <div className="min-h-screen bg-slate-950 font-sans overflow-x-hidden">
 
@@ -213,18 +342,20 @@ export default function App() {
             <span className="font-bold text-white">Kem<span className="text-teal-400">OS</span></span>
           </div>
           <div className="hidden md:flex items-center gap-6 text-sm text-slate-400">
-            <a href="#como-funciona" className="hover:text-white transition-colors">Como funciona</a>
-            <a href="#casos" className="hover:text-white transition-colors">Casos de uso</a>
-            <a href="#agentes" className="hover:text-white transition-colors">Agentes</a>
+            <a href="#treinamento" className="hover:text-white transition-colors">Treinamento</a>
+            <a href="#aulas" className="hover:text-white transition-colors">Aulas</a>
+            <a href="#monetizar" className="hover:text-white transition-colors">Monetizar</a>
             <a href="/sistemas" className="hover:text-white transition-colors">Sistemas</a>
             <a href="#faq" className="hover:text-white transition-colors">FAQ</a>
             <a href="/provedor" className="hover:text-teal-400 transition-colors text-teal-400/70">Para Provedores</a>
           </div>
           <a
-            href="#lista-espera"
+            href={WA_LINK}
+            target="_blank"
+            rel="noopener noreferrer"
             className="text-sm font-semibold bg-gradient-to-r from-teal-500 to-emerald-500 text-white px-4 py-2 rounded-xl hover:from-teal-400 hover:to-emerald-400 transition-all"
           >
-            Começar Grátis →
+            Quero o Treinamento →
           </a>
         </div>
       </nav>
@@ -232,56 +363,61 @@ export default function App() {
       {/* ── Hero ── */}
       <div className="relative overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[600px] bg-teal-500/8 rounded-full blur-3xl" />
-          <div className="absolute top-40 right-1/4 w-[300px] h-[300px] bg-purple-500/5 rounded-full blur-3xl" />
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[700px] bg-teal-500/6 rounded-full blur-3xl" />
+          <div className="absolute top-60 right-1/4 w-[400px] h-[400px] bg-purple-500/5 rounded-full blur-3xl" />
         </div>
 
         <Section className="text-center pt-24 pb-16 relative">
           <div className="mb-6">
             <Badge className="text-teal-400 bg-teal-400/10 border-teal-400/30">
               <Sparkles className="w-3 h-3" />
-              38 agentes · 175+ skills · qualquer negócio
+              Treinamento completo · VPS gratuita · 12 aulas
             </Badge>
           </div>
 
           <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black text-white leading-[1.05] tracking-tight mb-6">
-            Seu negócio no<br />
-            piloto automático.<br />
-            <span className="text-gradient">Com IA. De verdade.</span>
+            Instale 38 agentes de IA<br />
+            na sua VPS <span className="text-gradient">em 12 aulas.</span><br />
+            <span className="text-slate-400 text-3xl sm:text-4xl lg:text-5xl font-bold">
+              Automate. Construa. Venda.
+            </span>
           </h1>
 
           <p className="text-lg sm:text-xl text-slate-400 max-w-2xl mx-auto mb-10 leading-relaxed">
-            O <strong className="text-white">KemOS</strong> é um sistema operacional de agentes de IA que automatiza o que você faz manualmente todo dia —
-            cobrança, marketing, suporte, relatórios, vendas, operações.{' '}
-            <strong className="text-white">Sem programador. Com ~$20/mês.</strong>
+            O treinamento KemOS ensina você a instalar um sistema operacional de IA com{' '}
+            <strong className="text-white">38 agentes especializados e 193+ skills</strong>{' '}
+            na sua própria infraestrutura — gratuita no Oracle Cloud —{' '}
+            e a monetizar isso de 7 formas diferentes.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-14">
             <a
-              href="#lista-espera"
+              href={WA_LINK}
+              target="_blank"
+              rel="noopener noreferrer"
               className="group w-full sm:w-auto flex items-center justify-center gap-2 bg-gradient-to-r from-teal-500 to-emerald-500 hover:from-teal-400 hover:to-emerald-400 text-white font-bold px-8 py-4 rounded-2xl text-lg transition-all shadow-lg shadow-teal-500/20"
             >
-              Quero automatizar meu negócio
+              Quero o Treinamento
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </a>
             <a
-              href="#como-funciona"
+              href="#aulas"
               className="w-full sm:w-auto flex items-center justify-center gap-2 border border-white/20 text-slate-300 hover:text-white hover:border-white/40 px-8 py-4 rounded-2xl text-lg transition-all"
             >
-              <Play className="w-4 h-4" /> Ver como funciona
+              <Play className="w-4 h-4" /> Ver as aulas
             </a>
           </div>
 
-          {/* Stats bar */}
+          {/* Stats */}
           <div className="flex flex-wrap items-center justify-center gap-8 text-sm">
             {[
-              { val: '38', label: 'Agentes especializados', color: 'text-teal-400' },
-              { val: '175+', label: 'Skills prontas', color: 'text-purple-400' },
-              { val: '~$20', label: 'Por mês, tudo incluso', color: 'text-emerald-400' },
-              { val: '24/7', label: 'Operando enquanto você dorme', color: 'text-orange-400' },
+              { val: '38', label: 'Agentes instalados', color: 'text-teal-400' },
+              { val: '193+', label: 'Skills prontas', color: 'text-purple-400' },
+              { val: 'R$0', label: 'VPS pelo Oracle Cloud', color: 'text-emerald-400' },
+              { val: '12', label: 'Aulas do Pré-Fase', color: 'text-orange-400' },
             ].map((s, i) => (
               <div key={i} className="text-center">
-                <div className={`text-2xl font-black ${s.color}`}>{s.val}</div>
+                <div className={`text-3xl font-black ${s.color}`}>{s.val}</div>
                 <div className="text-slate-500 text-xs mt-0.5">{s.label}</div>
               </div>
             ))}
@@ -295,285 +431,360 @@ export default function App() {
               <div className="w-3 h-3 rounded-full bg-red-500/80" />
               <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
               <div className="w-3 h-3 rounded-full bg-green-500/80" />
-              <span className="ml-2 text-xs text-slate-500 font-mono">nexcore — terminal</span>
+              <span className="ml-2 text-xs text-slate-500 font-mono">kemos — terminal</span>
             </div>
             <div className="p-6 font-mono text-sm space-y-2">
               <div className="text-slate-500">$ <span className="text-white">claude "crie uma régua de cobrança que envia WhatsApp automático para clientes inadimplentes"</span></div>
-              <div className="text-teal-400">● Lendo lista de inadimplentes do ERP...</div>
-              <div className="text-teal-400">● Segmentando por dias de atraso (1-7, 8-15, 16-30, 30+)...</div>
+              <div className="text-teal-400">● Flux: lendo inadimplentes no ERP...</div>
+              <div className="text-teal-400">● Segmentando: 1-7 dias / 8-15 / 16-30 / 30+</div>
               <div className="text-teal-400">● Configurando mensagens personalizadas por grupo...</div>
-              <div className="text-teal-400">● Integrando WhatsApp (Evolution API)...</div>
-              <div className="text-emerald-400">✓ Rotina criada: roda todo dia às 08h00</div>
-              <div className="text-emerald-400">✓ Hoje: 47 inadimplentes notificados. 12 já pagaram.</div>
-              <div className="text-emerald-400">✓ Estimativa de recuperação: R$ 8.400,00</div>
+              <div className="text-teal-400">● Integrando canal de WhatsApp...</div>
+              <div className="text-emerald-400">✓ Rotina ativa: roda todo dia às 08h00</div>
+              <div className="text-emerald-400">✓ Hoje: 47 notificados. 12 já pagaram (R$8.400)</div>
               <div className="text-slate-500 mt-2">$ <span className="text-white animate-pulse">_</span></div>
             </div>
           </div>
         </div>
       </div>
 
-      {/* ── Dores ── */}
+      {/* ── Para quem é ── */}
+      <div id="treinamento" className="bg-gradient-to-b from-transparent via-slate-900/30 to-transparent">
+        <Section>
+          <SectionLabel>Para quem é</SectionLabel>
+          <h2 className="text-3xl sm:text-4xl font-black text-white text-center mb-4">
+            Três perfis, um sistema
+          </h2>
+          <p className="text-slate-400 text-center max-w-2xl mx-auto mb-12">
+            Seja para automatizar seu próprio negócio, vender setup para clientes ou escalar como agência de IA —
+            o mesmo treinamento abre os três caminhos.
+          </p>
+          <div className="grid md:grid-cols-3 gap-6">
+            {PERSONAS.map((p, i) => (
+              <div key={i} className={`glass rounded-2xl p-7 border transition-colors hover:bg-white/10 ${p.color}`}>
+                <div className="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center mb-4">
+                  {p.icon}
+                </div>
+                <div className={`text-xs font-bold uppercase tracking-widest mb-2 ${p.accent}`}>{p.type}</div>
+                <h3 className="font-black text-white text-lg mb-3">{p.headline}</h3>
+                <p className="text-slate-400 text-sm leading-relaxed mb-4">{p.desc}</p>
+                <ul className="space-y-2">
+                  {p.bullets.map((b, j) => (
+                    <li key={j} className="flex items-center gap-2 text-sm text-slate-300">
+                      <CheckCircle2 className={`w-3.5 h-3.5 flex-shrink-0 ${p.accent}`} />
+                      {b}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </Section>
+      </div>
+
+      {/* ── O sistema que você instala ── */}
       <Section>
-        <SectionLabel>O Problema</SectionLabel>
+        <SectionLabel>O Sistema</SectionLabel>
         <h2 className="text-3xl sm:text-4xl font-black text-white text-center mb-4">
-          Você toca o negócio — ou o negócio te consome?
+          O que roda na sua VPS depois do treinamento
         </h2>
         <p className="text-slate-400 text-center max-w-2xl mx-auto mb-12">
-          A maioria dos donos de negócio está presa no operacional. Não é preguiça. É falta da ferramenta certa.
+          O KemOS não é um app. É uma infraestrutura completa de agentes de IA —
+          cada um com domínio específico, memória e contexto do negócio.
         </p>
-        <div className="grid md:grid-cols-3 gap-6">
-          {PAINS.map((pain, i) => (
-            <div key={i} className="glass rounded-2xl p-6 hover:bg-white/10 transition-colors">
-              <div className="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center mb-4">
-                {pain.icon}
+
+        <div className="grid md:grid-cols-2 gap-6 mb-10">
+          {[
+            {
+              icon: <Bot className="w-5 h-5 text-teal-400" />,
+              title: '38 agentes especializados',
+              desc: '17 de negócio (financeiro, marketing, vendas, suporte, jurídico, produto, RH, dados, CS) + 21 de engenharia (arquiteto, executor, revisor, testador, debugger e mais).',
+            },
+            {
+              icon: <Layers className="w-5 h-5 text-purple-400" />,
+              title: '193+ skills prontas para ativar',
+              desc: 'De relatório financeiro a SEO, de compliance jurídico a análise de dados — você ativa a skill, a IA executa. Sem escrever um prompt.',
+            },
+            {
+              icon: <BellRing className="w-5 h-5 text-orange-400" />,
+              title: 'Heartbeats — agentes proativos',
+              desc: 'Configure quando e por que um agente acorda. Ele verifica o estado do negócio, decide se há trabalho e executa — consumindo tokens só quando necessário.',
+            },
+            {
+              icon: <Settings className="w-5 h-5 text-blue-400" />,
+              title: 'Rotinas no horário certo',
+              desc: 'Briefing às 7h. Cobrança às 8h. Relatório às 18h. Fechamento no dia 1. Configure uma vez — roda para sempre, sem você lembrar.',
+            },
+          ].map((f, i) => (
+            <div key={i} className="glass rounded-2xl p-6 hover:bg-white/10 transition-colors flex gap-5">
+              <div className="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center flex-shrink-0">
+                {f.icon}
               </div>
-              <h3 className="font-bold text-white text-lg mb-2">{pain.title}</h3>
-              <p className="text-slate-400 text-sm leading-relaxed">{pain.desc}</p>
+              <div>
+                <h3 className="font-bold text-white mb-2">{f.title}</h3>
+                <p className="text-slate-400 text-sm leading-relaxed">{f.desc}</p>
+              </div>
             </div>
           ))}
         </div>
+
+        {/* Dia a dia automatizado */}
+        <div className="glass rounded-3xl p-8 border border-teal-500/20 bg-teal-500/5">
+          <div className="flex items-center gap-3 mb-6">
+            <div className="w-10 h-10 rounded-xl bg-teal-500/20 flex items-center justify-center">
+              <Clock className="w-5 h-5 text-teal-400" />
+            </div>
+            <div>
+              <div className="text-xs font-bold text-teal-400 uppercase tracking-wider">Exemplo de rotina diária</div>
+              <h3 className="font-bold text-white text-lg">O que acontece enquanto você dorme</h3>
+            </div>
+          </div>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+            {[
+              { time: '07:00', icon: '☀️', event: 'Briefing matinal automático', sub: 'Agenda, finanças e prioridades do dia' },
+              { time: '07:15', icon: '📬', event: 'Triagem de e-mails', sub: 'Só o que importa chega até você' },
+              { time: '08:00', icon: '💰', event: 'Régua de cobrança ativa', sub: 'Inadimplentes no WhatsApp' },
+              { time: '18:00', icon: '📊', event: 'Relatório de performance', sub: 'Vendas, leads, chamados do dia' },
+              { time: '20:00', icon: '🌐', event: 'Análise de redes sociais', sub: 'Engajamento e oportunidades' },
+              { time: '02:00', icon: '💾', event: 'Backup automático', sub: 'Todos os dados seguros no storage' },
+            ].map((item, i) => (
+              <div key={i} className="bg-white/5 rounded-xl p-4 border border-white/5">
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="text-xs font-mono text-teal-400 font-bold">{item.time}</span>
+                  <span className="text-base">{item.icon}</span>
+                </div>
+                <div className="text-sm font-semibold text-white mb-0.5">{item.event}</div>
+                <div className="text-xs text-slate-500">{item.sub}</div>
+              </div>
+            ))}
+          </div>
+          <p className="text-slate-500 text-sm mt-4 text-center italic">
+            Nenhuma dessas rotinas exige ação sua depois de configurada.
+          </p>
+        </div>
       </Section>
 
-      {/* ── Como funciona ── */}
-      <div id="como-funciona" className="bg-gradient-to-b from-teal-950/20 to-transparent">
+      {/* ── Currículo ── */}
+      <div id="aulas" className="bg-gradient-to-b from-slate-900/40 to-transparent">
         <Section>
-          <SectionLabel>Como Funciona</SectionLabel>
+          <SectionLabel>Currículo</SectionLabel>
           <h2 className="text-3xl sm:text-4xl font-black text-white text-center mb-4">
-            Um OS de IA que gerencia seu negócio
+            12 aulas — da máquina zerada ao sistema rodando
           </h2>
-          <p className="text-slate-400 text-center max-w-2xl mx-auto mb-16">
-            O KemOS não é um chatbot. É um sistema operacional de agentes especializados que trabalham com contexto real do seu negócio.
+          <p className="text-slate-400 text-center max-w-2xl mx-auto mb-12">
+            Cada aula segue o mesmo padrão: <strong className="text-white">você faz o mínimo manual</strong>{' '}
+            (criar conta, copiar credencial) e a IA executa o resto via terminal.
+            Sem comandos para decorar.
           </p>
 
-          <div className="grid md:grid-cols-2 gap-6 mb-12">
-            {FEATURES.map((f, i) => (
-              <div key={i} className="glass rounded-2xl p-6 hover:bg-white/10 transition-colors flex gap-5">
-                <div className="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center flex-shrink-0">
-                  {f.icon}
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {AULAS.map((aula, i) => (
+              <div key={i} className="glass rounded-2xl p-5 hover:bg-white/10 transition-colors">
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="w-9 h-9 rounded-xl bg-teal-500/10 border border-teal-500/20 flex items-center justify-center flex-shrink-0">
+                    {aula.icon}
+                  </div>
+                  <span className="text-xs font-bold text-teal-400 bg-teal-400/10 border border-teal-400/20 rounded-full px-2 py-0.5">
+                    Aula {aula.num}
+                  </span>
                 </div>
-                <div>
-                  <h3 className="font-bold text-white mb-2">{f.title}</h3>
-                  <p className="text-slate-400 text-sm leading-relaxed">{f.desc}</p>
+                <h3 className="font-bold text-white text-sm mb-2">{aula.title}</h3>
+                <p className="text-xs text-slate-400 leading-relaxed mb-3">{aula.desc}</p>
+                <div className="flex flex-wrap gap-1.5">
+                  {aula.tags.map((tag, j) => (
+                    <span key={j} className="text-[10px] font-semibold text-slate-500 bg-white/5 border border-white/10 rounded-full px-2 py-0.5">
+                      {tag}
+                    </span>
+                  ))}
                 </div>
               </div>
             ))}
           </div>
 
-          {/* Exemplo de automação */}
-          <div className="glass rounded-3xl p-8 border border-teal-500/20 bg-teal-500/5">
-            <div className="flex flex-wrap items-center gap-3 mb-6">
-              <div className="w-10 h-10 rounded-xl bg-teal-500/20 flex items-center justify-center">
-                <BellRing className="w-5 h-5 text-teal-400" />
+          <div className="mt-10 p-6 glass rounded-2xl flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div className="flex items-center gap-4">
+              <div className="w-12 h-12 rounded-xl bg-teal-500/20 flex items-center justify-center flex-shrink-0">
+                <GraduationCap className="w-6 h-6 text-teal-400" />
               </div>
               <div>
-                <div className="text-xs font-bold text-teal-400 uppercase tracking-wider">Exemplo real</div>
-                <h3 className="font-bold text-white text-lg">O dia a dia no piloto automático</h3>
+                <div className="font-bold text-white">Ao final do Pré-Fase</div>
+                <div className="text-sm text-slate-400">38 agentes rodando · VPS segura · backup ativo · monitoramento 24/7</div>
               </div>
             </div>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
-              {[
-                { time: '07:00', icon: '☀️', event: 'Briefing matinal gerado pela IA', sub: 'Agenda, tarefas, finanças do dia' },
-                { time: '07:15', icon: '📬', event: 'Triagem de e-mails priorizada', sub: 'Só o que importa chega até você' },
-                { time: '08:00', icon: '💰', event: 'Régua de cobrança rodando', sub: 'Inadimplentes notificados no WhatsApp' },
-                { time: '18:00', icon: '📊', event: 'Relatório de performance do dia', sub: 'Vendas, leads, chamados resolvidos' },
-                { time: '20:00', icon: '🌐', event: 'Análise de redes sociais', sub: 'Engajamento, alcance, oportunidades' },
-                { time: '21:00', icon: '📝', event: 'Fechamento e próximos passos', sub: 'O que ficou aberto, prioridades amanhã' },
-              ].map((item, i) => (
-                <div key={i} className="bg-white/5 rounded-xl p-4 border border-white/5">
-                  <div className="flex items-center gap-2 mb-2">
-                    <span className="text-xs font-mono text-teal-400 font-bold">{item.time}</span>
-                    <span className="text-base">{item.icon}</span>
-                  </div>
-                  <div className="text-sm font-semibold text-white mb-0.5">{item.event}</div>
-                  <div className="text-xs text-slate-500">{item.sub}</div>
-                </div>
-              ))}
+            <a
+              href={WA_LINK}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex-shrink-0 flex items-center gap-2 bg-gradient-to-r from-teal-500 to-emerald-500 text-white font-bold px-6 py-3 rounded-xl transition-all text-sm hover:from-teal-400 hover:to-emerald-400"
+            >
+              Quero esse resultado <ChevronRight className="w-4 h-4" />
+            </a>
+          </div>
+        </Section>
+      </div>
+
+      {/* ── Monetização ── */}
+      <Section id="monetizar">
+        <SectionLabel>Monetização</SectionLabel>
+        <h2 className="text-3xl sm:text-4xl font-black text-white text-center mb-4">
+          7 formas de gerar receita com o que você instalar
+        </h2>
+        <p className="text-slate-400 text-center max-w-2xl mx-auto mb-12">
+          O treinamento entrega o sistema. O roadmap incluso ensina a transformar isso em negócio —
+          do primeiro setup vendido até o marketplace de agentes.
+        </p>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mb-6">
+          {REVENUE_PATHS.slice(0, 4).map((r, i) => (
+            <div key={i} className={`glass rounded-2xl p-5 border hover:bg-white/10 transition-colors ${r.bg}`}>
+              <div className="text-2xl mb-3">{r.icon}</div>
+              <div className={`text-xs font-bold uppercase tracking-wider mb-2 ${r.color}`}>{r.path}</div>
+              <div className={`text-2xl font-black mb-0.5 ${r.color}`}>{r.value}</div>
+              <div className="text-xs text-slate-500 mb-3">{r.period}</div>
+              <p className="text-xs text-slate-400 leading-relaxed">{r.desc}</p>
             </div>
-            <p className="text-slate-500 text-sm mt-4 text-center italic">
-              Tudo isso sem você fazer nada. Configure uma vez — roda todos os dias.
+          ))}
+        </div>
+        <div className="grid sm:grid-cols-3 gap-4">
+          {REVENUE_PATHS.slice(4).map((r, i) => (
+            <div key={i} className={`glass rounded-2xl p-5 border hover:bg-white/10 transition-colors ${r.bg}`}>
+              <div className="text-2xl mb-3">{r.icon}</div>
+              <div className={`text-xs font-bold uppercase tracking-wider mb-2 ${r.color}`}>{r.path}</div>
+              <div className={`text-2xl font-black mb-0.5 ${r.color}`}>{r.value}</div>
+              <div className="text-xs text-slate-500 mb-3">{r.period}</div>
+              <p className="text-xs text-slate-400 leading-relaxed">{r.desc}</p>
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-8 glass rounded-2xl p-6 border border-teal-500/20 bg-teal-500/5 text-center">
+          <div className="text-slate-400 text-sm mb-1">Potencial combinado do ecossistema completo</div>
+          <div className="text-3xl font-black text-teal-400">R$175k – R$860k/mês</div>
+          <div className="text-slate-500 text-xs mt-1">Baseado no roadmap completo de 7 fases · não é promessa de resultado individual</div>
+        </div>
+      </Section>
+
+      {/* ── Prova — Apps construídos ── */}
+      <div className="bg-gradient-to-b from-transparent via-slate-900/30 to-transparent">
+        <Section>
+          <SectionLabel>Prova Real</SectionLabel>
+          <h2 className="text-3xl sm:text-4xl font-black text-white text-center mb-4">
+            Apps construídos com o mesmo sistema
+          </h2>
+          <p className="text-slate-400 text-center max-w-2xl mx-auto mb-12">
+            Não é teoria. Todos esses sistemas foram construídos usando o KemOS — do código à publicação.
+          </p>
+          <div className="grid sm:grid-cols-2 gap-5">
+            {PROOF_APPS.map((app, i) => (
+              <div key={i} className="glass rounded-2xl p-6 hover:bg-white/10 transition-colors">
+                <div className="flex items-start justify-between gap-4 mb-3">
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center">
+                      {app.icon}
+                    </div>
+                    <h3 className="font-bold text-white">{app.name}</h3>
+                  </div>
+                  <Badge className={`flex-shrink-0 text-[10px] ${app.badgeColor}`}>
+                    {app.badge}
+                  </Badge>
+                </div>
+                <p className="text-sm text-slate-400 leading-relaxed mb-3">{app.desc}</p>
+                <div className="text-xs text-slate-600 font-mono">{app.tech}</div>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-6 p-5 glass rounded-2xl text-center">
+            <p className="text-slate-400 text-sm">
+              Quer usar esses sistemas sem construir do zero?{' '}
+              <a href="/sistemas" className="text-teal-400 hover:text-teal-300 font-semibold transition-colors">
+                Acesse a Central de Sistemas →
+              </a>
             </p>
           </div>
         </Section>
       </div>
 
-      {/* ── Agentes ── */}
-      <Section id="agentes">
-        <SectionLabel>Os Agentes</SectionLabel>
-        <h2 className="text-3xl sm:text-4xl font-black text-white text-center mb-4">
-          38 especialistas de IA trabalhando para você
-        </h2>
-        <p className="text-slate-400 text-center max-w-2xl mx-auto mb-12">
-          Cada agente tem um domínio específico, memória própria e contexto do seu negócio. Não é um chatbot genérico — é uma equipe virtual treinada.
-        </p>
-
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-          {AGENTS.map((agent, i) => (
-            <div key={i} className="glass rounded-2xl p-5 hover:bg-white/10 transition-colors">
-              <div className={`w-10 h-10 rounded-xl ${agent.color} flex items-center justify-center text-lg mb-3`}>
-                {agent.emoji}
-              </div>
-              <div className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-0.5">{agent.role}</div>
-              <div className="font-bold text-white text-base mb-2">{agent.name}</div>
-              <p className="text-xs text-slate-400 leading-relaxed">{agent.desc}</p>
+      {/* ── Quem ensina ── */}
+      <Section>
+        <div className="glass rounded-3xl p-8 lg:p-12">
+          <div className="grid lg:grid-cols-2 gap-10 items-center">
+            <div>
+              <Badge className="text-teal-400 bg-teal-400/10 border-teal-400/30 mb-5">
+                <Shield className="w-3 h-3" /> Quem está por trás
+              </Badge>
+              <h2 className="text-3xl font-black text-white mb-4 leading-tight">
+                Aprenda com quem usa o sistema no próprio negócio — não com quem teorizou sobre IA
+              </h2>
+              <p className="text-slate-400 leading-relaxed mb-4">
+                Sou <strong className="text-white">Marciel Corado</strong>, dono da{' '}
+                <strong className="text-white">Kem Soluções</strong> — provedor de fibra óptica há mais de 17 anos.
+                Usei o KemOS para resolver problemas reais: cobrança automática, portal do cliente,
+                atendimento no WhatsApp, gestão interna.
+              </p>
+              <p className="text-slate-400 leading-relaxed mb-4">
+                Cada aula que existe no treinamento eu precisei, construí e testei no meu negócio antes de ensinar.
+                Não tem teoria aqui — tem processo documentado que funciona em produção.
+              </p>
+              <p className="text-slate-400 leading-relaxed">
+                A meta é simples: em 4-5 dias você tem a mesma infraestrutura que uso hoje —
+                e o roadmap para transformar isso em receita.
+              </p>
             </div>
-          ))}
-        </div>
-
-        <div className="text-center">
-          <p className="text-slate-500 text-sm">
-            + 30 agentes de engenharia (arquiteto, executor, revisor, testador, debugger, segurança e mais)
-          </p>
+            <div className="space-y-4">
+              {[
+                { icon: <Wifi className="w-5 h-5 text-teal-400" />, label: 'Dono de ISP há mais de 17 anos', sub: 'Kem Soluções — fibra óptica para residências e empresas' },
+                { icon: <Terminal className="w-5 h-5 text-teal-400" />, label: 'Usa o KemOS em produção', sub: 'Automações rodando no provedor real há mais de 1 ano' },
+                { icon: <Code2 className="w-5 h-5 text-teal-400" />, label: '4 apps em produção', sub: 'FinControl, Rifas App, Kickup, Futsal — todos com o mesmo sistema' },
+                { icon: <BookOpen className="w-5 h-5 text-teal-400" />, label: 'Conteúdo sempre atualizado', sub: 'Quando o sistema evolui, as aulas evoluem junto. Sem custo extra.' },
+              ].map((item, i) => (
+                <div key={i} className="flex items-start gap-4 p-4 rounded-xl bg-white/5">
+                  <div className="w-10 h-10 rounded-xl bg-teal-500/10 flex items-center justify-center flex-shrink-0">
+                    {item.icon}
+                  </div>
+                  <div>
+                    <div className="font-semibold text-white text-sm">{item.label}</div>
+                    <div className="text-xs text-slate-500 mt-0.5">{item.sub}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </Section>
 
-      {/* ── Casos de uso ── */}
-      <Section id="casos">
-        <SectionLabel>Casos de Uso</SectionLabel>
-        <h2 className="text-3xl sm:text-4xl font-black text-white text-center mb-4">
-          Para qualquer negócio que tem processos repetitivos
-        </h2>
-        <p className="text-slate-400 text-center max-w-2xl mx-auto mb-12">
-          Se existe tarefa manual que ocorre toda semana — o KemOS pode automatizar.
-        </p>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {USE_CASES.map((uc, i) => (
-            <div key={i} className={`glass rounded-2xl p-6 border transition-colors hover:bg-white/10 ${uc.color}`}>
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-9 h-9 rounded-xl bg-white/5 flex items-center justify-center">
-                  {uc.icon}
-                </div>
-                <h3 className="font-bold text-white text-base">{uc.sector}</h3>
-              </div>
-              <ul className="space-y-2 mb-4">
-                {uc.items.map((item, j) => (
-                  <li key={j} className="flex items-center gap-2 text-sm text-slate-400">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-teal-400 flex-shrink-0" />
+      {/* ── O que está incluso ── */}
+      <Section>
+        <div className="glass rounded-3xl p-8 lg:p-12 border border-teal-500/20 bg-teal-500/5">
+          <div className="grid lg:grid-cols-2 gap-10 items-start">
+            <div>
+              <SectionLabel>O que você recebe</SectionLabel>
+              <h2 className="text-3xl font-black text-white mt-4 mb-6">
+                Tudo que você precisa para instalar, rodar e monetizar
+              </h2>
+              <p className="text-slate-400 leading-relaxed mb-8">
+                O treinamento não é só aula. É a infraestrutura completa, o suporte para travar zero
+                e o roadmap para transformar o que você instalar em receita recorrente.
+              </p>
+              <a
+                href={WA_LINK}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group inline-flex items-center gap-2 bg-gradient-to-r from-teal-500 to-emerald-500 hover:from-teal-400 hover:to-emerald-400 text-white font-bold px-8 py-4 rounded-2xl transition-all shadow-lg shadow-teal-500/20"
+              >
+                Quero o Treinamento
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </a>
+            </div>
+            <div>
+              <ul className="space-y-3">
+                {INCLUDES.map((item, i) => (
+                  <li key={i} className="flex items-start gap-3 text-slate-300 text-sm">
+                    <CheckCircle2 className="w-5 h-5 text-teal-400 flex-shrink-0 mt-0.5" />
                     {item}
                   </li>
                 ))}
               </ul>
-              {uc.link && (
-                <a
-                  href={uc.link}
-                  className="text-xs font-semibold text-teal-400 hover:text-teal-300 transition-colors flex items-center gap-1"
-                >
-                  {uc.linkLabel}
-                </a>
-              )}
-            </div>
-          ))}
-        </div>
-      </Section>
-
-      {/* ── Stack ── */}
-      <Section id="stack">
-        <SectionLabel>A Stack</SectionLabel>
-        <h2 className="text-3xl sm:text-4xl font-black text-white text-center mb-4">
-          Gratuito para começar. Escala sem trocar de stack.
-        </h2>
-        <p className="text-slate-400 text-center max-w-2xl mx-auto mb-12">
-          Toda a infraestrutura é open-source ou gratuita no tier inicial. Você só paga a IA — o motor que opera tudo.
-        </p>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-4">
-          {TOOLS.map((tool, i) => (
-            <div
-              key={i}
-              className={`relative glass rounded-2xl p-5 flex flex-col gap-3 hover:bg-white/10 transition-colors ${tool.required ? 'border-teal-500/40 bg-teal-500/5' : ''}`}
-            >
-              {tool.required && (
-                <span className="absolute -top-2 right-3 text-[10px] font-bold bg-teal-500 text-white px-2 py-0.5 rounded-full">
-                  OBRIGATÓRIO
-                </span>
-              )}
-              <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${tool.required ? 'bg-teal-500/20 text-teal-400' : 'bg-white/10 text-slate-300'}`}>
-                {tool.icon}
-              </div>
-              <div>
-                <div className="font-bold text-white text-sm">{tool.name}</div>
-                <div className="text-xs text-slate-500 mt-0.5">{tool.role}</div>
-              </div>
-              <div className={`text-xs font-semibold mt-auto ${tool.required ? 'text-teal-400' : 'text-emerald-400'}`}>
-                {tool.cost}
-              </div>
-            </div>
-          ))}
-        </div>
-        <div className="mt-8 p-6 glass rounded-2xl text-center">
-          <p className="text-slate-300">
-            💡 <strong className="text-white">Custo total:</strong>{' '}
-            <span className="text-teal-400 font-bold">~$20/mês</span> — a assinatura da IA.
-            O resto é <span className="text-emerald-400 font-bold">gratuito</span> até você escalar.
-          </p>
-        </div>
-      </Section>
-
-      {/* ── Quem criou ── */}
-      <div className="bg-gradient-to-b from-transparent via-slate-900/50 to-transparent">
-        <Section>
-          <div className="glass rounded-3xl p-8 lg:p-12">
-            <div className="grid lg:grid-cols-2 gap-10 items-center">
-              <div>
-                <Badge className="text-teal-400 bg-teal-400/10 border-teal-400/30 mb-5">
-                  <Shield className="w-3 h-3" /> Quem está por trás
-                </Badge>
-                <h2 className="text-3xl font-black text-white mb-4 leading-tight">
-                  Criado por quem usa no próprio negócio — não por quem teoriza sobre IA
-                </h2>
-                <p className="text-slate-400 leading-relaxed mb-4">
-                  Sou <strong className="text-white">Marciel Corado</strong>, dono da <strong className="text-white">Kem Soluções</strong> — provedor de fibra óptica há mais de 17 anos.
-                  Usei o KemOS para resolver problemas reais: cobrança automática, portal do cliente, atendimento no WhatsApp, gestão interna.
-                </p>
-                <p className="text-slate-400 leading-relaxed mb-4">
-                  Não aprendi em livro. Cada automação que o KemOS tem, eu precisei, construí e testei no meu negócio antes de ensinar.
-                </p>
-                <p className="text-slate-400 leading-relaxed">
-                  Agora ensino qualquer dono de negócio a fazer o mesmo — independente de saber programar, de ter equipe técnica, de ter orçamento.
-                </p>
-              </div>
-              <div className="space-y-4">
-                {[
-                  { icon: <Wifi className="w-5 h-5 text-teal-400" />, label: 'Dono de ISP há mais de 17 anos', sub: 'Kem Soluções — fibra óptica para residências e empresas' },
-                  { icon: <Terminal className="w-5 h-5 text-teal-400" />, label: 'Usuário ativo do KemOS', sub: 'Usa nas automações do provedor em produção hoje' },
-                  { icon: <Code2 className="w-5 h-5 text-teal-400" />, label: '3 apps em produção', sub: 'Recompensa Pro, Fut Sorteio, Assessor Digital' },
-                  { icon: <BookOpen className="w-5 h-5 text-teal-400" />, label: 'Conteúdo sempre atualizado', sub: 'Quando o KemOS evolui, o conteúdo evolui junto' },
-                ].map((item, i) => (
-                  <div key={i} className="flex items-start gap-4 p-4 rounded-xl bg-white/5">
-                    <div className="w-10 h-10 rounded-xl bg-teal-500/10 flex items-center justify-center flex-shrink-0">
-                      {item.icon}
-                    </div>
-                    <div>
-                      <div className="font-semibold text-white text-sm">{item.label}</div>
-                      <div className="text-xs text-slate-500 mt-0.5">{item.sub}</div>
-                    </div>
-                  </div>
-                ))}
-              </div>
             </div>
           </div>
-        </Section>
-      </div>
-
-      {/* ── Central de Sistemas CTA ── */}
-      <Section>
-        <div className="glass rounded-3xl p-8 lg:p-10 border border-emerald-500/20 bg-emerald-500/5 flex flex-col lg:flex-row items-center justify-between gap-8">
-          <div className="flex items-start gap-5">
-            <div className="w-14 h-14 rounded-2xl bg-emerald-500/20 flex items-center justify-center flex-shrink-0">
-              <Layers className="w-7 h-7 text-emerald-400" />
-            </div>
-            <div>
-              <div className="text-xs font-bold text-emerald-400 uppercase tracking-wider mb-1">Central de Sistemas</div>
-              <h3 className="font-black text-white text-xl mb-2">Prefere usar em vez de construir? Assine um sistema pronto.</h3>
-              <p className="text-slate-400 text-sm leading-relaxed max-w-xl">
-                Rifas, gamificação infantil, gestão financeira, sorteio de times, plataforma de afiliados, CRM de captação de atletas — sistemas já construídos e em produção, prontos para assinar hoje.
-              </p>
-            </div>
-          </div>
-          <a
-            href="/sistemas"
-            className="flex-shrink-0 flex items-center gap-2 bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-white font-bold px-7 py-4 rounded-2xl transition-all text-sm whitespace-nowrap"
-          >
-            Ver a Central de Sistemas <ArrowRight className="w-4 h-4" />
-          </a>
         </div>
       </Section>
 
@@ -586,9 +797,10 @@ export default function App() {
             </div>
             <div>
               <div className="text-xs font-bold text-teal-400 uppercase tracking-wider mb-1">Para Provedores de Internet</div>
-              <h3 className="font-black text-white text-xl mb-2">Tem um ISP? Existe um curso feito especificamente para você.</h3>
+              <h3 className="font-black text-white text-xl mb-2">Tem um ISP? Existe um módulo feito especificamente para você.</h3>
               <p className="text-slate-400 text-sm leading-relaxed max-w-xl">
-                Portal do cliente, WhatsApp bot de cobrança autônoma, integração com SGP, gestão de instalações, SVAs — tudo construído do zero, módulo a módulo, pelo dono de um provedor.
+                Portal do cliente, WhatsApp bot de cobrança autônoma, integração com SGP, gestão de instalações, SVAs —
+                tudo construído módulo a módulo pelo dono de um provedor de 17 anos.
               </p>
             </div>
           </div>
@@ -596,7 +808,7 @@ export default function App() {
             href="/provedor"
             className="flex-shrink-0 flex items-center gap-2 bg-gradient-to-r from-teal-500 to-emerald-500 hover:from-teal-400 hover:to-emerald-400 text-white font-bold px-7 py-4 rounded-2xl transition-all text-sm whitespace-nowrap"
           >
-            Ver o curso para ISPs <ArrowRight className="w-4 h-4" />
+            Ver o módulo para ISPs <ArrowRight className="w-4 h-4" />
           </a>
         </div>
       </Section>
@@ -605,7 +817,7 @@ export default function App() {
       <Section id="faq">
         <SectionLabel>Dúvidas</SectionLabel>
         <h2 className="text-3xl sm:text-4xl font-black text-white text-center mb-12">
-          Perguntas e respostas
+          Perguntas frequentes
         </h2>
         <div className="max-w-3xl mx-auto space-y-3">
           {FAQS.map((faq, i) => (
@@ -614,52 +826,44 @@ export default function App() {
         </div>
       </Section>
 
-      {/* ── Lista de Espera ── */}
-      <Section id="lista-espera">
+      {/* ── CTA Final ── */}
+      <Section>
         <div className="relative glass rounded-3xl p-8 lg:p-16 text-center overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-teal-500/10 to-emerald-500/5 pointer-events-none" />
           <div className="relative">
             <Badge className="text-teal-400 bg-teal-400/10 border-teal-400/30 mb-6">
-              <Star className="w-3 h-3" /> Acesso antecipado
+              <Zap className="w-3 h-3" /> Comece agora
             </Badge>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white mb-4 leading-tight">
-              Comece a automatizar<br />seu negócio agora
+              Em 4 dias você tem<br />
+              <span className="text-gradient">38 agentes de IA rodando.</span>
             </h2>
             <p className="text-slate-400 text-lg max-w-xl mx-auto mb-10">
-              Entre na lista e receba <strong className="text-white">acesso antecipado</strong> com desconto exclusivo.
-              O primeiro módulo é sempre gratuito.
+              VPS gratuita. Sistema instalado. Pronto para automatizar seu negócio ou vender para o próximo cliente.
             </p>
 
-            {submitted ? (
-              <div className="inline-flex items-center gap-3 bg-teal-500/20 border border-teal-500/40 text-teal-300 px-8 py-4 rounded-2xl text-lg font-semibold">
-                <CheckCircle2 className="w-6 h-6" />
-                Perfeito! Você está na lista. Avisaremos no lançamento.
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
-                <input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="seu@email.com.br"
-                  required
-                  className="flex-1 bg-white/10 border border-white/20 text-white placeholder-slate-500 px-5 py-4 rounded-2xl focus:outline-none focus:border-teal-500 transition-colors"
-                />
-                <button
-                  type="submit"
-                  className="flex items-center justify-center gap-2 bg-gradient-to-r from-teal-500 to-emerald-500 hover:from-teal-400 hover:to-emerald-400 text-white font-bold px-6 py-4 rounded-2xl transition-all whitespace-nowrap"
-                >
-                  <Mail className="w-4 h-4" /> Entrar na Lista
-                </button>
-              </form>
-            )}
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-10">
+              <a
+                href={WA_LINK}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group w-full sm:w-auto flex items-center justify-center gap-2 bg-gradient-to-r from-teal-500 to-emerald-500 hover:from-teal-400 hover:to-emerald-400 text-white font-bold px-10 py-5 rounded-2xl text-lg transition-all shadow-lg shadow-teal-500/20"
+              >
+                Quero o Treinamento KemOS
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </a>
+              <a
+                href="/sistemas"
+                className="w-full sm:w-auto flex items-center justify-center gap-2 border border-white/20 text-slate-300 hover:text-white hover:border-white/40 px-10 py-5 rounded-2xl text-lg transition-all"
+              >
+                <Globe className="w-4 h-4" /> Ver os sistemas
+              </a>
+            </div>
 
-            <p className="text-slate-600 text-xs mt-4">Sem spam. Sem compromisso. Cancela quando quiser.</p>
-
-            <div className="flex flex-wrap items-center justify-center gap-6 mt-10 text-sm text-slate-500">
-              <div className="flex items-center gap-2"><Shield className="w-4 h-4 text-teal-400" /> Sem compromisso</div>
-              <div className="flex items-center gap-2"><Zap className="w-4 h-4 text-teal-400" /> Acesso antecipado</div>
-              <div className="flex items-center gap-2"><DollarSign className="w-4 h-4 text-teal-400" /> Desconto exclusivo</div>
+            <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-slate-500">
+              <div className="flex items-center gap-2"><Lock className="w-4 h-4 text-teal-400" /> Sua VPS, seu controle</div>
+              <div className="flex items-center gap-2"><Server className="w-4 h-4 text-teal-400" /> Infraestrutura gratuita</div>
+              <div className="flex items-center gap-2"><TrendingUp className="w-4 h-4 text-teal-400" /> Roadmap de monetização incluso</div>
             </div>
           </div>
         </div>
@@ -676,7 +880,7 @@ export default function App() {
           </div>
           <div className="flex items-center gap-6 text-xs text-slate-600">
             <a href="/sistemas" className="hover:text-slate-400 transition-colors">Central de Sistemas</a>
-            <a href="/provedor" className="hover:text-slate-400 transition-colors">Curso para ISPs</a>
+            <a href="/provedor" className="hover:text-slate-400 transition-colors">Módulo ISP</a>
             <a href="/sva" className="hover:text-slate-400 transition-colors">SVAs</a>
             <a href="/privacidade" className="hover:text-slate-400 transition-colors">Privacidade</a>
           </div>

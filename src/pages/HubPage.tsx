@@ -151,7 +151,7 @@ const FAQS = [
   },
   {
     q: 'Como funciona o plano Revendedor?',
-    a: 'Você assina o plano Revendedor e recebe um painel para convidar seus próprios clientes. Cada cliente tem login independente. Você paga R$1 por cliente ativo por mês, com mínimo de 20. Se tiver 35 clientes em um mês, paga R$35. Cobrança no fechamento mensal pelo count real.',
+    a: 'Você assina o plano Revendedor e recebe um painel para convidar seus próprios clientes. Cada cliente tem login independente. Você paga R$1 por cliente ativo por mês, com mínimo de 20. Se tiver 35 clientes em um mês, paga R$35. Cobrança no fechamento mensal pelo count real. Importante: no plano Revendedor você cadastra suas próprias API keys das IAs (OpenAI, Anthropic, Google, etc.) — o consumo vai direto para a sua conta em cada provedor, sem intermediário.',
   },
   {
     q: 'Posso começar no plano Solo e migrar para Revendedor depois?',
@@ -666,7 +666,7 @@ export default function HubPage() {
               <p className="text-xs text-purple-600 font-semibold mb-6">
                 Mínimo 20 clientes · a partir de R$20/mês
               </p>
-              <ul className="space-y-3 mb-8 flex-1">
+              <ul className="space-y-3 mb-6 flex-1">
                 {[
                   'Tudo do plano Solo (para você)',
                   'Painel de revendedor self-service',
@@ -682,6 +682,15 @@ export default function HubPage() {
                   </li>
                 ))}
               </ul>
+
+              {/* Destaque API keys */}
+              <div className="flex items-start gap-3 bg-purple-50 border border-purple-200 rounded-xl px-4 py-3 mb-6">
+                <span className="text-purple-500 mt-0.5 flex-shrink-0">🔑</span>
+                <p className="text-xs text-purple-800 leading-snug">
+                  <strong>Você usa suas próprias API keys das IAs.</strong> As chaves ficam na sua conta — nenhum custo de consumo passa por nós.
+                </p>
+              </div>
+
               <a
                 href="#"
                 className="w-full text-center font-bold text-sm py-3.5 rounded-xl bg-purple-600 hover:bg-purple-700 text-white transition-colors"

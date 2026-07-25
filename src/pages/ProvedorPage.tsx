@@ -13,7 +13,7 @@ const PAINS = [
   {
     icon: <Clock className="w-6 h-6 text-red-400" />,
     title: "Tarefas repetidas que não deixam você escalar",
-    desc: "Com uma simples rotina, o NEXCORE contata seus clientes sozinho — sem nenhum humano iniciar a conversa. Cobrança automática, avisos de vencimento, campanhas de marketing, notificações de manutenção. E se quiser ir além: apps personalizados criados em poucas horas para oferecer de graça ou cobrar dos seus clientes.",
+    desc: "Com uma simples rotina, o KemOS contata seus clientes sozinho — sem nenhum humano iniciar a conversa. Cobrança automática, avisos de vencimento, campanhas de marketing, notificações de manutenção. E se quiser ir além: apps personalizados criados em poucas horas para oferecer de graça ou cobrar dos seus clientes.",
   },
   {
     icon: <TrendingUp className="w-6 h-6 text-orange-400" />,
@@ -28,8 +28,8 @@ const PAINS = [
 ]
 
 const TOOLS = [
-  { name: 'IA (Inteligência Artificial)', role: 'Motor que opera o NEXCORE e executa tudo', cost: '~$20/mês', required: true, icon: <Bot className="w-5 h-5" /> },
-  { name: 'NEXCORE', role: 'Sistema operacional de agentes de IA', cost: 'Gratuito', required: false, icon: <Zap className="w-5 h-5" /> },
+  { name: 'IA (Inteligência Artificial)', role: 'Motor que opera o KemOS e executa tudo', cost: '~$20/mês', required: true, icon: <Bot className="w-5 h-5" /> },
+  { name: 'KemOS', role: 'Sistema operacional de agentes de IA', cost: 'Gratuito', required: false, icon: <Zap className="w-5 h-5" /> },
   { name: 'GitHub', role: 'Versionamento do código', cost: 'Gratuito', required: false, icon: <Code2 className="w-5 h-5" /> },
   { name: 'Supabase', role: 'Banco de dados + Auth + API', cost: 'Gratuito', required: false, icon: <Database className="w-5 h-5" /> },
   { name: 'Vercel', role: 'Deploy em 1 clique', cost: 'Gratuito', required: false, icon: <Globe className="w-5 h-5" /> },
@@ -43,7 +43,7 @@ const MODULES = [
     tag: 'GRATUITO',
     tagColor: 'text-emerald-400 bg-emerald-400/10 border-emerald-400/30',
     desc: 'Configure o ambiente completo em 2 horas e rode seu primeiro agente de IA. Sem enrolação.',
-    items: ['Ativar a IA do NEXCORE', 'Criar conta GitHub + Supabase + Vercel', 'Configurar NEXCORE no servidor', 'Primeiro agente rodando'],
+    items: ['Ativar a IA do KemOS', 'Criar conta GitHub + Supabase + Vercel', 'Configurar KemOS no servidor', 'Primeiro agente rodando'],
   },
   {
     num: '01',
@@ -69,7 +69,7 @@ const MODULES = [
     title: 'WhatsApp + Cobrança Autônoma',
     tag: 'PROJETO REAL',
     tagColor: 'text-blue-400 bg-blue-400/10 border-blue-400/30',
-    desc: 'Conecte o WhatsApp ao NEXCORE e implante o sistema completo de cobrança autônoma — do primeiro aviso até o cancelamento do contrato.',
+    desc: 'Conecte o WhatsApp ao KemOS e implante o sistema completo de cobrança autônoma — do primeiro aviso até o cancelamento do contrato.',
     items: ['Integração Evolution API', 'Agente proativo de cobrança', 'Negociação e parcelamento automático', 'Desativação automática no sistema'],
     wide: true,
     extra: (
@@ -141,7 +141,7 @@ const MODULES = [
             <span className="font-bold text-white">Na prática:</span> às 8h o relatório do ERP chegou no Telegram. Às 9h o agente de cobrança já entrou em contato com todos os inadimplentes — personalizando a mensagem pelo tempo de atraso. Às 9h12 um cliente de 45 dias respondeu que quer parcelar em 3x. O agente calculou, gerou os 3 boletos e enviou os links. Às 11h, 2 clientes que não responderam depois de 7 dias foram desativados no sistema e as OSes de retirada foram abertas. <strong className="text-white">Você tomou café e foi cuidar de outra coisa.</strong>
           </p>
           <p className="text-slate-500 text-xs italic">
-            Este é o sistema documentado e em construção com NEXCORE — base da Aula 3.8 do curso. A integração com ERP (Componente 1) já roda em produção com o SGP — e pode ser adaptada para outros sistemas.
+            Este é o sistema documentado e em construção com KemOS — base da Aula 3.8 do curso. A integração com ERP (Componente 1) já roda em produção com o SGP — e pode ser adaptada para outros sistemas.
           </p>
         </div>
       </div>
@@ -181,7 +181,7 @@ const MODULES = [
           </p>
           <p className="text-slate-400 text-sm leading-relaxed">
             Esses serviços se chamam SVAs — Serviços de Valor Agregado. E no módulo 05 você aprende a criá-los do zero,
-            sem contratar um desenvolvedor, usando o NEXCORE.
+            sem contratar um desenvolvedor, usando o KemOS.
           </p>
         </div>
 
@@ -344,7 +344,7 @@ const FAQS = [
   },
   {
     q: 'Qual o custo total para começar?',
-    a: 'A única assinatura paga é a da IA que opera o NEXCORE — cerca de $20/mês (≈ R$110/mês). GitHub, Supabase e Vercel são gratuitos no tier inicial. O mini-curso é gratuito. Você pode construir e publicar apps reais gastando menos de R$110/mês.',
+    a: 'A única assinatura paga é a da IA que opera o KemOS — cerca de $20/mês (≈ R$110/mês). GitHub, Supabase e Vercel são gratuitos no tier inicial. O mini-curso é gratuito. Você pode construir e publicar apps reais gastando menos de R$110/mês.',
   },
   {
     q: 'Para qual tamanho de provedor é indicado?',
@@ -355,8 +355,8 @@ const FAQS = [
     a: 'No Módulo 0 (gratuito) você já tem um app publicado em 7 dias. No Módulo 2 você já tem um portal do cliente funcional. Resultados concretos em semanas, não meses.',
   },
   {
-    q: 'O conteúdo fica desatualizado quando o NEXCORE mudar?',
-    a: 'Não. Sou dono de ISP e uso NEXCORE no dia a dia. Quando a ferramenta evolui, eu evoluo junto e atualizo o conteúdo. Os alunos da Trilha Provedor têm acesso a todas as atualizações.',
+    q: 'O conteúdo fica desatualizado quando o KemOS mudar?',
+    a: 'Não. Sou dono de ISP e uso KemOS no dia a dia. Quando a ferramenta evolui, eu evoluo junto e atualizo o conteúdo. Os alunos da Trilha Provedor têm acesso a todas as atualizações.',
   },
 ]
 
@@ -469,7 +469,7 @@ export default function ProvedorPage() {
           </h1>
 
           <p className="animate-fade-up text-lg sm:text-xl text-slate-400 max-w-2xl mx-auto mb-10 leading-relaxed">
-            Use o <strong className="text-white">NEXCORE</strong> para construir{' '}
+            Use o <strong className="text-white">KemOS</strong> para construir{' '}
             <strong className="text-white">portal do cliente</strong>,{' '}
             <strong className="text-white">agentes que contactam seus clientes no WhatsApp automaticamente</strong> — sem nenhum humano iniciar a conversa —,{' '}
             <strong className="text-white">apps personalizados para oferecer grátis ou cobrar</strong>,{' '}
@@ -515,10 +515,10 @@ export default function ProvedorPage() {
               <div className="w-3 h-3 rounded-full bg-red-500/80" />
               <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
               <div className="w-3 h-3 rounded-full bg-green-500/80" />
-              <span className="ml-2 text-xs text-slate-500 font-mono">claude — terminal</span>
+              <span className="ml-2 text-xs text-slate-500 font-mono">kemos — terminal</span>
             </div>
             <div className="p-6 font-mono text-sm space-y-2">
-              <div className="text-slate-500">$ <span className="text-white">claude "crie um portal do cliente para meu provedor com login, boleto e suporte"</span></div>
+              <div className="text-slate-500">$ <span className="text-white">ia "crie um portal do cliente para meu provedor com login, boleto e suporte"</span></div>
               <div className="text-teal-400">● Analisando requisitos...</div>
               <div className="text-teal-400">● Criando estrutura React + Supabase...</div>
               <div className="text-teal-400">● Implementando autenticação...</div>
@@ -564,7 +564,7 @@ export default function ProvedorPage() {
                 Aprenda a criar suas próprias soluções com <span className="text-gradient">Inteligência Artificial</span>
               </h2>
               <p className="text-slate-400 leading-relaxed mb-6">
-                Em vez de contratar dev ou pagar por sistemas caros, você aprende a usar o <strong className="text-white">NEXCORE</strong> para construir exatamente o que o seu provedor precisa.
+                Em vez de contratar dev ou pagar por sistemas caros, você aprende a usar o <strong className="text-white">KemOS</strong> para construir exatamente o que o seu provedor precisa.
               </p>
               <p className="text-slate-400 leading-relaxed mb-8">
                 Módulo a módulo, você cria projetos reais: portal do cliente, bot de WhatsApp, gestão de OSes, relatórios automáticos. Tudo publicado, tudo funcionando.
@@ -622,7 +622,7 @@ export default function ProvedorPage() {
           Ferramentas gratuitas. Um único investimento.
         </h2>
         <p className="text-slate-400 text-center max-w-2xl mx-auto mb-12">
-          Toda a stack ensinada no curso é gratuita ou tem tier gratuito. A única assinatura obrigatória é a IA — o motor que opera o NEXCORE e faz o trabalho pesado por você.
+          Toda a stack ensinada no curso é gratuita ou tem tier gratuito. A única assinatura obrigatória é a IA — o motor que opera o KemOS e faz o trabalho pesado por você.
         </p>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
           {TOOLS.map((tool, i) => (
@@ -651,7 +651,7 @@ export default function ProvedorPage() {
         <div className="mt-8 p-6 glass rounded-2xl text-center">
           <p className="text-slate-300">
             💡 <strong className="text-white">Custo total para começar:</strong>{' '}
-            <span className="text-teal-400 font-bold">~$20/mês</span> (assinatura da IA que opera o NEXCORE).
+            <span className="text-teal-400 font-bold">~$20/mês</span> (assinatura da IA que opera o KemOS).
             GitHub, Supabase e Vercel são <span className="text-emerald-400 font-bold">gratuitos</span> até você escalar.
           </p>
         </div>
@@ -713,7 +713,7 @@ export default function ProvedorPage() {
                   Sou <strong className="text-white">Marciel Corado</strong>, dono da <strong className="text-white">Kem Soluções</strong> — um provedor de acesso à internet que fornece fibra óptica para residências, empresas e governo.
                 </p>
                 <p className="text-slate-400 leading-relaxed mb-4">
-                  Usei o NEXCORE para resolver os mesmos problemas que você enfrenta. Criei o portal do cliente, automatizei o atendimento no WhatsApp, e construí um sistema de gestão interno — gastando menos de $20/mês com a IA que opera tudo.
+                  Usei o KemOS para resolver os mesmos problemas que você enfrenta. Criei o portal do cliente, automatizei o atendimento no WhatsApp, e construí um sistema de gestão interno — gastando menos de $20/mês com a IA que opera tudo.
                 </p>
                 <p className="text-slate-400 leading-relaxed">
                   Agora transformei tudo isso em curso para que qualquer dono de ISP consiga fazer o mesmo, independente de saber programar.
@@ -722,7 +722,7 @@ export default function ProvedorPage() {
               <div className="space-y-4">
                 {[
                   { icon: <Wifi className="w-5 h-5 text-teal-400" />, label: 'Dono de ISP há mais de 17 anos', sub: 'Kem Soluções — fibra óptica' },
-                  { icon: <Terminal className="w-5 h-5 text-teal-400" />, label: 'Usuário ativo do NEXCORE', sub: 'Usa no provedor e em apps em produção' },
+                  { icon: <Terminal className="w-5 h-5 text-teal-400" />, label: 'Usuário ativo do KemOS', sub: 'Usa no provedor e em apps em produção' },
                   { icon: <Code2 className="w-5 h-5 text-teal-400" />, label: '3 apps em produção', sub: 'Recompensa Pro, Fut Sorteio, Assessor Digital' },
                   { icon: <BookOpen className="w-5 h-5 text-teal-400" />, label: 'Conteúdo sempre atualizado', sub: 'Aprende e atualiza o curso junto' },
                 ].map((item, i) => (
@@ -863,7 +863,7 @@ export default function ProvedorPage() {
             <span className="font-bold text-slate-400">NEX<span className="text-teal-400">CORE</span></span>
           </div>
           <p className="text-sm text-slate-600">
-            © 2026 Kem Soluções. Criado com NEXCORE.
+            © 2026 Kem Soluções. Criado com KemOS.
           </p>
           <div className="text-xs text-slate-700">
             Construído exatamente como ensinamos no curso.

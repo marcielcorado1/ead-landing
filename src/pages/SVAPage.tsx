@@ -9,7 +9,7 @@ import {
 
 // ─────────────────────────────────────────────────────────────────────────────
 // KemOS — plataforma de automação com IA da Kem Soluções
-// stack: Supabase + GitHub + Vercel + Claude Code Pro
+// stack: banco próprio + versionamento + deploy + IA
 // ─────────────────────────────────────────────────────────────────────────────
 
 // 5 exemplos realistas — o aluno vai aprender a criar apps assim (e muitos outros)

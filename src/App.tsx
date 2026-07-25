@@ -48,7 +48,7 @@ const AULAS = [
     num: 'CC',
     title: 'Seu ambiente de IA pronto',
     desc: 'Instale e configure a CLI de IA que comanda toda a infraestrutura. Primeiro comando à VPS ainda nesta aula.',
-    tags: ['Claude Code', 'CLI', 'Autenticação'],
+    tags: ['IA', 'CLI', 'Autenticação'],
     icon: <Terminal className="w-5 h-5 text-teal-400" />,
   },
   {
@@ -60,9 +60,9 @@ const AULAS = [
   },
   {
     num: '1',
-    title: 'VPS gratuita (Oracle Cloud)',
+    title: 'VPS 100% gratuita',
     desc: 'A IA cria usuário, configura SSH e abre portas. Você só copia o IP. Infraestrutura de R$0/mês para sempre.',
-    tags: ['Oracle Cloud', 'ARM', 'Free Tier'],
+    tags: ['VPS', 'SSH', 'Free Tier'],
     icon: <Server className="w-5 h-5 text-blue-400" />,
   },
   {
@@ -117,7 +117,7 @@ const AULAS = [
   {
     num: '8',
     title: 'Backup automático diário',
-    desc: 'Script de backup roda às 2h toda madrugada no Oracle Object Storage (gratuito). Você dorme, os dados ficam seguros.',
+    desc: 'Script de backup roda às 2h toda madrugada em armazenamento em nuvem gratuito. Você dorme, os dados ficam seguros.',
     tags: ['Backup', 'Cron', 'Object Storage'],
     icon: <HardDrive className="w-5 h-5 text-orange-400" />,
   },
@@ -236,8 +236,8 @@ const INCLUDES = [
   'Sistema KemOS completo instalado na sua VPS',
   '175+ automações prontas para usar',
   'Heartbeats — agentes que acordam e agem sozinhos',
-  'VPS Oracle Cloud gratuita para sempre',
-  'Banco de dados e auth (Supabase) próprios',
+  'VPS 100% gratuita para sempre',
+  'Banco de dados e autenticação próprios',
   'Backup automático diário configurado',
   'Monitoramento 24/7 com alertas',
   'Acesso ao roadmap completo de monetização (7 frentes)',
@@ -252,7 +252,7 @@ const FAQS = [
   },
   {
     q: 'Quanto custa manter o sistema rodando?',
-    a: 'A VPS Oracle Cloud é gratuita para sempre no Free Tier (máquina ARM com 4 OCPUs e 24GB RAM). O banco de dados Supabase e o Coolify também são gratuitos. O único custo é a assinatura da IA de desenvolvimento — cerca de $20/mês (≈ R$110/mês). Total: menos de R$120/mês para ter tudo rodando.',
+    a: 'A VPS que usamos tem um free tier permanente — máquina robusta com 4 vCPUs e 24GB RAM, zero reais por mês para sempre. O banco de dados, o painel de deploy e o sistema de monitoramento também são gratuitos. O único custo é a assinatura da IA — cerca de $20/mês (≈ R$110/mês). Total: menos de R$120/mês para ter tudo rodando.',
   },
   {
     q: 'Quanto tempo leva para ter tudo instalado?',
@@ -386,7 +386,7 @@ export default function App() {
           <p className="text-lg sm:text-xl text-slate-400 max-w-2xl mx-auto mb-10 leading-relaxed">
             O treinamento KemOS ensina você a montar e rodar uma infraestrutura própria de IA com{' '}
             <strong className="text-white">dezenas de agentes especializados e mais de 175 automações</strong>{' '}
-            — tudo no Oracle Cloud gratuito —{' '}
+            — tudo em infraestrutura gratuita —{' '}
             e a gerar receita de 7 formas diferentes.
           </p>
 
@@ -413,7 +413,7 @@ export default function App() {
             {[
               { val: '30+', label: 'Agentes especializados', color: 'text-teal-400' },
               { val: '175+', label: 'Automações prontas', color: 'text-purple-400' },
-              { val: 'R$0', label: 'VPS pelo Oracle Cloud', color: 'text-emerald-400' },
+              { val: 'R$0', label: 'VPS 100% gratuita', color: 'text-emerald-400' },
               { val: '12', label: 'Aulas do Pré-Fase', color: 'text-orange-400' },
             ].map((s, i) => (
               <div key={i} className="text-center">

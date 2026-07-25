@@ -21,7 +21,7 @@ const Root = path.startsWith('/sva')
   ? SistemasPage
   : path.startsWith('/fincontrol')
   ? FinControlPage
-  : path.startsWith('/home')
+  : path.startsWith('/hubia')
   ? HomePage
   : App
 

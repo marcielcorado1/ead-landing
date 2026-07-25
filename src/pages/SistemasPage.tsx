@@ -2,8 +2,8 @@ import '../App.css'
 import { useState } from 'react'
 import type { ComponentType } from 'react'
 import {
-  Cpu, CheckCircle2, MessageCircle, ChevronDown, ArrowLeft,
-  Ticket, Trophy, Wallet, Shuffle, Network, Radar,
+  Cpu, CheckCircle2, MessageCircle, ChevronDown, ArrowLeft, ArrowRight,
+  Ticket, Trophy, Wallet, Shuffle, Network, Bot,
   ShieldCheck, Repeat, BadgeCheck, LayoutGrid,
 } from 'lucide-react'
 
@@ -40,6 +40,7 @@ interface Product {
   copy: string
   features: string[]
   accent: Accent
+  lpUrl?: string
 }
 
 // Imagem real: coloque o arquivo em /public/placeholders/{slug}.jpg
@@ -82,6 +83,7 @@ const PRODUCTS: Product[] = [
       border: 'border-emerald-500/20',
       thumbGradient: 'from-emerald-500/25 via-emerald-500/5 to-transparent',
     },
+    lpUrl: 'https://lp.recompensa.pro/',
   },
   {
     slug: 'fincontrol',
@@ -100,6 +102,7 @@ const PRODUCTS: Product[] = [
       border: 'border-teal-500/20',
       thumbGradient: 'from-teal-500/25 via-teal-500/5 to-transparent',
     },
+    lpUrl: '/fincontrol',
   },
   {
     slug: 'futsal-sorteio',
@@ -136,24 +139,26 @@ const PRODUCTS: Product[] = [
       border: 'border-violet-500/20',
       thumbGradient: 'from-violet-500/25 via-violet-500/5 to-transparent',
     },
+    lpUrl: 'https://grupointernetlucrativa.com.br',
   },
   {
-    slug: 'inespi-soccer',
-    name: 'Inespi Soccer',
-    category: 'Captação de Atletas',
-    Icon: Radar,
-    copy: 'Organize captadores, conecte clubes parceiros e dê à família do atleta um portal para acompanhar cada passo da carreira — tudo em um CRM esportivo.',
+    slug: 'hub-ia',
+    name: 'Hub de IA',
+    category: 'Inteligência Artificial',
+    Icon: Bot,
+    copy: 'Acesse agentes de IA prontos para vendas, atendimento, conteúdo e gestão — sem precisar montar infraestrutura nem contratar especialistas.',
     features: [
-      'CRM de captadores de atletas',
-      'Portal para clubes parceiros',
-      'Dashboard de acompanhamento para a família',
+      'Agentes de IA para WhatsApp e Instagram',
+      'Automações de vendas e atendimento',
+      'Dashboard de performance em tempo real',
     ],
     accent: {
-      text: 'text-rose-400',
-      bg: 'bg-rose-400/10',
-      border: 'border-rose-500/20',
-      thumbGradient: 'from-rose-500/25 via-rose-500/5 to-transparent',
+      text: 'text-purple-400',
+      bg: 'bg-purple-400/10',
+      border: 'border-purple-500/20',
+      thumbGradient: 'from-purple-500/25 via-purple-500/5 to-transparent',
     },
+    lpUrl: '/hubia',
   },
 ]
 
@@ -332,14 +337,33 @@ function ProductCard({ product, billing }: { product: Product; billing: Billing 
             {billing === 'annual' ? `equivale a R$ ${ANNUAL_MONTHLY_EQUIVALENT}/mês` : ''}
           </div>
 
-          <a
-            href={waLink}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-teal-500 to-emerald-500 hover:from-teal-400 hover:to-emerald-400 text-white font-bold py-3 rounded-xl text-sm transition-all"
-          >
-            <MessageCircle className="w-4 h-4" /> Assinar via WhatsApp
-          </a>
+          {product.lpUrl ? (
+            <a
+              href={product.lpUrl}
+              target={product.lpUrl.startsWith('http') ? '_blank' : '_self'}
+              rel={product.lpUrl.startsWith('http') ? 'noopener noreferrer' : undefined}
+              className={`w-full flex items-center justify-center gap-2 bg-gradient-to-r font-bold py-3 rounded-xl text-sm transition-all text-white ${
+                product.accent.text === 'text-purple-400'
+                  ? 'from-purple-600 to-purple-500 hover:from-purple-500 hover:to-purple-400'
+                  : product.accent.text === 'text-teal-400'
+                  ? 'from-teal-500 to-emerald-500 hover:from-teal-400 hover:to-emerald-400'
+                  : product.accent.text === 'text-emerald-400'
+                  ? 'from-emerald-600 to-emerald-500 hover:from-emerald-500 hover:to-emerald-400'
+                  : 'from-violet-600 to-violet-500 hover:from-violet-500 hover:to-violet-400'
+              }`}
+            >
+              Conhecer sistema <ArrowRight className="w-4 h-4" />
+            </a>
+          ) : (
+            <a
+              href={waLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-teal-500 to-emerald-500 hover:from-teal-400 hover:to-emerald-400 text-white font-bold py-3 rounded-xl text-sm transition-all"
+            >
+              <MessageCircle className="w-4 h-4" /> Assinar via WhatsApp
+            </a>
+          )}
         </div>
       </div>
     </div>

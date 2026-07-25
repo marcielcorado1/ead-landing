@@ -2,6 +2,7 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.tsx'
+import PasswordGate from './components/PasswordGate.tsx'
 import ProvedorPage from './pages/ProvedorPage.tsx'
 import SVAPage from './pages/SVAPage.tsx'
 import SistemasPage from './pages/SistemasPage.tsx'
@@ -30,7 +31,9 @@ const Root = path.startsWith('/sva')
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <Root />
+    <PasswordGate>
+      <Root />
+    </PasswordGate>
   </StrictMode>,
 )
 

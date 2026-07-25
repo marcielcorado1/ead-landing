@@ -8,8 +8,8 @@ import {
 } from 'lucide-react'
 
 // ─────────────────────────────────────────────────────────────────────────────
-// NEXCORE — Nome proprietário do sistema (EvoNexus rebrandeado)
-// 35+ agentes | 190+ skills | stack: Supabase + GitHub + Vercel + Claude Code Pro
+// KemOS — plataforma de automação com IA da Kem Soluções
+// stack: Supabase + GitHub + Vercel + Claude Code Pro
 // ─────────────────────────────────────────────────────────────────────────────
 
 // 5 exemplos realistas — o aluno vai aprender a criar apps assim (e muitos outros)

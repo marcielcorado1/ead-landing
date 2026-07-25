@@ -18,7 +18,7 @@ const PERSONAS = [
     icon: <Briefcase className="w-6 h-6 text-teal-400" />,
     type: 'Empreendedor',
     headline: 'Seu negócio no piloto automático',
-    desc: 'Instale o sistema na sua VPS, conecte seus processos e deixe 38 agentes de IA cuidarem do operacional enquanto você foca no crescimento.',
+    desc: 'Instale o KemOS na sua VPS, conecte seus processos e deixe o sistema de IA cuidar do operacional enquanto você foca no crescimento.',
     bullets: ['Briefing matinal automático', 'Cobrança e follow-up sem você', 'Relatórios prontos todo dia'],
     color: 'border-teal-500/30 bg-teal-500/5',
     accent: 'text-teal-400',
@@ -88,9 +88,9 @@ const AULAS = [
   },
   {
     num: '5',
-    title: 'Deploy dos 38 agentes de IA',
-    desc: 'A IA usa a API do Coolify para criar o sistema completo com seus 38 agentes e 193+ skills em 1 clique.',
-    tags: ['38 agentes', '193+ skills', 'API'],
+    title: 'Deploy do KemOS — sistema completo',
+    desc: 'A IA usa a API do Coolify para fazer o deploy do KemOS inteiro na sua VPS — todos os agentes, automações e o dashboard em um único comando.',
+    tags: ['KemOS', 'Deploy', 'API'],
     icon: <Bot className="w-5 h-5 text-teal-400" />,
   },
   {
@@ -233,8 +233,8 @@ const PROOF_APPS = [
 
 const INCLUDES = [
   '12 aulas de infraestrutura (Pré-Fase completa)',
-  '38 agentes especializados instalados na sua VPS',
-  '193+ skills prontas para ativar',
+  'Sistema KemOS completo instalado na sua VPS',
+  '175+ automações prontas para usar',
   'Heartbeats — agentes que acordam e agem sozinhos',
   'VPS Oracle Cloud gratuita para sempre',
   'Banco de dados e auth (Supabase) próprios',
@@ -264,7 +264,7 @@ const FAQS = [
   },
   {
     q: 'Qual é o sistema que vou instalar? Posso ver antes?',
-    a: 'O sistema que você instala é o KemOS — desenvolvido e mantido pela Kem Soluções. Tem 38 agentes especializados (financeiro, marketing, vendas, suporte, jurídico, produto e mais), 193+ skills prontas e um sistema de heartbeats que faz os agentes agirem proativamente. A Kem Soluções usa em produção no próprio provedor de internet há mais de 1 ano.',
+    a: 'O sistema que você instala é o KemOS — desenvolvido e mantido pela Kem Soluções. Ele tem agentes de negócio (financeiro, marketing, vendas, suporte, jurídico, produto, RH e mais) e agentes de engenharia de software, além de mais de 175 automações prontas e um sistema de heartbeats que faz os agentes agirem de forma proativa. A Kem Soluções usa em produção no próprio provedor de internet há mais de 1 ano.',
   },
   {
     q: 'E se eu travar em alguma aula?',
@@ -371,23 +371,23 @@ export default function App() {
           <div className="mb-6">
             <Badge className="text-teal-400 bg-teal-400/10 border-teal-400/30">
               <Sparkles className="w-3 h-3" />
-              Treinamento completo · VPS gratuita · 12 aulas
+              KemOS · VPS gratuita · 12 aulas
             </Badge>
           </div>
 
           <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black text-white leading-[1.05] tracking-tight mb-6">
-            Instale 38 agentes de IA<br />
-            na sua VPS <span className="text-gradient">em 12 aulas.</span><br />
+            Seu sistema operacional de IA<br />
+            instalado e rodando <span className="text-gradient">em 12 aulas.</span><br />
             <span className="text-slate-400 text-3xl sm:text-4xl lg:text-5xl font-bold">
-              Automate. Construa. Venda.
+              Automatize. Construa. Venda.
             </span>
           </h1>
 
           <p className="text-lg sm:text-xl text-slate-400 max-w-2xl mx-auto mb-10 leading-relaxed">
-            O treinamento KemOS ensina você a instalar um sistema operacional de IA com{' '}
-            <strong className="text-white">38 agentes especializados e 193+ skills</strong>{' '}
-            na sua própria infraestrutura — gratuita no Oracle Cloud —{' '}
-            e a monetizar isso de 7 formas diferentes.
+            O treinamento KemOS ensina você a montar e rodar uma infraestrutura própria de IA com{' '}
+            <strong className="text-white">dezenas de agentes especializados e mais de 175 automações</strong>{' '}
+            — tudo no Oracle Cloud gratuito —{' '}
+            e a gerar receita de 7 formas diferentes.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-14">
@@ -411,8 +411,8 @@ export default function App() {
           {/* Stats */}
           <div className="flex flex-wrap items-center justify-center gap-8 text-sm">
             {[
-              { val: '38', label: 'Agentes instalados', color: 'text-teal-400' },
-              { val: '193+', label: 'Skills prontas', color: 'text-purple-400' },
+              { val: '30+', label: 'Agentes especializados', color: 'text-teal-400' },
+              { val: '175+', label: 'Automações prontas', color: 'text-purple-400' },
               { val: 'R$0', label: 'VPS pelo Oracle Cloud', color: 'text-emerald-400' },
               { val: '12', label: 'Aulas do Pré-Fase', color: 'text-orange-400' },
             ].map((s, i) => (
@@ -496,13 +496,13 @@ export default function App() {
           {[
             {
               icon: <Bot className="w-5 h-5 text-teal-400" />,
-              title: '38 agentes especializados',
-              desc: '17 de negócio (financeiro, marketing, vendas, suporte, jurídico, produto, RH, dados, CS) + 21 de engenharia (arquiteto, executor, revisor, testador, debugger e mais).',
+              title: 'Agentes especializados por domínio',
+              desc: 'Negócio (financeiro, marketing, vendas, suporte, jurídico, produto, RH, dados, CS) + engenharia (arquiteto, executor, revisor, testador, debugger e mais) — cada um com contexto e memória do seu negócio.',
             },
             {
               icon: <Layers className="w-5 h-5 text-purple-400" />,
-              title: '193+ skills prontas para ativar',
-              desc: 'De relatório financeiro a SEO, de compliance jurídico a análise de dados — você ativa a skill, a IA executa. Sem escrever um prompt.',
+              title: 'Mais de 175 automações prontas',
+              desc: 'De relatório financeiro a SEO, de compliance jurídico a análise de dados — você ativa a automação, a IA executa. Sem escrever um prompt.',
             },
             {
               icon: <BellRing className="w-5 h-5 text-orange-400" />,
@@ -607,7 +607,7 @@ export default function App() {
               </div>
               <div>
                 <div className="font-bold text-white">Ao final do Pré-Fase</div>
-                <div className="text-sm text-slate-400">38 agentes rodando · VPS segura · backup ativo · monitoramento 24/7</div>
+                <div className="text-sm text-slate-400">KemOS rodando · VPS segura · backup ativo · monitoramento 24/7</div>
               </div>
             </div>
             <a
@@ -836,7 +836,7 @@ export default function App() {
             </Badge>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white mb-4 leading-tight">
               Em 4 dias você tem<br />
-              <span className="text-gradient">38 agentes de IA rodando.</span>
+              <span className="text-gradient">seu sistema de IA rodando.</span>
             </h2>
             <p className="text-slate-400 text-lg max-w-xl mx-auto mb-10">
               VPS gratuita. Sistema instalado. Pronto para automatizar seu negócio ou vender para o próximo cliente.

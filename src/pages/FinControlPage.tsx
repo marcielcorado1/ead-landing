@@ -52,11 +52,11 @@ const MODULES = [
   },
   {
     icon: <Zap className="w-6 h-6 text-yellow-500" />,
-    name: 'EvoNexus',
+    name: 'KemOS',
     tag: 'Add-on',
     tagColor: 'bg-yellow-50 text-yellow-600 border-yellow-100',
-    desc: 'Instância completa do EvoNexus pré-configurada e instalada na nossa infraestrutura. Acesse direto do FinControl.',
-    items: ['38 agentes de IA especializados', 'Instalado e configurado por nós', 'Acesso via iframe no FinControl', 'Subdomínio próprio por tenant'],
+    desc: 'Instância completa do KemOS pré-configurada e instalada na nossa infraestrutura. Acesse direto do FinControl.',
+    items: ['Sistema completo de agentes de IA', 'Instalado e configurado por nós', 'Acesso via iframe no FinControl', 'Subdomínio próprio por tenant'],
   },
 ]
 
@@ -186,8 +186,8 @@ const FAQS = [
     a: 'Sim. Sem fidelidade, sem multa. Se cancelar, seus dados ficam preservados por 30 dias para eventual reativação.',
   },
   {
-    q: 'O que é diferente do EvoNexus?',
-    a: 'O EvoNexus é um produto separado — uma instância completa de agentes de IA configurada para o seu negócio, instalada na nossa infraestrutura. O FinControl é o SaaS de gestão com módulos. O EvoNexus pode ser adicionado ao FinControl como add-on premium.',
+    q: 'O que é o KemOS e como ele se relaciona com o FinControl?',
+    a: 'O KemOS é um produto separado — uma instância completa de agentes de IA configurada para o seu negócio, instalada na nossa infraestrutura. O FinControl é o SaaS de gestão com módulos. O KemOS pode ser adicionado ao FinControl como add-on premium.',
   },
   {
     q: 'Como o FinControl se relaciona com o NEXCORE?',

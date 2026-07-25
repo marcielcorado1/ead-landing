@@ -385,7 +385,7 @@ export default function SistemasPage() {
             <div className="w-8 h-8 bg-gradient-to-br from-teal-400 to-emerald-500 rounded-lg flex items-center justify-center">
               <Cpu className="w-4 h-4 text-white" />
             </div>
-            <span className="font-bold text-white">NEX<span className="text-teal-400">CORE</span></span>
+            <span className="font-bold text-white">Kem<span className="text-teal-400">OS</span></span>
           </a>
           <div className="hidden md:flex items-center gap-6 text-sm text-slate-400">
             <a href="#sistemas" className="hover:text-white transition-colors">Sistemas</a>
@@ -464,7 +464,7 @@ export default function SistemasPage() {
             <div className="w-7 h-7 bg-gradient-to-br from-teal-400 to-emerald-500 rounded-lg flex items-center justify-center">
               <Cpu className="w-3.5 h-3.5 text-white" />
             </div>
-            <span className="font-bold text-slate-400">NEX<span className="text-teal-400">CORE</span></span>
+            <span className="font-bold text-slate-400">Kem<span className="text-teal-400">OS</span></span>
           </div>
           <div className="flex items-center gap-6 text-xs text-slate-600">
             <a href="/" className="hover:text-slate-400 transition-colors">Início</a>

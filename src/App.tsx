@@ -16,7 +16,7 @@ const PAINS = [
   {
     icon: <Clock className="w-6 h-6 text-red-400" />,
     title: "Você paga pessoas para fazer o que uma IA pode fazer sozinha",
-    desc: "Cobranças, follow-ups, relatórios, triagem de e-mail, agendamentos, atualizações de planilha. Tarefas repetidas que sugam horas toda semana — e que o NEXCORE executa sozinho, sem falhar, sem dormir.",
+    desc: "Cobranças, follow-ups, relatórios, triagem de e-mail, agendamentos, atualizações de planilha. Tarefas repetidas que sugam horas toda semana — e que o KemOS executa sozinho, sem falhar, sem dormir.",
   },
   {
     icon: <DollarSign className="w-6 h-6 text-yellow-400" />,
@@ -26,7 +26,7 @@ const PAINS = [
   {
     icon: <TrendingUp className="w-6 h-6 text-orange-400" />,
     title: "Você trabalha no negócio em vez de trabalhar no negócio",
-    desc: "No final do dia você operou — respondeu e-mail, fez cobrança, gerou relatório, atualizou dashboard. O que você quer é crescer. O NEXCORE assume o operacional.",
+    desc: "No final do dia você operou — respondeu e-mail, fez cobrança, gerou relatório, atualizou dashboard. O que você quer é crescer. O KemOS assume o operacional.",
   },
 ]
 
@@ -112,7 +112,7 @@ const FEATURES = [
 
 const TOOLS = [
   { name: 'IA (Claude Code)', role: 'Motor que executa tudo', cost: '~$20/mês', required: true, icon: <Bot className="w-5 h-5" /> },
-  { name: 'NEXCORE', role: 'OS de agentes de IA', cost: 'Gratuito', required: false, icon: <Zap className="w-5 h-5" /> },
+  { name: 'KemOS', role: 'OS de agentes de IA', cost: 'Gratuito', required: false, icon: <Zap className="w-5 h-5" /> },
   { name: 'GitHub', role: 'Versionamento', cost: 'Gratuito', required: false, icon: <Code2 className="w-5 h-5" /> },
   { name: 'Supabase', role: 'Banco de dados + Auth', cost: 'Gratuito', required: false, icon: <Database className="w-5 h-5" /> },
   { name: 'Vercel', role: 'Deploy em 1 clique', cost: 'Gratuito', required: false, icon: <Globe className="w-5 h-5" /> },
@@ -120,24 +120,24 @@ const TOOLS = [
 
 const FAQS = [
   {
-    q: 'Preciso saber programar para usar o NEXCORE?',
+    q: 'Preciso saber programar para usar o KemOS?',
     a: 'Não. A IA escreve e executa o código. Você descreve o que quer, ela faz. Pessoas sem nenhuma experiência técnica criaram e publicaram apps reais em menos de uma semana.',
   },
   {
     q: 'Qual o custo real para começar?',
-    a: 'A única assinatura paga é a IA que opera o NEXCORE — cerca de $20/mês (≈ R$110/mês). GitHub, Supabase e Vercel são gratuitos no tier inicial. O NEXCORE em si é gratuito. Você publica apps reais gastando menos de R$110/mês.',
+    a: 'A única assinatura paga é a IA que opera o KemOS — cerca de $20/mês (≈ R$110/mês). GitHub, Supabase e Vercel são gratuitos no tier inicial. O KemOS em si é gratuito. Você publica apps reais gastando menos de R$110/mês.',
   },
   {
     q: 'Para qualquer tipo de negócio?',
-    a: 'Sim. Provedores de internet, e-commerces, clínicas, imobiliárias, agências, construtoras. Se há tarefa repetitiva, relatório manual ou processo sem automação — o NEXCORE resolve.',
+    a: 'Sim. Provedores de internet, e-commerces, clínicas, imobiliárias, agências, construtoras. Se há tarefa repetitiva, relatório manual ou processo sem automação — o KemOS resolve.',
   },
   {
     q: 'Em quanto tempo vejo resultado?',
     a: 'A primeira automação roda no mesmo dia do setup. Apps publicados em dias. Automações complexas em 1-2 semanas. Resultado concreto, não promessa.',
   },
   {
-    q: 'E se o NEXCORE mudar?',
-    a: 'O NEXCORE é mantido por quem o usa no dia a dia. Quando evolui, o conteúdo evolui junto. Alunos têm acesso a todas as atualizações.',
+    q: 'E se o KemOS mudar?',
+    a: 'O KemOS é mantido por quem o usa no dia a dia. Quando evolui, o conteúdo evolui junto. Alunos têm acesso a todas as atualizações.',
   },
 ]
 
@@ -210,7 +210,7 @@ export default function App() {
             <div className="w-8 h-8 bg-gradient-to-br from-teal-400 to-emerald-500 rounded-lg flex items-center justify-center">
               <Cpu className="w-4 h-4 text-white" />
             </div>
-            <span className="font-bold text-white">NEX<span className="text-teal-400">CORE</span></span>
+            <span className="font-bold text-white">Kem<span className="text-teal-400">OS</span></span>
           </div>
           <div className="hidden md:flex items-center gap-6 text-sm text-slate-400">
             <a href="#como-funciona" className="hover:text-white transition-colors">Como funciona</a>
@@ -251,7 +251,7 @@ export default function App() {
           </h1>
 
           <p className="text-lg sm:text-xl text-slate-400 max-w-2xl mx-auto mb-10 leading-relaxed">
-            O <strong className="text-white">NEXCORE</strong> é um sistema operacional de agentes de IA que automatiza o que você faz manualmente todo dia —
+            O <strong className="text-white">KemOS</strong> é um sistema operacional de agentes de IA que automatiza o que você faz manualmente todo dia —
             cobrança, marketing, suporte, relatórios, vendas, operações.{' '}
             <strong className="text-white">Sem programador. Com ~$20/mês.</strong>
           </p>
@@ -342,7 +342,7 @@ export default function App() {
             Um OS de IA que gerencia seu negócio
           </h2>
           <p className="text-slate-400 text-center max-w-2xl mx-auto mb-16">
-            O NEXCORE não é um chatbot. É um sistema operacional de agentes especializados que trabalham com contexto real do seu negócio.
+            O KemOS não é um chatbot. É um sistema operacional de agentes especializados que trabalham com contexto real do seu negócio.
           </p>
 
           <div className="grid md:grid-cols-2 gap-6 mb-12">
@@ -433,7 +433,7 @@ export default function App() {
           Para qualquer negócio que tem processos repetitivos
         </h2>
         <p className="text-slate-400 text-center max-w-2xl mx-auto mb-12">
-          Se existe tarefa manual que ocorre toda semana — o NEXCORE pode automatizar.
+          Se existe tarefa manual que ocorre toda semana — o KemOS pode automatizar.
         </p>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
           {USE_CASES.map((uc, i) => (
@@ -521,10 +521,10 @@ export default function App() {
                 </h2>
                 <p className="text-slate-400 leading-relaxed mb-4">
                   Sou <strong className="text-white">Marciel Corado</strong>, dono da <strong className="text-white">Kem Soluções</strong> — provedor de fibra óptica há mais de 17 anos.
-                  Usei o NEXCORE para resolver problemas reais: cobrança automática, portal do cliente, atendimento no WhatsApp, gestão interna.
+                  Usei o KemOS para resolver problemas reais: cobrança automática, portal do cliente, atendimento no WhatsApp, gestão interna.
                 </p>
                 <p className="text-slate-400 leading-relaxed mb-4">
-                  Não aprendi em livro. Cada automação que o NEXCORE tem, eu precisei, construí e testei no meu negócio antes de ensinar.
+                  Não aprendi em livro. Cada automação que o KemOS tem, eu precisei, construí e testei no meu negócio antes de ensinar.
                 </p>
                 <p className="text-slate-400 leading-relaxed">
                   Agora ensino qualquer dono de negócio a fazer o mesmo — independente de saber programar, de ter equipe técnica, de ter orçamento.
@@ -533,9 +533,9 @@ export default function App() {
               <div className="space-y-4">
                 {[
                   { icon: <Wifi className="w-5 h-5 text-teal-400" />, label: 'Dono de ISP há mais de 17 anos', sub: 'Kem Soluções — fibra óptica para residências e empresas' },
-                  { icon: <Terminal className="w-5 h-5 text-teal-400" />, label: 'Usuário ativo do NEXCORE', sub: 'Usa nas automações do provedor em produção hoje' },
+                  { icon: <Terminal className="w-5 h-5 text-teal-400" />, label: 'Usuário ativo do KemOS', sub: 'Usa nas automações do provedor em produção hoje' },
                   { icon: <Code2 className="w-5 h-5 text-teal-400" />, label: '3 apps em produção', sub: 'Recompensa Pro, Fut Sorteio, Assessor Digital' },
-                  { icon: <BookOpen className="w-5 h-5 text-teal-400" />, label: 'Conteúdo sempre atualizado', sub: 'Quando o NEXCORE evolui, o conteúdo evolui junto' },
+                  { icon: <BookOpen className="w-5 h-5 text-teal-400" />, label: 'Conteúdo sempre atualizado', sub: 'Quando o KemOS evolui, o conteúdo evolui junto' },
                 ].map((item, i) => (
                   <div key={i} className="flex items-start gap-4 p-4 rounded-xl bg-white/5">
                     <div className="w-10 h-10 rounded-xl bg-teal-500/10 flex items-center justify-center flex-shrink-0">
@@ -672,7 +672,7 @@ export default function App() {
             <div className="w-7 h-7 bg-gradient-to-br from-teal-400 to-emerald-500 rounded-lg flex items-center justify-center">
               <Cpu className="w-3.5 h-3.5 text-white" />
             </div>
-            <span className="font-bold text-slate-400">NEX<span className="text-teal-400">CORE</span></span>
+            <span className="font-bold text-slate-400">Kem<span className="text-teal-400">OS</span></span>
           </div>
           <div className="flex items-center gap-6 text-xs text-slate-600">
             <a href="/sistemas" className="hover:text-slate-400 transition-colors">Central de Sistemas</a>
@@ -681,7 +681,7 @@ export default function App() {
             <a href="/privacidade" className="hover:text-slate-400 transition-colors">Privacidade</a>
           </div>
           <p className="text-sm text-slate-600">
-            © 2026 Kem Soluções. Construído com NEXCORE.
+            © 2026 Kem Soluções. Construído com KemOS.
           </p>
         </div>
       </footer>

@@ -326,7 +326,7 @@ function FAQItem({ q, a }: { q: string; a: string }) {
 
 // ── Main App ──────────────────────────────────────────────────────────────────
 
-const WA_LINK = 'https://wa.me/5518997681155?text=Ol%C3%A1%2C+quero+saber+mais+sobre+o+treinamento+KemOS'
+const WA_LINK = 'https://wa.me/5561985750506?text=Ol%C3%A1%2C+quero+saber+mais+sobre+o+treinamento+KemOS'
 
 export default function App() {
   return (

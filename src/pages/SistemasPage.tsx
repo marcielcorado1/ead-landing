@@ -13,9 +13,7 @@ import {
 // 7º sistema é só adicionar um objeto novo ao array, o grid se ajusta sozinho.
 // ─────────────────────────────────────────────────────────────────────────────
 
-// TODO(Marciel): substituir pelo número real de WhatsApp antes de publicar.
-// Formato: código do país + DDD + número, sem espaços/traços/símbolos (ex: 5511999998888)
-const WHATSAPP_NUMBER = '5500000000000'
+const WHATSAPP_NUMBER = '5561985750506'
 
 // Preço único por enquanto — mesmo valor pros 6 sistemas.
 const MONTHLY_PRICE = 97

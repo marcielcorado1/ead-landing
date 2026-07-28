@@ -779,7 +779,7 @@ export default function FinControlPage() {
                 Ver planos e assinar <ArrowRight className="w-5 h-5" />
               </a>
               <a
-                href={`https://wa.me/5500000000000?text=${encodeURIComponent('Olá! Quero saber mais sobre o FinControl.')}`}
+                href={`https://wa.me/5561985750506?text=${encodeURIComponent('Olá! Quero saber mais sobre o FinControl.')}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full sm:w-auto flex items-center justify-center gap-2 border-2 border-white/40 text-white hover:border-white/70 font-semibold px-8 py-4 rounded-2xl text-base transition-colors"
@@ -807,7 +807,7 @@ export default function FinControlPage() {
             <a href="/privacidade" className="hover:text-slate-600 transition-colors">Privacidade</a>
             <a href="https://nexcore.kemsolucoes.com.br" target="_blank" rel="noopener noreferrer" className="hover:text-slate-600 transition-colors">NEXCORE EAD</a>
             <a
-              href={`https://wa.me/5500000000000`}
+              href={`https://wa.me/5561985750506`}
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-green-600 transition-colors"

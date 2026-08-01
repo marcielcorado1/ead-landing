@@ -21,6 +21,9 @@ const TOTAL_INDIVIDUAL = INDIVIDUAL_COSTS.reduce((s, c) => s + c.price, 0)
 const ECONOMY = TOTAL_INDIVIDUAL - HUB_PRICE
 const ECONOMY_PCT = Math.round((ECONOMY / TOTAL_INDIVIDUAL) * 100)
 
+const REGISTER_URL = (origin: string) =>
+  `https://app.kemsolucoes.com.br/auth/register?origin=${origin}`
+
 const WA_SUPORTE = `https://wa.me/5561985750506?text=${encodeURIComponent('Olá! Quero saber mais sobre o HUB de IA.')}`
 
 // ── Dados ─────────────────────────────────────────────────────────────────────
@@ -640,10 +643,10 @@ export default function HubPage() {
                 ))}
               </ul>
               <a
-                href="#"
+                href={REGISTER_URL('hub')}
                 className="w-full text-center font-bold text-sm py-3.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white transition-colors"
               >
-                Assinar HUB de IA Solo
+                Começar Grátis →
               </a>
             </div>
 
@@ -692,10 +695,10 @@ export default function HubPage() {
               </div>
 
               <a
-                href="#"
+                href={REGISTER_URL('hub')}
                 className="w-full text-center font-bold text-sm py-3.5 rounded-xl bg-purple-600 hover:bg-purple-700 text-white transition-colors"
               >
-                Assinar HUB de IA Revendedor
+                Começar Grátis →
               </a>
             </div>
           </div>

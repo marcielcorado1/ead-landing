@@ -3,7 +3,7 @@ import {
   Wifi, Bot, Code2, Database, Globe, CheckCircle2,
   ArrowRight, Zap, Shield, TrendingUp, Users, BookOpen,
   Terminal, Package, ChevronDown, Star, Clock, DollarSign,
-  Smartphone, BarChart3, MessageSquare, Wrench, Play, Mail
+  Smartphone, BarChart3, MessageSquare, Wrench, Play
 } from 'lucide-react'
 import { useState } from 'react'
 
@@ -408,17 +408,16 @@ function FAQItem({ q, a }: { q: string; a: string }) {
   )
 }
 
+// ── Constantes ────────────────────────────────────────────────────────────────
+
+const REGISTER_URL = (origin: string) =>
+  `https://app.kemsolucoes.com.br/auth/register?origin=${origin}`
+
+const WA_LINK = `https://wa.me/5561985750506?text=${encodeURIComponent('Olá! Quero saber mais sobre o curso para provedores.')}`
+
 // ── Main App ──────────────────────────────────────────────────────────────────
 
 export default function ProvedorPage() {
-  const [email, setEmail] = useState('')
-  const [submitted, setSubmitted] = useState(false)
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    if (email) setSubmitted(true)
-  }
-
   return (
     <div className="min-h-screen bg-slate-950 font-sans overflow-x-hidden">
 
@@ -438,10 +437,10 @@ export default function ProvedorPage() {
             <a href="#faq" className="hover:text-white transition-colors">FAQ</a>
           </div>
           <a
-            href="#lista-espera"
+            href={REGISTER_URL('provedor')}
             className="text-sm font-semibold bg-gradient-to-r from-teal-500 to-emerald-500 text-white px-4 py-2 rounded-xl hover:from-teal-400 hover:to-emerald-400 transition-all"
           >
-            Entrar na Lista →
+            Começar Grátis →
           </a>
         </div>
       </nav>
@@ -479,10 +478,10 @@ export default function ProvedorPage() {
 
           <div className="animate-fade-up flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
             <a
-              href="#lista-espera"
+              href={REGISTER_URL('provedor')}
               className="group w-full sm:w-auto flex items-center justify-center gap-2 bg-gradient-to-r from-teal-500 to-emerald-500 hover:from-teal-400 hover:to-emerald-400 text-white font-bold px-8 py-4 rounded-2xl text-lg transition-all shadow-lg shadow-teal-500/20"
             >
-              Quero Aprender Grátis
+              Começar Grátis →
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </a>
             <a
@@ -780,10 +779,10 @@ export default function ProvedorPage() {
                 ))}
               </ul>
               <a
-                href="#lista-espera"
+                href={REGISTER_URL('provedor')}
                 className={`w-full text-center py-3 rounded-xl font-semibold text-sm transition-all ${plan.ctaStyle}`}
               >
-                {plan.cta}
+                Começar Grátis →
               </a>
             </div>
           ))}
@@ -809,45 +808,37 @@ export default function ProvedorPage() {
           <div className="absolute inset-0 bg-gradient-to-br from-teal-500/10 to-emerald-500/5 pointer-events-none" />
           <div className="relative">
             <Badge className="text-teal-400 bg-teal-400/10 border-teal-400/30 mb-6">
-              <Star className="w-3 h-3" /> Lista de Espera Aberta
+              <Star className="w-3 h-3" /> Acesso disponível agora
             </Badge>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white mb-4 leading-tight">
-              Seja o primeiro a saber<br />quando lançar
+              Comece agora e leve seu<br />provedor ao próximo nível
             </h2>
             <p className="text-slate-400 text-lg max-w-xl mx-auto mb-10">
-              Entre na lista de espera e garanta <strong className="text-white">acesso antecipado</strong> com desconto exclusivo para os primeiros 50 provedores.
+              Crie sua conta gratuitamente e tenha acesso ao módulo para provedores em menos de 5 minutos.
             </p>
 
-            {submitted ? (
-              <div className="inline-flex items-center gap-3 bg-teal-500/20 border border-teal-500/40 text-teal-300 px-8 py-4 rounded-2xl text-lg font-semibold">
-                <CheckCircle2 className="w-6 h-6" />
-                Perfeito! Você está na lista. Avisaremos no lançamento.
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
-                <input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="seu@email.com.br"
-                  required
-                  className="flex-1 bg-white/10 border border-white/20 text-white placeholder-slate-500 px-5 py-4 rounded-2xl focus:outline-none focus:border-teal-500 transition-colors"
-                />
-                <button
-                  type="submit"
-                  className="flex items-center justify-center gap-2 bg-gradient-to-r from-teal-500 to-emerald-500 hover:from-teal-400 hover:to-emerald-400 text-white font-bold px-6 py-4 rounded-2xl transition-all whitespace-nowrap"
-                >
-                  <Mail className="w-4 h-4" /> Entrar na Lista
-                </button>
-              </form>
-            )}
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
+              <a
+                href={REGISTER_URL('provedor')}
+                className="group flex items-center gap-2 bg-gradient-to-r from-teal-500 to-emerald-500 hover:from-teal-400 hover:to-emerald-400 text-white font-bold px-8 py-4 rounded-2xl text-lg transition-all shadow-lg shadow-teal-500/20"
+              >
+                Começar Grátis →
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </a>
+              <a
+                href={WA_LINK}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 border border-white/20 text-slate-300 hover:text-white hover:border-white/40 px-8 py-4 rounded-2xl text-base transition-all"
+              >
+                Falar com suporte
+              </a>
+            </div>
 
-            <p className="text-slate-600 text-xs mt-4">Sem spam. Cancelamento a qualquer momento.</p>
-
-            <div className="flex flex-wrap items-center justify-center gap-6 mt-10 text-sm text-slate-500">
+            <div className="flex flex-wrap items-center justify-center gap-6 mt-6 text-sm text-slate-500">
               <div className="flex items-center gap-2"><Shield className="w-4 h-4 text-teal-400" /> Sem compromisso</div>
-              <div className="flex items-center gap-2"><Zap className="w-4 h-4 text-teal-400" /> Acesso antecipado</div>
-              <div className="flex items-center gap-2"><DollarSign className="w-4 h-4 text-teal-400" /> Desconto exclusivo</div>
+              <div className="flex items-center gap-2"><Zap className="w-4 h-4 text-teal-400" /> Acesso imediato</div>
+              <div className="flex items-center gap-2"><DollarSign className="w-4 h-4 text-teal-400" /> Começa grátis</div>
             </div>
           </div>
         </div>

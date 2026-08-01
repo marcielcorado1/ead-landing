@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import {
   Bot, Database, Globe, Code2, CheckCircle2, ArrowRight,
-  Zap, Shield, DollarSign, Play, Mail, Star,
+  Zap, Shield, DollarSign, Play, Star,
   TrendingUp, Users, Clock, ChevronDown, Lock, Cpu,
   LayoutGrid, Package, Terminal, Sparkles,
   ShoppingBag, Briefcase, Wrench, Trophy, Gift,
@@ -144,14 +144,12 @@ function FAQItem({ q, a }: { q: string; a: string }) {
   )
 }
 
-export default function SVAPage() {
-  const [email, setEmail] = useState('')
-  const [submitted, setSubmitted] = useState(false)
+const REGISTER_URL = (origin: string) =>
+  `https://app.kemsolucoes.com.br/auth/register?origin=${origin}`
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    if (email) setSubmitted(true)
-  }
+const WA_SVA = `https://wa.me/5561985750506?text=${encodeURIComponent('Olá! Quero saber mais sobre os SVAs.')}`
+
+export default function SVAPage() {
 
   return (
     <div className="min-h-screen bg-[#07080f] text-slate-100 font-sans overflow-x-hidden">
@@ -173,9 +171,9 @@ export default function SVAPage() {
             <span className="hidden sm:block text-xs text-slate-500 bg-white/5 px-3 py-1 rounded-full">
               35+ agentes · 190+ skills
             </span>
-            <a href="#lista-espera"
+            <a href={REGISTER_URL('sva')}
               className="text-xs font-bold bg-violet-600 hover:bg-violet-500 text-white px-4 py-2 rounded-xl transition-colors">
-              Quero Acesso →
+              Ativar Gratuitamente →
             </a>
           </div>
         </div>
@@ -211,9 +209,9 @@ export default function SVAPage() {
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-14">
-            <a href="#lista-espera"
+            <a href={REGISTER_URL('sva')}
               className="group w-full sm:w-auto flex items-center justify-center gap-2 bg-gradient-to-r from-violet-600 to-purple-600 hover:from-violet-500 hover:to-purple-500 text-white font-bold px-8 py-4 rounded-2xl text-base transition-all shadow-lg shadow-violet-500/20">
-              Quero Instalar o NEXCORE
+              Ativar Gratuitamente →
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </a>
             <a href="#como-funciona"
@@ -610,43 +608,39 @@ export default function SVAPage() {
           </div>
           <div className="relative">
             <div className="inline-flex items-center gap-2 text-xs font-bold text-violet-300 bg-violet-500/10 px-4 py-2 rounded-full mb-6">
-              <Star className="w-3 h-3" /> Vagas limitadas para o acesso inicial
+              <Star className="w-3 h-3" /> Acesso gratuito disponível agora
             </div>
             <h2 className="text-3xl sm:text-4xl font-black text-white mb-4 leading-tight">
-              Aprenda a criar seus próprios apps<br />e gere receita com SVA
+              Ative agora e comece a criar<br />seus próprios SVAs
             </h2>
             <p className="text-slate-400 max-w-lg mx-auto mb-8 text-sm leading-relaxed">
-              Entre na lista de espera do curso. Os primeiros <strong className="text-white">30 alunos</strong> recebem
-              acesso com <strong className="text-violet-300">50% de desconto</strong> e suporte direto na instalação do NEXCORE.
+              Crie sua conta gratuitamente e acesse o curso de SVAs para provedores.
+              Acesso imediato, sem cartão de crédito.
             </p>
 
-            {submitted ? (
-              <div className="inline-flex items-center gap-3 bg-violet-500/20 text-violet-300 px-8 py-4 rounded-2xl font-semibold">
-                <CheckCircle2 className="w-5 h-5" />
-                Você está na lista! Avisaremos assim que abrir as vagas.
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
-                <input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="email@seuprovedor.com.br"
-                  required
-                  className="flex-1 bg-white/10 text-white placeholder-slate-600 px-5 py-4 rounded-2xl focus:outline-none focus:ring-2 focus:ring-violet-500/50 transition-all text-sm"
-                />
-                <button type="submit"
-                  className="flex items-center justify-center gap-2 bg-gradient-to-r from-violet-600 to-purple-600 hover:from-violet-500 hover:to-purple-500 text-white font-bold px-6 py-4 rounded-2xl transition-all text-sm whitespace-nowrap">
-                  <Mail className="w-4 h-4" /> Quero Acesso
-                </button>
-              </form>
-            )}
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
+              <a
+                href={REGISTER_URL('sva')}
+                className="group flex items-center gap-2 bg-gradient-to-r from-violet-600 to-purple-600 hover:from-violet-500 hover:to-purple-500 text-white font-bold px-8 py-4 rounded-2xl text-base transition-all shadow-lg shadow-violet-500/20"
+              >
+                Ativar Gratuitamente →
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </a>
+              <a
+                href={WA_SVA}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 bg-white/5 text-slate-400 hover:text-white hover:bg-white/10 px-8 py-4 rounded-2xl text-base transition-all"
+              >
+                Falar com suporte
+              </a>
+            </div>
 
-            <div className="flex flex-wrap items-center justify-center gap-5 mt-8 text-xs text-slate-600">
-              <div className="flex items-center gap-1.5"><Shield className="w-3.5 h-3.5 text-violet-400" /> Sem spam</div>
-              <div className="flex items-center gap-1.5"><Users className="w-3.5 h-3.5 text-violet-400" /> Vagas limitadas</div>
-              <div className="flex items-center gap-1.5"><Clock className="w-3.5 h-3.5 text-violet-400" /> Suporte na instalação</div>
-              <div className="flex items-center gap-1.5"><DollarSign className="w-3.5 h-3.5 text-violet-400" /> 50% off para os primeiros 30</div>
+            <div className="flex flex-wrap items-center justify-center gap-5 mt-6 text-xs text-slate-600">
+              <div className="flex items-center gap-1.5"><Shield className="w-3.5 h-3.5 text-violet-400" /> Sem cartão de crédito</div>
+              <div className="flex items-center gap-1.5"><Users className="w-3.5 h-3.5 text-violet-400" /> Acesso imediato</div>
+              <div className="flex items-center gap-1.5"><Clock className="w-3.5 h-3.5 text-violet-400" /> App no ar em dias</div>
+              <div className="flex items-center gap-1.5"><DollarSign className="w-3.5 h-3.5 text-violet-400" /> Gratuito para começar</div>
             </div>
           </div>
         </div>

@@ -7,6 +7,11 @@ import {
   BookOpen, Star, Phone,
 } from 'lucide-react'
 
+// ── Constantes ────────────────────────────────────────────────────────────────
+
+const REGISTER_URL = (origin: string) =>
+  `https://app.kemsolucoes.com.br/auth/register?origin=${origin}`
+
 // ── Dados ─────────────────────────────────────────────────────────────────────
 
 const MODULES = [
@@ -109,7 +114,7 @@ const PLANS = [
     highlight: false,
     modules: ['Módulo Financeiro', 'Fechamento mensal', 'REC mensal', 'Saldos encadeados', 'Academy incluso'],
     excluded: ['HUB de IA', 'Disparador WhatsApp'],
-    kiwifyLink: '#',
+    kiwifyLink: REGISTER_URL('fincontrol'),
   },
   {
     slug: 'pro',
@@ -119,7 +124,7 @@ const PLANS = [
     highlight: false,
     modules: ['Tudo do Starter', 'Academy NexCore (trilhas avançadas)'],
     excluded: ['HUB de IA', 'Disparador WhatsApp'],
-    kiwifyLink: '#',
+    kiwifyLink: REGISTER_URL('fincontrol'),
   },
   {
     slug: 'business',
@@ -130,7 +135,7 @@ const PLANS = [
     badge: 'Mais popular',
     modules: ['Tudo do Pro', 'HUB de IA completo', 'Módulo Integrações (LLMs)', 'Disparador WhatsApp (em breve)'],
     excluded: [],
-    kiwifyLink: '#',
+    kiwifyLink: REGISTER_URL('fincontrol'),
   },
   {
     slug: 'hub-ia',
@@ -140,7 +145,7 @@ const PLANS = [
     highlight: false,
     modules: ['HUB de IA completo', 'Módulo Integrações (OpenAI, Anthropic, Gemini…)', 'Academy incluso'],
     excluded: ['Módulo Financeiro'],
-    kiwifyLink: '#',
+    kiwifyLink: REGISTER_URL('fincontrol'),
   },
 ]
 
@@ -157,7 +162,7 @@ const RESELLER_PLAN = {
     'Cobrança pelo uso real no fechamento do mês',
     'R$ 1,00 por cliente ativo (mínimo 20 = R$ 20/mês)',
   ],
-  kiwifyLink: '#',
+  kiwifyLink: REGISTER_URL('fincontrol'),
 }
 
 const FAQS = [
@@ -538,7 +543,7 @@ export default function FinControlPage() {
                 ))}
               </div>
               <a href={RESELLER_PLAN.kiwifyLink} className="btn-primary">
-                Assinar plano Revendedor <ArrowRight className="w-4 h-4" />
+                Começar Grátis → <ArrowRight className="w-4 h-4" />
               </a>
             </div>
 
@@ -639,7 +644,7 @@ export default function FinControlPage() {
                       : 'bg-slate-100 hover:bg-green-50 hover:text-green-700 text-slate-700'
                   }`}
                 >
-                  Assinar {plan.name}
+                  Começar Grátis →
                 </a>
               </div>
             ))}
@@ -658,7 +663,7 @@ export default function FinControlPage() {
               </div>
             </div>
             <a href={RESELLER_PLAN.kiwifyLink} className="btn-primary whitespace-nowrap flex-shrink-0">
-              Assinar Revendedor <ArrowRight className="w-4 h-4" />
+              Começar Grátis → <ArrowRight className="w-4 h-4" />
             </a>
           </div>
 

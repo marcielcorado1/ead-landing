@@ -326,6 +326,9 @@ function FAQItem({ q, a }: { q: string; a: string }) {
 
 // ── Main App ──────────────────────────────────────────────────────────────────
 
+const REGISTER_URL = (origin: string) =>
+  `https://app.kemsolucoes.com.br/auth/register?origin=${origin}`
+
 const WA_LINK = 'https://wa.me/5561985750506?text=Ol%C3%A1%2C+quero+saber+mais+sobre+o+treinamento+KemOS'
 
 export default function App() {
@@ -350,12 +353,10 @@ export default function App() {
             <a href="/provedor" className="hover:text-teal-400 transition-colors text-teal-400/70">Para Provedores</a>
           </div>
           <a
-            href={WA_LINK}
-            target="_blank"
-            rel="noopener noreferrer"
+            href={REGISTER_URL('treinamento')}
             className="text-sm font-semibold bg-gradient-to-r from-teal-500 to-emerald-500 text-white px-4 py-2 rounded-xl hover:from-teal-400 hover:to-emerald-400 transition-all"
           >
-            Quero o Treinamento →
+            Começar Grátis →
           </a>
         </div>
       </nav>
@@ -392,12 +393,10 @@ export default function App() {
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-14">
             <a
-              href={WA_LINK}
-              target="_blank"
-              rel="noopener noreferrer"
+              href={REGISTER_URL('treinamento')}
               className="group w-full sm:w-auto flex items-center justify-center gap-2 bg-gradient-to-r from-teal-500 to-emerald-500 hover:from-teal-400 hover:to-emerald-400 text-white font-bold px-8 py-4 rounded-2xl text-lg transition-all shadow-lg shadow-teal-500/20"
             >
-              Quero o Treinamento
+              Começar Grátis →
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </a>
             <a
@@ -611,12 +610,10 @@ export default function App() {
               </div>
             </div>
             <a
-              href={WA_LINK}
-              target="_blank"
-              rel="noopener noreferrer"
+              href={REGISTER_URL('treinamento')}
               className="flex-shrink-0 flex items-center gap-2 bg-gradient-to-r from-teal-500 to-emerald-500 text-white font-bold px-6 py-3 rounded-xl transition-all text-sm hover:from-teal-400 hover:to-emerald-400"
             >
-              Quero esse resultado <ChevronRight className="w-4 h-4" />
+              Começar Grátis → <ChevronRight className="w-4 h-4" />
             </a>
           </div>
         </Section>
@@ -765,12 +762,10 @@ export default function App() {
                 e o roadmap para transformar o que você instalar em receita recorrente.
               </p>
               <a
-                href={WA_LINK}
-                target="_blank"
-                rel="noopener noreferrer"
+                href={REGISTER_URL('treinamento')}
                 className="group inline-flex items-center gap-2 bg-gradient-to-r from-teal-500 to-emerald-500 hover:from-teal-400 hover:to-emerald-400 text-white font-bold px-8 py-4 rounded-2xl transition-all shadow-lg shadow-teal-500/20"
               >
-                Quero o Treinamento
+                Começar Grátis →
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </a>
             </div>
@@ -844,19 +839,19 @@ export default function App() {
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-10">
               <a
-                href={WA_LINK}
-                target="_blank"
-                rel="noopener noreferrer"
+                href={REGISTER_URL('treinamento')}
                 className="group w-full sm:w-auto flex items-center justify-center gap-2 bg-gradient-to-r from-teal-500 to-emerald-500 hover:from-teal-400 hover:to-emerald-400 text-white font-bold px-10 py-5 rounded-2xl text-lg transition-all shadow-lg shadow-teal-500/20"
               >
-                Quero o Treinamento KemOS
+                Começar Grátis →
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </a>
               <a
-                href="/sistemas"
+                href={WA_LINK}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-full sm:w-auto flex items-center justify-center gap-2 border border-white/20 text-slate-300 hover:text-white hover:border-white/40 px-10 py-5 rounded-2xl text-lg transition-all"
               >
-                <Globe className="w-4 h-4" /> Ver os sistemas
+                Falar com suporte
               </a>
             </div>
 

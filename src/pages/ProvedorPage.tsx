@@ -298,6 +298,7 @@ const PLANS = [
     highlight: false,
     cta: 'Começar Grátis',
     ctaStyle: 'border border-teal-500 text-teal-400 hover:bg-teal-500/10',
+    origin: 'provedor-academy',
     items: [
       'Módulo 0 completo (setup)',
       'App funcionando em 7 dias',
@@ -310,9 +311,10 @@ const PLANS = [
     price: 'R$ 97',
     period: '/mês',
     highlight: true,
-    cta: 'Entrar na Lista de Espera',
+    cta: 'Começar Grátis',
     ctaStyle: 'bg-gradient-to-r from-teal-500 to-emerald-500 text-white hover:from-teal-400 hover:to-emerald-400',
     badge: 'MAIS POPULAR',
+    origin: 'provedor-revendedor',
     items: [
       'Todos os 7 módulos',
       'Novos módulos todo mês',
@@ -326,8 +328,9 @@ const PLANS = [
     price: 'R$ 297',
     period: ' único',
     highlight: false,
-    cta: 'Entrar na Lista de Espera',
+    cta: 'Começar Grátis',
     ctaStyle: 'border border-slate-500 text-slate-300 hover:bg-slate-500/10',
+    origin: 'provedor-academy',
     items: [
       'Módulos 0 a 6 completos',
       'Acesso vitalício',
@@ -437,7 +440,7 @@ export default function ProvedorPage() {
             <a href="#faq" className="hover:text-white transition-colors">FAQ</a>
           </div>
           <a
-            href={REGISTER_URL('provedor')}
+            href={REGISTER_URL('provedor-revendedor')}
             className="text-sm font-semibold bg-gradient-to-r from-teal-500 to-emerald-500 text-white px-4 py-2 rounded-xl hover:from-teal-400 hover:to-emerald-400 transition-all"
           >
             Começar Grátis →
@@ -478,7 +481,7 @@ export default function ProvedorPage() {
 
           <div className="animate-fade-up flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
             <a
-              href={REGISTER_URL('provedor')}
+              href={REGISTER_URL('provedor-revendedor')}
               className="group w-full sm:w-auto flex items-center justify-center gap-2 bg-gradient-to-r from-teal-500 to-emerald-500 hover:from-teal-400 hover:to-emerald-400 text-white font-bold px-8 py-4 rounded-2xl text-lg transition-all shadow-lg shadow-teal-500/20"
             >
               Começar Grátis →
@@ -779,7 +782,7 @@ export default function ProvedorPage() {
                 ))}
               </ul>
               <a
-                href={REGISTER_URL('provedor')}
+                href={REGISTER_URL(plan.origin)}
                 className={`w-full text-center py-3 rounded-xl font-semibold text-sm transition-all ${plan.ctaStyle}`}
               >
                 Começar Grátis →
@@ -819,7 +822,7 @@ export default function ProvedorPage() {
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
               <a
-                href={REGISTER_URL('provedor')}
+                href={REGISTER_URL('provedor-revendedor')}
                 className="group flex items-center gap-2 bg-gradient-to-r from-teal-500 to-emerald-500 hover:from-teal-400 hover:to-emerald-400 text-white font-bold px-8 py-4 rounded-2xl text-lg transition-all shadow-lg shadow-teal-500/20"
               >
                 Começar Grátis →

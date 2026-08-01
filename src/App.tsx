@@ -353,7 +353,7 @@ export default function App() {
             <a href="/provedor" className="hover:text-teal-400 transition-colors text-teal-400/70">Para Provedores</a>
           </div>
           <a
-            href={REGISTER_URL('treinamento')}
+            href={REGISTER_URL('provedor-academy')}
             className="text-sm font-semibold bg-gradient-to-r from-teal-500 to-emerald-500 text-white px-4 py-2 rounded-xl hover:from-teal-400 hover:to-emerald-400 transition-all"
           >
             Começar Grátis →
@@ -393,7 +393,7 @@ export default function App() {
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-14">
             <a
-              href={REGISTER_URL('treinamento')}
+              href={REGISTER_URL('provedor-academy')}
               className="group w-full sm:w-auto flex items-center justify-center gap-2 bg-gradient-to-r from-teal-500 to-emerald-500 hover:from-teal-400 hover:to-emerald-400 text-white font-bold px-8 py-4 rounded-2xl text-lg transition-all shadow-lg shadow-teal-500/20"
             >
               Começar Grátis →
@@ -610,7 +610,7 @@ export default function App() {
               </div>
             </div>
             <a
-              href={REGISTER_URL('treinamento')}
+              href={REGISTER_URL('provedor-academy')}
               className="flex-shrink-0 flex items-center gap-2 bg-gradient-to-r from-teal-500 to-emerald-500 text-white font-bold px-6 py-3 rounded-xl transition-all text-sm hover:from-teal-400 hover:to-emerald-400"
             >
               Começar Grátis → <ChevronRight className="w-4 h-4" />
@@ -762,7 +762,7 @@ export default function App() {
                 e o roadmap para transformar o que você instalar em receita recorrente.
               </p>
               <a
-                href={REGISTER_URL('treinamento')}
+                href={REGISTER_URL('provedor-academy')}
                 className="group inline-flex items-center gap-2 bg-gradient-to-r from-teal-500 to-emerald-500 hover:from-teal-400 hover:to-emerald-400 text-white font-bold px-8 py-4 rounded-2xl transition-all shadow-lg shadow-teal-500/20"
               >
                 Começar Grátis →
@@ -839,7 +839,7 @@ export default function App() {
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-10">
               <a
-                href={REGISTER_URL('treinamento')}
+                href={REGISTER_URL('provedor-academy')}
                 className="group w-full sm:w-auto flex items-center justify-center gap-2 bg-gradient-to-r from-teal-500 to-emerald-500 hover:from-teal-400 hover:to-emerald-400 text-white font-bold px-10 py-5 rounded-2xl text-lg transition-all shadow-lg shadow-teal-500/20"
               >
                 Começar Grátis →

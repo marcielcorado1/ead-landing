@@ -643,7 +643,7 @@ export default function HubPage() {
                 ))}
               </ul>
               <a
-                href={REGISTER_URL('hub')}
+                href={REGISTER_URL('hub-solo')}
                 className="w-full text-center font-bold text-sm py-3.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white transition-colors"
               >
                 Começar Grátis →
@@ -695,7 +695,7 @@ export default function HubPage() {
               </div>
 
               <a
-                href={REGISTER_URL('hub')}
+                href={REGISTER_URL('hub-team')}
                 className="w-full text-center font-bold text-sm py-3.5 rounded-xl bg-purple-600 hover:bg-purple-700 text-white transition-colors"
               >
                 Começar Grátis →

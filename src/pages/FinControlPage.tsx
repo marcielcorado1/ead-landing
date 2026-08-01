@@ -253,7 +253,7 @@ export default function FinControlPage() {
 
           <div className="flex items-center gap-3">
             <a
-              href="https://fincontrol-smoky.vercel.app/auth/login"
+              href="https://app.kemsolucoes.com.br/auth/login"
               className="hidden md:block text-sm text-slate-600 hover:text-green-600 font-medium transition-colors"
             >
               Entrar
@@ -284,7 +284,7 @@ export default function FinControlPage() {
               </a>
             ))}
             <a
-              href="https://fincontrol-smoky.vercel.app/auth/login"
+              href="https://app.kemsolucoes.com.br/auth/login"
               className="block text-sm text-green-600 font-semibold py-1"
             >
               Entrar na conta →

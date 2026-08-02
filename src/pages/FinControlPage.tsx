@@ -57,11 +57,11 @@ const MODULES = [
   },
   {
     icon: <Zap className="w-6 h-6 text-yellow-500" />,
-    name: 'KemOS',
+    name: 'EvoNexus',
     tag: 'Add-on',
     tagColor: 'bg-yellow-50 text-yellow-600 border-yellow-100',
-    desc: 'Instância completa do KemOS pré-configurada e instalada na nossa infraestrutura. Acesse direto do FinControl.',
-    items: ['Sistema completo de agentes de IA', 'Instalado e configurado por nós', 'Acesso via iframe no FinControl', 'Subdomínio próprio por tenant'],
+    desc: 'Instância completa do EvoNexus pré-configurada e instalada na nossa infraestrutura. Acesse direto da plataforma.',
+    items: ['Sistema completo de agentes de IA', 'Instalado e configurado por nós', 'Acesso via iframe na plataforma', 'Subdomínio próprio por tenant'],
   },
 ]
 
@@ -168,7 +168,7 @@ const RESELLER_PLAN = {
 const FAQS = [
   {
     q: 'Preciso instalar alguma coisa?',
-    a: 'Não. O FinControl funciona direto no navegador e pode ser adicionado à tela inicial do celular como um aplicativo. Funciona no iOS, Android e desktop.',
+    a: 'Não. O KemOS funciona direto no navegador e pode ser adicionado à tela inicial do celular como um aplicativo. Funciona no iOS, Android e desktop.',
   },
   {
     q: 'Quanto tempo leva para começar a usar?',
@@ -176,7 +176,7 @@ const FAQS = [
   },
   {
     q: 'O que é o HUB de IA?',
-    a: 'É o módulo de inteligência artificial do FinControl. Você conecta suas próprias chaves de API de LLMs (como OpenAI ou Anthropic) e passa a ter um assistente que analisa seus dados financeiros, responde perguntas e gera relatórios em linguagem natural.',
+    a: 'É o módulo de inteligência artificial do KemOS. Você conecta suas próprias chaves de API de LLMs (como OpenAI ou Anthropic) e passa a ter um assistente que analisa seus dados financeiros, responde perguntas e gera relatórios em linguagem natural.',
   },
   {
     q: 'O que é o plano Revendedor?',
@@ -191,12 +191,12 @@ const FAQS = [
     a: 'Sim. Sem fidelidade, sem multa. Se cancelar, seus dados ficam preservados por 30 dias para eventual reativação.',
   },
   {
-    q: 'O que é o KemOS e como ele se relaciona com o FinControl?',
-    a: 'O KemOS é um produto separado — uma instância completa de agentes de IA configurada para o seu negócio, instalada na nossa infraestrutura. O FinControl é o SaaS de gestão com módulos. O KemOS pode ser adicionado ao FinControl como add-on premium.',
+    q: 'O que é o add-on EvoNexus?',
+    a: 'O EvoNexus é um ambiente completo de agentes de IA configurado para o seu negócio, instalado na nossa infraestrutura com subdomínio próprio. O KemOS é o SaaS de gestão com módulos financeiro, WhatsApp e IA. O EvoNexus pode ser adicionado ao KemOS como add-on premium.',
   },
   {
-    q: 'Como o FinControl se relaciona com o NEXCORE?',
-    a: 'O FinControl foi construído usando o NEXCORE — nossa plataforma de automação com IA. Se quiser aprender a construir sistemas como esse, acesse o NEXCORE EAD em nexcore.kemsolucoes.com.br.',
+    q: 'Como o KemOS se relaciona com o NEXCORE?',
+    a: 'O KemOS foi construído usando o NEXCORE — nossa plataforma de automação com IA. Se quiser aprender a construir sistemas como esse, acesse o NEXCORE EAD em nexcore.kemsolucoes.com.br.',
   },
 ]
 
@@ -239,7 +239,7 @@ export default function FinControlPage() {
             <div className="w-8 h-8 bg-green-500 rounded-lg flex items-center justify-center">
               <BarChart3 className="w-4 h-4 text-white" />
             </div>
-            <span className="font-black text-slate-900">Fin<span className="text-green-500">Control</span></span>
+            <span className="font-black text-slate-900">Kem<span className="text-green-500">OS</span></span>
           </a>
 
           {/* Links desktop */}
@@ -314,7 +314,7 @@ export default function FinControlPage() {
           </h1>
 
           <p className="text-lg sm:text-xl text-slate-500 max-w-2xl mx-auto mb-10 leading-relaxed">
-            O <strong className="text-slate-800">FinControl</strong> reúne controle financeiro profissional, disparador de
+            O <strong className="text-slate-800">KemOS</strong> reúne controle financeiro profissional, disparador de
             WhatsApp com anti-banimento e HUB de inteligência artificial. Seu acesso chega
             por email e WhatsApp em <strong className="text-slate-800">menos de 5 minutos.</strong>
           </p>
@@ -490,7 +490,7 @@ export default function FinControlPage() {
               Para qualquer negócio que tem processos repetitivos
             </h2>
             <p className="text-slate-500 max-w-xl mx-auto">
-              Se há tarefa financeira ou de comunicação que ocorre toda semana — o FinControl automatiza.
+              Se há tarefa financeira ou de comunicação que ocorre toda semana — o KemOS automatiza.
             </p>
           </div>
 
@@ -692,14 +692,14 @@ export default function FinControlPage() {
                 comunicação com clientes, gestão financeira e inteligência artificial.
               </p>
               <p className="text-slate-600 leading-relaxed">
-                O FinControl foi construído com o <strong className="text-slate-900">NEXCORE</strong> — nossa plataforma de
+                O <strong className="text-slate-900">KemOS</strong> foi construído com o <strong className="text-slate-900">NEXCORE</strong> — nossa plataforma de
                 automação com IA. Tudo que você usa aqui foi testado primeiro no meu próprio negócio.
               </p>
             </div>
             <div className="space-y-3">
               {[
                 { icon: <Wifi className="w-5 h-5 text-green-500" />, label: 'Dono de ISP há mais de 17 anos', sub: 'Kem Soluções — fibra óptica para residências e empresas' },
-                { icon: <BarChart3 className="w-5 h-5 text-green-500" />, label: 'Usa o FinControl em produção', sub: 'Gestão financeira do próprio provedor roda no sistema' },
+                { icon: <BarChart3 className="w-5 h-5 text-green-500" />, label: 'Usa o KemOS em produção', sub: 'Gestão financeira do próprio provedor roda no sistema' },
                 { icon: <Sparkles className="w-5 h-5 text-green-500" />, label: 'Criador do NEXCORE Ecosystem', sub: 'Plataforma que ensina automação com IA para qualquer negócio' },
                 { icon: <Star className="w-5 h-5 text-green-500" />, label: 'Conteúdo sempre atualizado', sub: 'Quando o produto evolui, o suporte e os cursos evoluem junto' },
               ].map((item, i) => (
@@ -729,10 +729,10 @@ export default function FinControlPage() {
               <div>
                 <p className="text-xs font-bold text-teal-600 uppercase tracking-wider mb-1">NEXCORE Academy</p>
                 <h3 className="font-black text-slate-900 text-xl mb-2">
-                  Quer aprender como o FinControl foi construído?
+                  Quer aprender como o KemOS foi construído?
                 </h3>
                 <p className="text-slate-500 text-sm leading-relaxed max-w-xl">
-                  O FinControl foi desenvolvido com o NEXCORE — a plataforma que ensina qualquer dono de negócio
+                  O KemOS foi desenvolvido com o NEXCORE — a plataforma que ensina qualquer dono de negócio
                   a automatizar processos com IA, sem programar. Se quiser aprender a construir sistemas como esse, acesse o NEXCORE EAD.
                 </p>
               </div>
@@ -784,7 +784,7 @@ export default function FinControlPage() {
                 Ver planos e assinar <ArrowRight className="w-5 h-5" />
               </a>
               <a
-                href={`https://wa.me/5561985750506?text=${encodeURIComponent('Olá! Quero saber mais sobre o FinControl.')}`}
+                href={`https://wa.me/5561985750506?text=${encodeURIComponent('Olá! Quero saber mais sobre o KemOS.')}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full sm:w-auto flex items-center justify-center gap-2 border-2 border-white/40 text-white hover:border-white/70 font-semibold px-8 py-4 rounded-2xl text-base transition-colors"
@@ -806,7 +806,7 @@ export default function FinControlPage() {
             <div className="w-7 h-7 bg-green-500 rounded-lg flex items-center justify-center">
               <BarChart3 className="w-3.5 h-3.5 text-white" />
             </div>
-            <span className="font-black text-slate-800">Fin<span className="text-green-500">Control</span></span>
+            <span className="font-black text-slate-800">Kem<span className="text-green-500">OS</span></span>
           </div>
           <div className="flex items-center gap-6 text-xs text-slate-400">
             <a href="/privacidade" className="hover:text-slate-600 transition-colors">Privacidade</a>
